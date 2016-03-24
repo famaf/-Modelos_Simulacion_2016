@@ -1,15 +1,31 @@
 # -*- coding: utf-8 -*-
 
 import random
+import math
 
 # Infinito en python: infinito = float('inf')
 
+INFINITO = float("inf")
 
 def fa(x):
     """
     Funcion del ejercicio 3 a.
     """
     return (1 - x**2)**(float(3)/2)
+
+
+def fb(x):
+    """
+    Funcion del ejercicio 3 b.
+    """
+    return x*(1 + x**2)**(-2)
+
+
+def fc(x):
+    """
+    Funcion del ejercicio 3 b.
+    """
+    return math.e**(-x**2)
 
 
 def montecarlo(funcion, a, b, n):
@@ -29,4 +45,4 @@ def montecarlo(funcion, a, b, n):
 
     return ((b-a)/float(n))*acumulador
 
-print montecarlo(fa, 0, 1, 10000)
+print montecarlo(fc, -INFINITO, INFINITO, 10)
