@@ -2,6 +2,9 @@
 
 import random
 
+# Infinito en python: infinito = float('inf')
+
+
 def fa(x):
     """
     Funcion del ejercicio 3 a.
@@ -13,6 +16,7 @@ def montecarlo(funcion, a, b, n):
     """
     Calcula la integral por medio del metodo de Monte Carlo.
     Donde:
+        funcion = funcion a la cual se quiere aproximar su integral.
         a = limite inferior.
         b = limite superior.
         n = cantidad de interaciones.
