@@ -2,24 +2,27 @@
 
 import random
 
-# Iteraciones
-n = 10000
-
-# Limites
-a = 0
-b = 1
-
-def f(x):
+def fa(x):
     """
-    Funcion a integrar.
+    Funcion del ejercicio 3 a.
     """
     return (1 - x**2)**(float(3)/2)
 
 
-acumulador = 0
+def montecarlo(a, b, n):
+    """
+    Calcula la integral por medio del metodo de Monte Carlo.
+    Donde:
+        a = limite inferior.
+        b = limite superior.
+        n = cantidad de interaciones.
+    """
+    acumulador = 0
 
-for i in range(n):
-    u = random.random()
-    acumulador += f(u*(b-a) + a)
+    for i in range(n):
+        u = random.random()
+        acumulador += fa(u*(b-a) + a)
 
-print ((b-a)/float(n))*acumulador
+    return ((b-a)/float(n))*acumulador
+
+print montecarlo(0, 1, 10000)
