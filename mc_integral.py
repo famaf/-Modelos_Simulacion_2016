@@ -9,7 +9,7 @@ def fa(x):
     return (1 - x**2)**(float(3)/2)
 
 
-def montecarlo(a, b, n):
+def montecarlo(funcion, a, b, n):
     """
     Calcula la integral por medio del metodo de Monte Carlo.
     Donde:
@@ -21,8 +21,8 @@ def montecarlo(a, b, n):
 
     for i in range(n):
         u = random.random()
-        acumulador += fa(u*(b-a) + a)
+        acumulador += funcion(u*(b-a) + a)
 
     return ((b-a)/float(n))*acumulador
 
-print montecarlo(0, 1, 10000)
+print montecarlo(fa, 0, 1, 10000)
