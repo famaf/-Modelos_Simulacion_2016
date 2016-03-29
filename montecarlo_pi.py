@@ -17,3 +17,4 @@ def montecarlo(t):
         if d < 1:
             g += 1
     return 4*g/float(t)
+

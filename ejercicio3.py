@@ -13,12 +13,14 @@ def fa(x):
     """
     return (1 - x**2)**(float(3)/2)
 
+def f(x):
+    return math.cos(x)**4
 
 def fb(x):
     """
     Funcion del ejercicio 3 b.
     """
-    return x*(1 + x**2)**(-2)
+    return (x - x**2)*((1 - 2*x + 2*(y**2))**(-2))
 
 
 def fc(x):
@@ -45,5 +47,5 @@ def montecarlo(funcion, a, b, n):
 
     return ((b-a)/float(n))*acumulador
 
-print montecarlo(fa, 0, 1, 20)
+print montecarlo(f, 0, math.pi/2, 10000)
 
