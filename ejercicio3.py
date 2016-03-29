@@ -45,4 +45,5 @@ def montecarlo(funcion, a, b, n):
 
     return ((b-a)/float(n))*acumulador
 
-print montecarlo(fc, -INFINITO, INFINITO, 10)
+print montecarlo(fa, 0, 1, 20)
+
