@@ -24,6 +24,9 @@ def montecarlo(funcion, a, b, n):
 
 
 def ejercicio03a(n):
+    """
+    Ejercicio 3a del Practico 3.
+    """
     a = 0
     for i in xrange(n):
         y = random.random()
@@ -31,21 +34,61 @@ def ejercicio03a(n):
 
     return (a/float(n))
 
+
 def ejercicio03b(n):
-    pass
-
-def fa(x):
     """
-    Funcion del ejercicio 3 a.
+    Ejercicio 3b del Practico 3.
     """
-    return (1 - x**2)**(float(3)/2)
+    a = 0
+    for i in xrange(n):
+        y = random.random()
+        a += (y**(-1) - 1) * (y**(-1) + 2*y - 2)**(-2)
+
+    return (a/float(n))
 
 
-def fb(x):
+def ejercicio03c(n):
     """
-    Funcion del ejercicio 3 b.
+    Ejercicio 3c del Practico 3.
     """
-    return (x - x**2)*((1 - 2*x + 2*(y**2))**(-2))
+    a = 0
+    for i in xrange(n):
+        y = random.random()
+        a += math.e**(2*(y**(-1)) - y**(-2) - 1) * (y**(-2))
+    a *= 2
+
+    return (a/float(n))
+
+# ESTE NO FUNCIONA BIEN
+def ejercicio03d(n):
+    """
+    Ejercicio 3d del Practico 3.
+    """
+    a = 0
+    for i in xrange(n):
+        w = random.random()
+        z = random.random()
+        a += math.e**((w + z)**2)
+
+    return (a/float(n))
 
 
-print "n = 100 => Ejercicio 3a =", ejercicio03a(100)
+L = [100, 1000, 10000, 100000, 1000000]
+
+print "-------------------------------------------------------------"
+for n in L:
+    #print "n = {0} => Ejercicio 3a = {1}" .format(n, ejercicio03a(n))
+    print "n = %d => Ejercicio 3a = %f" % (n, ejercicio03a(n))
+print "-------------------------------------------------------------"
+
+for n in L:
+    print "n = {0} => Ejercicio 3b = {1}" .format(n, ejercicio03b(n))
+print "-------------------------------------------------------------"
+
+for n in L:
+    print "n = {0} => Ejercicio 3c = {1}" .format(n, ejercicio03c(n))
+print "-------------------------------------------------------------"
+
+for n in L:
+    print "n = {0} => Ejercicio 3d = {1}" .format(n, ejercicio03d(n))
+print "-------------------------------------------------------------"
