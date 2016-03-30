@@ -3,40 +3,15 @@
 import random
 import math
 
-# Infinito en python: infinito = float('inf')
-
-INFINITO = float("inf")
-
-def fa(x):
-    """
-    Funcion del ejercicio 3 a.
-    """
-    return (1 - x**2)**(float(3)/2)
-
-def f(x):
-    return math.cos(x)**4
-
-def fb(x):
-    """
-    Funcion del ejercicio 3 b.
-    """
-    return (x - x**2)*((1 - 2*x + 2*(y**2))**(-2))
-
-
-def fc(x):
-    """
-    Funcion del ejercicio 3 b.
-    """
-    return math.e**(-x**2)
-
+# Infinito en python: infinito = float("inf")
 
 def montecarlo(funcion, a, b, n):
     """
     Calcula la integral por medio del metodo de Monte Carlo.
     Donde:
         funcion = funcion a la cual se quiere aproximar su integral.
-        a = limite inferior.
-        b = limite superior.
+        a = limite inferior != infinito.
+        b = limite superior != infinito.
         n = cantidad de interaciones.
     """
     acumulador = 0
@@ -47,5 +22,30 @@ def montecarlo(funcion, a, b, n):
 
     return ((b-a)/float(n))*acumulador
 
-print montecarlo(f, 0, math.pi/2, 10000)
 
+def ejercicio03a(n):
+    a = 0
+    for i in xrange(n):
+        y = random.random()
+        a += (1 - y**2)**(float(3)/2)
+
+    return (a/float(n))
+
+def ejercicio03b(n):
+    pass
+
+def fa(x):
+    """
+    Funcion del ejercicio 3 a.
+    """
+    return (1 - x**2)**(float(3)/2)
+
+
+def fb(x):
+    """
+    Funcion del ejercicio 3 b.
+    """
+    return (x - x**2)*((1 - 2*x + 2*(y**2))**(-2))
+
+
+print "n = 100 => Ejercicio 3a =", ejercicio03a(100)

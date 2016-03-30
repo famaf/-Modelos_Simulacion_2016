@@ -3,7 +3,9 @@
 import random
 
 def ejercicio02c(n):
-
+    """
+    Ejericio 2c del Practico 3.
+    """
     exitos = 0
     for _ in xrange(n):
 
