@@ -2,48 +2,27 @@
 
 import random
 
+def ejercicio02c(n):
 
-n = int(raw_input("Ingrese la cantidad de iteraciones: "))
+    exitos = 0
+    for _ in xrange(n):
 
-LISTA = [random.uniform(0,1) for i in range(n)]
+       u = random.random() # Simula U
+       
+       # Simula X
+       if u < 0.5:
+           x = random.random() + random.random()
+       else:
+           x = random.random() + random.random() + random.random()
 
-counter_win = 0
+       # Actualiza la cuenta de casos de exito (evento (X>=1))
+       if x >= 1.0:
+           exitos += 1
 
-for element in LISTA:
-    acumulador = 0
-    if element < 0.5:
-        acumulador += random.random() + random.random()
-    else:
-        acumulador += random.random() + random.random() + random.random()
-
-    if acumulador >= 1.0:
-        # print "GANASTE"
-        counter_win += 1
-
-probabilidad = float(counter_win)/n
-
-print probabilidad
+    return float(exitos)/n
 
 
-# Codigo del profe XD
-#import numpy as np
-
-#def ej2c(n):
-#    for _ in xrange(n):
- #       # simula u
- #       u = np.random.random()
- #       
- #       # simula x
- #       if u < 0.5:
- #           x = np.random.random() + np.random.random()
- #       else:
- #           x = np.random.random() + np.random.random() + np.random.random()
- #   
- #       # actualiza cuenta de casos de exito (evento (X>=1))
- #       if x >= 1.0:
- #           exito += 1
- #   
-# v   return float(exitos)/n
-
-#print "P(X>=1) = ", ej2c(100)
-
+print "n = 100 => P(X>=1) =", ejercicio02c(100)
+print "n = 1000 => P(X>=1) =", ejercicio02c(1000)
+print "n = 10000 => P(X>=1) =", ejercicio02c(10000)
+print "n = 100000 => P(X>=1) =", ejercicio02c(100000)
