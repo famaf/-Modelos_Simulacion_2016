@@ -59,16 +59,16 @@ def ejercicio03c(n):
 
     return (a/float(n))
 
-# ESTE NO FUNCIONA BIEN
+
 def ejercicio03d(n):
     """
     Ejercicio 3d del Practico 3.
     """
     a = 0
-    for i in xrange(1, n+1):
+    for i in xrange(n):
         w = random.random()
         z = random.random()
-        a += math.e**(((w**i) + (z**i))**2)
+        a += math.e**((w + z)**2)
 
     return (a/float(n))
 
@@ -76,18 +76,18 @@ def ejercicio03d(n):
 L = [100, 1000, 10000, 100000, 1000000]
 
 print "-------------------------------------------------------------"
-# for n in L:
-#     #print "n = {0} => Ejercicio 3a = {1}" .format(n, ejercicio03a(n))
-#     print "n = %d => Ejercicio 3a = %f" % (n, ejercicio03a(n))
-# print "-------------------------------------------------------------"
+for n in L:
+    #print "n = {0} => Ejercicio 3a = {1}" .format(n, ejercicio03a(n))
+    print "n = %d => Ejercicio 3a = %f" % (n, ejercicio03a(n))
+print "-------------------------------------------------------------"
 
-# for n in L:
-#     print "n = {0} => Ejercicio 3b = {1}" .format(n, ejercicio03b(n))
-# print "-------------------------------------------------------------"
+for n in L:
+    print "n = {0} => Ejercicio 3b = {1}" .format(n, ejercicio03b(n))
+print "-------------------------------------------------------------"
 
-# for n in L:
-#     print "n = {0} => Ejercicio 3c = {1}" .format(n, ejercicio03c(n))
-# print "-------------------------------------------------------------"
+for n in L:
+    print "n = {0} => Ejercicio 3c = {1}" .format(n, ejercicio03c(n))
+print "-------------------------------------------------------------"
 
 for n in L:
     print "n = {0} => Ejercicio 3d = {1}" .format(n, ejercicio03d(n))
