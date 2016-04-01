@@ -75,20 +75,20 @@ def ejercicio03d(n):
 
 L = [100, 1000, 10000, 100000, 1000000]
 
-print "-------------------------------------------------------------"
 for n in L:
-    #print "n = {0} => Ejercicio 3a = {1}" .format(n, ejercicio03a(n))
-    print "n = %d => Ejercicio 3a = %f" % (n, ejercicio03a(n))
+    print "n =", n, "==> Ejercicio 3a =", ejercicio03a(n)
+
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n = {0} => Ejercicio 3b = {1}" .format(n, ejercicio03b(n))
+    print "n =", n, "==> Ejercicio 3b =", ejercicio03b(n)
+
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n = {0} => Ejercicio 3c = {1}" .format(n, ejercicio03c(n))
+    print "n =", n, "==> Ejercicio 3c =", ejercicio03c(n)
+
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n = {0} => Ejercicio 3d = {1}" .format(n, ejercicio03d(n))
-print "-------------------------------------------------------------"
+    print "n =", n, "==> Ejercicio 3d =", ejercicio03d(n)
