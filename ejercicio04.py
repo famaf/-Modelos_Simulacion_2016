@@ -8,7 +8,7 @@ def ejercicio04a(n):
     """
     Ejercicio 4a del Practico 3.
     """
-    a = 0 # Acumulador de la suma de n tq' min{ n : Sn > 1 }
+    a = 0 # Acumulador de la suma de N's tq' min{ N : Sn > 1 }
     for i in xrange(n):
         N = 0 # min { N : Sn > 1}
         s = 0 # Sn

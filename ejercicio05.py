@@ -8,11 +8,13 @@ def ejercicio05a(n):
     """
     Ejercicio 5a del Practico 3.
     """
-    a = 0
+    a = 0 # Acumulador de la suma de N's tq' max{ N : Pn >= e^(-3) }
     for i in xrange(n):
-        N = 0
-        p = 1
+        N = 0 # max { N : Pn > 1}
+        p = 1 # Pn
 
+        # Si Pn >= 1 entonces multiplicamos otro numero aleatorio
+        # y aumentamos el N
         while p >= math.e**(-3):
             p *= random.random()
             N += 1
@@ -20,6 +22,7 @@ def ejercicio05a(n):
         a += N
 
     return float(a)/n
+
 
 
 def ejercicio05b(i):
@@ -42,25 +45,25 @@ def ejercicio05b(i):
                 if u < limite:
                     exitos += 1
         if i == 3:
-            u = random.random() + random.random()
+            u = random.random() * random.random()
             if u >= limite:
                 u *= random.random()
                 if u < limite:
                     exitos +=1
         if i == 4:
-            u = random.random() + random.random() + random.random()
+            u = random.random() * random.random() * random.random()
             if u >= limite:
                 u *= random.random()
                 if u < limite:
                     exitos +=1
         if i == 5:
-            u = random.random() + random.random() + random.random() + random.random()
+            u = random.random() * random.random() * random.random() * random.random()
             if u >= limite:
                 u *= random.random()
                 if u < limite:
                     exitos +=1
         if i == 6:
-            u = random.random() + random.random() + random.random() + random.random() + random.random()
+            u = random.random() * random.random() * random.random() * random.random() * random.random()
             if u >= limite:
                 u *= random.random()
                 if u < limite:
