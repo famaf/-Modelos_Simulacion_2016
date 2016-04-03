@@ -24,5 +24,7 @@ def buffon(n):
 
     return float(n)/interseccion
 
+
+
 for n in [1000, 10000, 100000]:
-    print "Pi =", buffon(n)
+    print "n =", n, "==> Pi =", buffon(n)

@@ -24,7 +24,6 @@ def ejercicio05a(n):
     return float(a)/n
 
 
-
 def ejercicio05b(i):
     """
     Ejercicio 5b del Practico 3.
@@ -72,8 +71,9 @@ def ejercicio05b(i):
     return float(exitos)/1000000
 
 
+
 for n in [100, 1000, 10000, 100000, 1000000]:
-    print "E(N) =", ejercicio05a(n)
+    print "n =", n, "==> E(N) =", ejercicio05a(n)
 
 print "----------------------"
 

@@ -45,4 +45,4 @@ def ejercicio04a(n):
 #     return float(a)/n
 
 for n in [100, 1000, 10000, 100000, 1000000]:
-    print "e =", ejercicio04a(n)
+    print "n =", n,  "==> e =", ejercicio04a(n)
