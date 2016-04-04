@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-(
 
 import random
 import math
@@ -19,7 +19,7 @@ def ejercicio05a(n):
             p *= random.random()
             N += 1
         
-        a += N
+        a += (N - 1)
 
     return float(a)/n
 
@@ -51,7 +51,7 @@ def ejercicio05b(i):
 for n in [100, 1000, 10000, 100000, 1000000]:
     print "n =", n, "--> E(N) =", ejercicio05a(n)
 
-print "----------------------"
+print "--------------------------------"
 
 for i in xrange(7):
     print "P(N = %d)" % i, "=", ejercicio05b(i)
