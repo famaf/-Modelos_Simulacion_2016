@@ -13,13 +13,13 @@ def ejercicio05a(n):
         N = 0 # max { N : Pn > 1}
         p = 1 # Pn
 
-        # Si Pn >= 1 entonces multiplicamos otro numero aleatorio
+        # Si Pn >= e^(-3) entonces multiplicamos otro numero aleatorio
         # y aumentamos el N
         while p >= math.exp(-3):
             p *= random.random()
             N += 1
         
-        a += (N - 1)
+        a += (N - 1) # Nos quedamos con el N que cumple con la condicion
 
     return float(a)/n
 
