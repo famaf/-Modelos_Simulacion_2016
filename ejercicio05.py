@@ -15,7 +15,7 @@ def ejercicio05a(n):
 
         # Si Pn >= 1 entonces multiplicamos otro numero aleatorio
         # y aumentamos el N
-        while p >= math.e**(-3):
+        while p >= math.exp(-3):
             p *= random.random()
             N += 1
         
@@ -29,51 +29,27 @@ def ejercicio05b(i):
     Ejercicio 5b del Practico 3.
     """
     exitos = 0
-    limite = math.e**(-3)
+    cota = math.exp(-3)
     for _ in xrange(1000000):
-        if i == 0:
-            pass
-        if i == 1:
-            u = random.random()
-            if u < limite:
+        u = 1 # Empezamos con la Pi = 1, Pi : Productoria de i numeros
+
+        # Multiplicamos i numeros aleatorios
+        for _ in xrange(i):
+            u *= random.random()
+
+        # Si Pi >= e^(-3)
+        if u >= cota:
+            u *= random.random()
+            # Me fijo que Pi+1 < e^(-3)
+            if u < cota:
                 exitos += 1
-        if i == 2:
-            u = random.random()
-            if u >= limite:
-                u *= random.random()
-                if u < limite:
-                    exitos += 1
-        if i == 3:
-            u = random.random() * random.random()
-            if u >= limite:
-                u *= random.random()
-                if u < limite:
-                    exitos +=1
-        if i == 4:
-            u = random.random() * random.random() * random.random()
-            if u >= limite:
-                u *= random.random()
-                if u < limite:
-                    exitos +=1
-        if i == 5:
-            u = random.random() * random.random() * random.random() * random.random()
-            if u >= limite:
-                u *= random.random()
-                if u < limite:
-                    exitos +=1
-        if i == 6:
-            u = random.random() * random.random() * random.random() * random.random() * random.random()
-            if u >= limite:
-                u *= random.random()
-                if u < limite:
-                    exitos +=1
 
     return float(exitos)/1000000
 
 
 
 for n in [100, 1000, 10000, 100000, 1000000]:
-    print "n =", n, "==> E(N) =", ejercicio05a(n)
+    print "n =", n, "--> E(N) =", ejercicio05a(n)
 
 print "----------------------"
 

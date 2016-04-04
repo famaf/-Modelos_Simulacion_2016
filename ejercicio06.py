@@ -15,7 +15,7 @@ def buffon(n):
         r = random.uniform(0, 2)
         theta = random.uniform(0, PI)
 
-        if r != 0.5 or r != 1.5:
+        if r <= 0.5 or r >= 1.5:
             ya = r + 0.5*math.sin(theta)
             yb = r - 0.5*math.sin(theta)
 
@@ -27,4 +27,4 @@ def buffon(n):
 
 
 for n in [1000, 10000, 100000]:
-    print "n =", n, "==> Pi =", buffon(n)
+    print "n =", n, "--> Pi =", buffon(n)

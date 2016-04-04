@@ -54,7 +54,7 @@ def ejercicio03c(n):
     a = 0
     for _ in xrange(n):
         y = random.random()
-        a += math.e**(2*(y**(-1)) - y**(-2) - 1) * (y**(-2))
+        a += math.exp(2*(y**(-1)) - y**(-2) - 1) * (y**(-2))
     a *= 2
 
     return (a/float(n))
@@ -68,7 +68,7 @@ def ejercicio03d(n):
     for _ in xrange(n):
         w = random.random()
         z = random.random()
-        a += math.e**((w + z)**2)
+        a += math.exp((w + z)**2)
 
     return (a/float(n))
 
@@ -80,7 +80,7 @@ def ejercicio03e(n):
         z = random.random()
 
         if z > w:
-            a += w**(-2) * z**(-2) * math.e**(2 - z**(-1) - w**(-1))
+            a += w**(-2) * z**(-2) * math.exp(2 - z**(-1) - w**(-1))
 
     return (a/float(n))
 
@@ -89,24 +89,24 @@ def ejercicio03e(n):
 L = [100, 1000, 10000, 100000, 1000000]
 
 for n in L:
-    print "n =", n, "==> Ejercicio 3a =", ejercicio03a(n)
+    print "n =", n, "--> Ejercicio 3a =", ejercicio03a(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "==> Ejercicio 3b =", ejercicio03b(n)
+    print "n =", n, "--> Ejercicio 3b =", ejercicio03b(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "==> Ejercicio 3c =", ejercicio03c(n)
+    print "n =", n, "--> Ejercicio 3c =", ejercicio03c(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "==> Ejercicio 3d =", ejercicio03d(n)
+    print "n =", n, "--> Ejercicio 3d =", ejercicio03d(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "==> Ejercicio 3e =", ejercicio03e(n)
+    print "n =", n, "--> Ejercicio 3e =", ejercicio03e(n)

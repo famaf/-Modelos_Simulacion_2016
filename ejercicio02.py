@@ -26,9 +26,4 @@ def ejercicio02c(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "==> P(X >= 1) =", ejercicio02c(n)
-
-# print "n = 100 ==> P(X >= 1) =", ejercicio02c(100)
-# print "n = 1000 ==> P(X >= 1) =", ejercicio02c(1000)
-# print "n = 10000 ==> P(X >= 1) =", ejercicio02c(10000)
-# print "n = 100000 ==> P(X >= 1) =", ejercicio02c(100000)
+    print "n =", n, "--> P(X >= 1) =", ejercicio02c(n)
