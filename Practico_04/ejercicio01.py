@@ -4,9 +4,13 @@ import random
 import math
 
 
-def permutacion(lista):
+def permutacionAleatoria(lista):
+    """
+    Alegoritmo de permutacion aleatoria.
+    """
     k = len(lista) - 1
-    while k >= 0:
+
+    while k > 0:
         u = random.random()
         i = int(math.floor(k*u))
         lista[k], lista[i] = lista[i], lista[k]
@@ -15,32 +19,47 @@ def permutacion(lista):
 
 
 def esperanza(n):
-    exito = 0
+    """
+    Calcula la esperanza con la ley de los grandes numeros.
+    """
+    exito = 0 # Veces que la carta-i == i
+
     for _ in xrange(n):
         mazo = range(1, 101) # Lista de 100 cartas
         random.shuffle(mazo) # Desordena el mazo
+        # Chequeo todo el mazo para ver si hay algun 'exito', de ser asi lo
+        # lo sumamos.
         exito += sum([mazo[i-1]==i for i in xrange(1, 101)])
+
     return float(exito)/n
 
 
 def varianza(n):
-    exito1 = 0
-    exito2 = 0
+    """
+    Calcula la varianza en base a la esperanza.
+    """
+    suma1 = 0
+    suma2 = 0
+
     for _ in xrange(n):
         mazo = range(1, 101) # Lista de 100 cartas
         random.shuffle(mazo) # Desordena el mazo
-        evento = sum([mazo[i-1]==i for i in xrange(1, 101)])
+        # Chequeo todo el mazo para ver si hay algun 'exito', de ser asi lo
+        # lo sumamos.
+        exito = sum([mazo[i-1]==i for i in xrange(1, 101)])
         
-        exito1 += evento
-        exito2 += evento**2
-    
-    esperanza = exito1/float(n)
-    varianza = exito2/float(n) - esperanza**2
+        suma1 += exito
+        suma2 += exito**2
+
+    varianza = suma2/float(n) - (suma1/float(n))**2
     
     return varianza
 
 
+for n in [100, 1000, 10000, 100000]:
+    print "n =", n, "--> E(X) =", esperanza(n)
 
-print "E(X) =", esperanza(10000)
-print "V(X) =", varianza(10000)
+print "--------------------------------"
 
+for n in [100, 1000, 10000, 100000]:
+    print "n =", n, "--> V(X) =", varianza(n)
