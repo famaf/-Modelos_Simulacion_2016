@@ -4,6 +4,9 @@ import random
 import math
 
 def ejercicio02(n):
+    """
+    Ejericicio 02 del Practico 4.
+    """
     N = 10000
     a = 0
 
