@@ -27,7 +27,7 @@ def ejercicio05_inversa(k, lamda):
     """
     Ejercicio 5 con Metodo de Transformada Inversa.
     """
-    pj = 0 # Acumula los sumandos del denomindor
+    pj = 0 # Acumula los sumandos del denominador
     j = 0 
     while j <= k:
         pj += (lamda**j/float(math.factorial(j)))

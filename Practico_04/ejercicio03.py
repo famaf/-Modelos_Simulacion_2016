@@ -56,10 +56,10 @@ def varianza(n):
             if suma_dados in RESULTADOS:
                 RESULTADOS.remove(suma_dados)
         
-        N1 += lanzamientos
-        N2 += lanzamientos**2
+        N1 += lanzamientos # x
+        N2 += lanzamientos**2 # x^2
 
-    varianza = N2/float(n) - (N1/float(n))**2
+    varianza = N2/float(n) - (N1/float(n))**2 # V(x) = E(x^2) - E(x)^2
 
     return varianza
 

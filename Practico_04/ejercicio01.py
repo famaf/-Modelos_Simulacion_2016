@@ -48,10 +48,10 @@ def varianza(n):
         # lo sumamos.
         exito = sum([mazo[i-1]==i for i in xrange(1, 101)])
         
-        suma1 += exito
-        suma2 += exito**2
+        suma1 += exito # x
+        suma2 += exito**2 # x^2
 
-    varianza = suma2/float(n) - (suma1/float(n))**2
+    varianza = suma2/float(n) - (suma1/float(n))**2 # V(x) = E(x^2) - E(x)^2
     
     return varianza
 
