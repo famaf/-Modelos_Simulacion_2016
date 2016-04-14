@@ -5,7 +5,9 @@ import math
 
 
 def poisson(lamda):
-    # Te devuelve una X con distribución Poisson con parámetro lamda
+    """
+    Te devuelve una X con distribución Poisson con parámetro lamda.
+    """
     u = random.random()
     i = 0
     p = math.exp(-lamda)
@@ -22,7 +24,9 @@ def poisson(lamda):
 
 
 def ejercicio05_inversa(k, lamda):
-
+    """
+    Ejercicio 5 con Metodo de Transformada Inversa.
+    """
     pj = 0 # Acumula los sumandos del denomindor
     j = 0 
     while j <= k:
@@ -48,13 +52,20 @@ def ejercicio05_inversa(k, lamda):
 
 
 def ejercicio05_rechazo(k, lamda):
-    y = poisson(lamda)
-    while y >= k:
-        y = poisson(lamda)
-    return y
+    """
+    Ejercicio 5 con Metodo de Aceptacion y Rechazo.
+    """
+    x = poisson(lamda)
+    while x >= k:
+        x = poisson(lamda)
+
+    return x
 
 
 def esperanza_1(k, lamda, n):
+    """
+    Esperanza con Metodo de Transformada Inversa.
+    """
     a = 0
     for _ in xrange(n):
         a += ejercicio05_inversa(k, lamda)
@@ -63,6 +74,9 @@ def esperanza_1(k, lamda, n):
 
 
 def esperanza_2(k, lamda, n):
+    """
+    Esperanza con Metodo de Aceptacion y Rechazo.
+    """
     a = 0
     for _ in xrange(n):
         a += ejercicio05_rechazo(k, lamda)
@@ -72,10 +86,10 @@ def esperanza_2(k, lamda, n):
 
 print "Metodo de Transformada Inversa"
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza_1(5, 2, n)
+    print "n =", n, "--> E(X) =", esperanza_1(10, 2, n)
 
 print "------------------------------"
 
 print "Metodo de Aceptacion y Rechazo"
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza_2(5, 2, n)
+    print "n =", n, "--> E(X) =", esperanza_2(10, 2, n)
