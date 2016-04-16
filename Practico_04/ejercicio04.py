@@ -15,6 +15,8 @@ def ejercicio04_composicionInversa1():
         u = random.random()
         j = 1
         pj = 0.5**j
+        # Mientras la acumulada sea menor a la U, sigo acumulando valores
+        # hasta que la acumulada sea mayor a la U
         while u >= pj:
             j += 1
             pj += 0.5**j
@@ -24,6 +26,8 @@ def ejercicio04_composicionInversa1():
         u = random.random()
         j = 1
         pj = 0.5*((float(2)/3)**j)
+        # Mientras la acumulada sea menor a la U, sigo acumulando valores
+        # hasta que la acumulada sea mayor a la U
         while u >= pj:
             j += 1
             pj += 0.5*((float(2)/3)**j)
