@@ -6,10 +6,10 @@ import math
 
 def ejercicio01():
     u = random.random()
-    if u < 0.5:
-        x = -2 - 2*math.sqrt(2-u)
+    if u < 0.25:
+        x = 2 + 2*math.sqrt(u)
     else:
-        x = 6 + 6*math.sqrt((11 - 4*u)/12.0)
+        x = 6 - 6*math.sqrt((1-u)/3.0)
 
     return x
 

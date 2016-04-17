@@ -4,20 +4,6 @@ import random
 import math
 
 
-def permutacionAleatoria(lista):
-    """
-    Alegoritmo de permutacion aleatoria.
-    """
-    k = len(lista) - 1
-
-    while k > 0:
-        u = random.random()
-        i = int(math.floor(k*u))
-        lista[k], lista[i] = lista[i], lista[k]
-        k -= 1
-    return lista
-
-
 def esperanza(n):
     """
     Calcula la esperanza con la ley de los grandes numeros.

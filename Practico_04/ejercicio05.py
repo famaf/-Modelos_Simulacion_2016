@@ -2,25 +2,7 @@
 
 import random
 import math
-
-
-def poisson(lamda):
-    """
-    Te devuelve una X con distribución Poisson con parámetro lamda.
-    """
-    u = random.random()
-    i = 0
-    p = math.exp(-lamda)
-    f = p
-
-    while u >= f:
-        p = (lamda*p)/float(i+1)
-        f += p
-        i += 1
-
-    x = i
-
-    return x
+from distribuciones import poisson
 
 
 def ejercicio05_inversa(k, lamda):
