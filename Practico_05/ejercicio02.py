@@ -2,20 +2,23 @@
 
 import random
 import math
+from distribuciones import raizGeneral
 
-
-def raizGeneral(raiz, radicando):
-    return radicando**(1.0/raiz)
 
 def ejercicio02(alfa, beta):
+    """
+    Ejercicio 2 del Practico 5 con Metodo de Transformada Inversa.
+    """
     u = random.random()
     x = raizGeneral(beta, -(math.log(1-u)/float(alfa)))
 
     return x
 
 
-
 def esperanza(n):
+    """
+    Esperanza con Metodo de Transformada Inversa.
+    """
     a = 0
     for _ in xrange(n):
         a += ejercicio02(1, 1)
