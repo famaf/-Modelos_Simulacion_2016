@@ -37,7 +37,18 @@ def maxUniformes(n):
     maximo = 0
     for _ in xrange(n):
         u = random.random()
-        print u
         maximo = max(maximo, u)
 
     return maximo
+
+
+def minUniformes(n):
+    """
+    Calcula el minimo de n Uniformes en (0, 1).
+    """
+    minimo = 1
+    for _ in xrange(n):
+        u = random.random()
+        minimo = min(minimo, u)
+
+    return minimo
