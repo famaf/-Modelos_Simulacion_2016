@@ -29,3 +29,15 @@ def exponencial(lamda):
 
     return x
 
+
+def maxUniformes(n):
+    """
+    Calcula el maximo de n Uniformes en (0, 1).
+    """
+    maximo = 0
+    for _ in xrange(n):
+        u = random.random()
+        print u
+        maximo = max(maximo, u)
+
+    return maximo
