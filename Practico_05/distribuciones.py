@@ -52,3 +52,24 @@ def minUniformes(n):
         minimo = min(minimo, u)
 
     return minimo
+
+
+def procesoPoissonH(lamda, tiempo):
+    """
+    Genera las primeras T (tiempo) unidades de tiempo de un
+    Proceso de Poisson con parametro lambda.
+    """
+    t = 0 # tiempo
+    i = 0 # N° de eventos ocurridos hasta t
+    s = [] # S[i]: tiempo del evento mas reciente
+    while True:
+        u = random.random()
+
+        if t - (math.log(u)/float(lamda)) > tiempo:
+            break
+        else:
+            t -= (math.log(u)/float(lamda))
+            i += 1
+            s.append(t)
+
+    return i
