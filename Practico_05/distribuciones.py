@@ -3,6 +3,7 @@
 import random
 import math
 
+
 def intervalo(longitud, inicio):
     """
     Devuelve un numero aleatorio entre [inicio, inicio+longitud-1].
@@ -57,9 +58,9 @@ def minUniformes(n):
 def procesoPoissonH(lamda, tiempo):
     """
     Genera las primeras T (tiempo) unidades de tiempo de un
-    Proceso de Poisson con parametro lambda.
+    Proceso de Poisson Homogeneo con parametro lambda.
     """
-    t = 0 # tiempo
+    t = 0 # tiempo transcurrido
     i = 0 # N° de eventos ocurridos hasta t
     s = [] # S[i]: tiempo del evento mas reciente
     while True:
@@ -71,5 +72,29 @@ def procesoPoissonH(lamda, tiempo):
             t -= (math.log(u)/float(lamda))
             i += 1
             s.append(t)
+
+    return i
+
+
+def adelgazamiento(lamda, lamda_t, tiempo):
+    """
+    Generacion de eventos en el intervalo usando Algoritmo de Adelgazamiento
+    para Proceso de Poisson no Homogeneo.
+    """
+    t = 0
+    i = 0 # N° de eventos
+    s = [] # s[1], s[2], ... ==> tiempos de eventos
+    while True:
+        u = random.random()
+
+        if t - (math.log(u)/float(lamda)) > tiempo:
+            break
+        else:
+            t -= (math.log(u)/float(lamda))
+            v = random.random()
+
+            if v < (lamda_t(t)/float(lamda)):
+                i += 1
+                s.append(t)
 
     return i
