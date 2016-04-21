@@ -8,7 +8,7 @@ from distribuciones import intervalo
 def procesoPoissonH(lamda, tiempo):
     """
     Genera las primeras T (tiempo) unidades de tiempo de un
-    Proceso de Poisson con parametro lambda.
+    Proceso de Poisson con parametro lambda del Ejercicio 11.
     """
     t = 0 # tiempo transcurrido
     i = 0 # N° colectivos
@@ -35,7 +35,10 @@ def procesoPoissonH(lamda, tiempo):
 
 
 
-def promedio(n):
+def esperanza(n):
+    """
+    Esperanza del Proceso de Poisson Homogeneo.
+    """
     a = 0
     for _ in xrange(n):
         a += procesoPoissonH(5, 1)
@@ -45,4 +48,4 @@ def promedio(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> Promedio de Aficionados =", promedio(n)
+    print "n =", n, "--> Promedio de Aficionados =", esperanza(n)

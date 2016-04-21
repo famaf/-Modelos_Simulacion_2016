@@ -6,11 +6,15 @@ from distribuciones import exponencial
 
 
 def ejercicio07():
+    """
+    Ejercicio 7 con Metodo de Aceptacion y Rechazo.
+    """
     y = exponencial(0.5)
     u = random.random()
 
     while u >= ((y * math.exp(1 - 0.5*y))/2.0):
         y = exponencial(0.5)
+        u = random.random()
 
     x = y
 

@@ -55,6 +55,97 @@ def minUniformes(n):
     return minimo
 
 
+
+def normalEstadar1():
+    """
+    Genera una v.a. Z con distribucion Normal Estandar.
+    Z ~ N(0, 1)
+    """
+    y = exponencial(1)
+    u = random.random()
+    while u >= math.exp((y - 1)**2/(-2.0)):
+        y = exponencial(1)
+        u = random.random()
+
+    z = y
+
+    return abs(z)
+
+
+def normalEstadar2():
+    """
+    Genera una v.a. Z con distribucion Normal Estandar.
+    Z ~ N(0, 1)
+    """
+    y1 = exponencial(1)
+    y2 = exponencial(1)
+    while y2 > ((y1 - 1)**2/2.0):
+        y1 = exponencial(1)
+        y2 = exponencial(1)
+
+    z = y1
+
+    return abs(z)
+
+
+def normalEstadar3():
+    """
+    Genera una v.a. Z con distribucion Normal Estandar ==> Z ~ N(0, 1)
+    Genera una v.a. X con distribucion Exponencial ==> X ~ Exp(1).
+    """
+    y1 = exponencial(1)
+    y2 = exponencial(1)
+    while y2 - ((y1 - 1)**2/2.0) > 0:
+        y1 = exponencial(1)
+        y2 = exponencial(1)
+
+    x = y2 - ((y1 - 1)**2/2.0)
+    u = random.random()
+
+    if u < 0.5:
+        z = y1
+    else:
+        z = -y1
+
+    return z
+
+
+def normalPolar1():
+    """
+    Genera dos v.a. X, Y Normales Estadar Independientes, por medio del
+    Metodo Polar.
+    """
+    u = random.random()
+    r_cuadrado = exponencial(0.5)
+    r = math.sqrt(r_cuadrado)
+    theta = 2*math.pi*u
+
+    x = r*math.cos(theta)
+    y = r*math.sin(theta)
+
+    return x, y
+
+
+def normalPolar2():
+    """
+    Genera dos v.a. X, Y Normales Estadar Independientes, por medio del
+    Metodo Polar haciendo uso de las Transformaciones de Box-Muller.
+    """
+    v1 = random.uniform(-1, 1)
+    v2 = random.uniform(-1, 1)
+    s = v1**2 + v2**2
+
+    while s >= 1:
+        v1 = random.uniform(-1, 1)
+        v2 = random.uniform(-1, 1)
+        s = v1**2 + v2**2
+
+    x = math.sqrt((-2*math.log(s))/float(s)) * v1
+    y = math.sqrt((-2*math.log(s))/float(s)) * v2
+
+    return x, y
+
+
 def procesoPoissonH(lamda, tiempo):
     """
     Genera las primeras T (tiempo) unidades de tiempo de un
