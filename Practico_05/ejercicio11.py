@@ -28,7 +28,7 @@ def procesoPoissonH(lamda, tiempo):
             s.append(t)
 
     while j < i:
-        aficionados += intervalo(21, 20) # Numero entre 20 y 40 -> aficionados
+        aficionados += intervalo(20, 21) # Numero entre 20 y 40 -> aficionados
         j += 1
 
     return aficionados
@@ -49,3 +49,4 @@ def esperanza(n):
 
 for n in [100, 1000, 10000, 100000]:
     print "n =", n, "--> Promedio de Aficionados =", esperanza(n)
+

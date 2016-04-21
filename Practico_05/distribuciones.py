@@ -4,7 +4,7 @@ import random
 import math
 
 
-def intervalo(longitud, inicio):
+def intervalo(inicio, longitud):
     """
     Devuelve un numero aleatorio entre [inicio, inicio+longitud-1].
     """
