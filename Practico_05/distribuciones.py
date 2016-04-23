@@ -67,9 +67,14 @@ def normalEstadar1():
         y = exponencial(1)
         u = random.random()
 
-    z = y
+    u = random.random()
 
-    return abs(z)
+    if u < 0.5:
+        z = y
+    else:
+        z = -y
+
+    return z
 
 
 def normalEstadar2():
@@ -83,9 +88,14 @@ def normalEstadar2():
         y1 = exponencial(1)
         y2 = exponencial(1)
 
-    z = y1
+    u = random.random()
 
-    return abs(z)
+    if u < 0.5:
+        z = y1
+    else:
+        z = -y1
+
+    return z
 
 
 def normalEstadar3():
