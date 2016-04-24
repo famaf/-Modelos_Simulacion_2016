@@ -5,7 +5,7 @@ import math
 from distribuciones import exponencial
 
 
-def ejercicio07():
+def aceptacionRechazo():
     """
     Ejercicio 7 con Metodo de Aceptacion y Rechazo.
     """
@@ -27,7 +27,7 @@ def esperanza(n):
     """
     a = 0
     for _ in xrange(n):
-        a += ejercicio07()
+        a += aceptacionRechazo()
 
     return a/float(n)
 

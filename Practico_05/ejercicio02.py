@@ -5,9 +5,9 @@ import math
 from distribuciones import raizGeneral
 
 
-def ejercicio02(alfa, beta):
+def weibull(alfa, beta):
     """
-    Ejercicio 2 del Practico 5 con Metodo de Transformada Inversa.
+    Ejercicio 2 con Metodo de Transformada Inversa.
     """
     u = random.random()
     x = raizGeneral(beta, -(math.log(1-u)/float(alfa)))
@@ -21,7 +21,7 @@ def esperanza(n):
     """
     a = 0
     for _ in xrange(n):
-        a += ejercicio02(1, 1)
+        a += weibull(1, 1)
 
     return a/float(n)
 

@@ -55,7 +55,6 @@ def minUniformes(n):
     return minimo
 
 
-
 def normalEstadar1():
     """
     Genera una v.a. Z con distribucion Normal Estandar.
@@ -156,7 +155,7 @@ def normalPolar2():
     return x, y
 
 
-def procesoPoissonH(lamda, tiempo):
+def procesoPoissonHomogeneo(lamda, tiempo):
     """
     Genera las primeras T (tiempo) unidades de tiempo de un
     Proceso de Poisson Homogeneo con parametro lambda.

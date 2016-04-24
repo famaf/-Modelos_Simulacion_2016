@@ -4,9 +4,9 @@ import random
 import math
 
 
-def ejercicio01():
+def transformadaInversa():
     """
-    Ejercicio 1 del Practico 5 con Metodo de Transformada Inversa.
+    Ejercicio 1 con Metodo de Transformada Inversa.
     """
     u = random.random()
     if u < 0.25:
@@ -23,7 +23,7 @@ def esperanza(n):
     """
     a = 0
     for _ in xrange(n):
-        a += ejercicio01()
+        a += transformadaInversa()
 
     return a/float(n)
 
