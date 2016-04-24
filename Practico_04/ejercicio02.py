@@ -3,9 +3,9 @@
 import random
 import math
 
-def ejercicio02(n):
+def aproximacion(n):
     """
-    Ejericicio 02 del Practico 4.
+    Ejericicio 2, usando la Ley de los Grandes Numeros.
     """
     N = 10000
     s = 0
@@ -20,4 +20,4 @@ def ejercicio02(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> Ejericicio 02 =", ejercicio02(n)
+    print "n =", n, "--> Aproximacion =", aproximacion(n)

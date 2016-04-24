@@ -5,7 +5,7 @@ import math
 from distribuciones import poisson
 
 
-def ejercicio05_inversa(k, lamda):
+def transformadaInversa(k, lamda):
     """
     Ejercicio 5 con Metodo de Transformada Inversa.
     """
@@ -33,7 +33,7 @@ def ejercicio05_inversa(k, lamda):
     return x
 
 
-def ejercicio05_rechazo(k, lamda):
+def aceptacionRechazo(k, lamda):
     """
     Ejercicio 5 con Metodo de Aceptacion y Rechazo.
     """
@@ -44,34 +44,34 @@ def ejercicio05_rechazo(k, lamda):
     return x
 
 
-def esperanza_1(k, lamda, n):
+def esperanza1(k, lamda, n):
     """
     Esperanza con Metodo de Transformada Inversa.
     """
     a = 0
     for _ in xrange(n):
-        a += ejercicio05_inversa(k, lamda)
+        a += transformadaInversa(k, lamda)
 
     return a/float(n)
 
 
-def esperanza_2(k, lamda, n):
+def esperanza2(k, lamda, n):
     """
     Esperanza con Metodo de Aceptacion y Rechazo.
     """
     a = 0
     for _ in xrange(n):
-        a += ejercicio05_rechazo(k, lamda)
+        a += aceptacionRechazo(k, lamda)
 
     return a/float(n)
 
 
 print "Metodo de Transformada Inversa"
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza_1(10, 2, n)
+    print "n =", n, "--> E(X) =", esperanza1(10, 2, n)
 
 print "------------------------------"
 
 print "Metodo de Aceptacion y Rechazo"
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza_2(10, 2, n)
+    print "n =", n, "--> E(X) =", esperanza2(10, 2, n)

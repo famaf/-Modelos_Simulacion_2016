@@ -23,6 +23,7 @@ def permutacionAleatoria(lista):
         i = int(math.floor(k*u))
         lista[k], lista[i] = lista[i], lista[k]
         k -= 1
+
     return lista
 
 

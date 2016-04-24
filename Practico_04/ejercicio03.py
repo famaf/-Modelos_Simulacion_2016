@@ -6,7 +6,7 @@ import math
 
 def esperanza(n):
     """
-    Calcula la esperanza con la ley de los grandes numeros.
+    Calcula la esperanza con la Ley de los Grandes Numeros.
     """
     N = 0 # Total de lanzamientos en los n experimentos
     

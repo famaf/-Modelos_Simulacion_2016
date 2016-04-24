@@ -5,7 +5,7 @@ import math
 
 def parcialito(p):
     """
-    Parcialito Nº 3.
+    Parcialito del Practico 4.
     """
     N = 10000
     k = 10

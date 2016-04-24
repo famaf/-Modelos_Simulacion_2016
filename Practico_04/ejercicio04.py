@@ -5,9 +5,9 @@ import math
 from distribuciones import geometrica
 
 
-def ejercicio04_composicionInversa1():
+def composicionInversa():
     """
-    Ejericicio 04 del Practico 4, sin Geometrica.
+    Ejericicio 4 usando Metodo de Composicion y Transformada Inversa.
     """
     # Metodo de composicion
     u = random.random()
@@ -37,9 +37,9 @@ def ejercicio04_composicionInversa1():
     return x
 
 
-def ejercicio04_composicionGeometrica():
+def composicionGeometrica():
     """
-    Ejericicio 04 del Practico 4 usando Geometrica.
+    Ejericicio 4 usando Metodo de Composicion y Geometrica.
     """
     # Metodo de composicion
     u = random.random()
@@ -57,22 +57,22 @@ def ejercicio04_composicionGeometrica():
 
 def esperanza1(n):
     """
-    Esperanza con Metodo de Transformada Inversa.
+    Esperanza con Metodo de Composicion y Transformada Inversa.
     """
     a = 0
     for _ in xrange(n):
-        a += ejercicio04_composicionInversa1()
+        a += composicionInversa()
 
     return a/float(n)
 
 
 def esperanza2(n):
     """
-    Esperanza con Metodo de Transformada Inversa usando Geometrica.
+    Esperanza con Metodo de Composicion y Geometrica.
     """
     a = 0
     for _ in xrange(n):
-        a += ejercicio04_composicionGeometrica()
+        a += composicionGeometrica()
 
     return a/float(n)
 
