@@ -6,7 +6,7 @@ import math
 
 def esperanza(n):
     """
-    Calcula la esperanza con la ley de los grandes numeros.
+    Esperanza con la Ley de los Grandes Numeros.
     """
     exito = 0 # Veces que la carta-i == i
 
@@ -22,7 +22,7 @@ def esperanza(n):
 
 def varianza(n):
     """
-    Calcula la varianza en base a la esperanza.
+    Varianza en base a la esperanza.
     """
     suma1 = 0
     suma2 = 0
