@@ -4,9 +4,9 @@ import random
 import math
 
 
-def ejercicio05a(n):
+def aproximacion(n):
     """
-    Ejercicio 5a del Practico 3.
+    Ejercicio 5a.
     """
     a = 0 # Acumulador de la suma de N's tq' max{ N : Pn >= e^(-3) }
     for i in xrange(n):
@@ -24,9 +24,9 @@ def ejercicio05a(n):
     return float(a)/n
 
 
-def ejercicio05b(i):
+def probabilidad(i):
     """
-    Ejercicio 5b del Practico 3.
+    Ejercicio 5b.
     """
     exitos = 0
     cota = math.exp(-3)
@@ -49,9 +49,9 @@ def ejercicio05b(i):
 
 
 for n in [100, 1000, 10000, 100000, 1000000]:
-    print "n =", n, "--> E(N) =", ejercicio05a(n)
+    print "n =", n, "--> E(N) =", aproximacion(n)
 
 print "--------------------------------"
 
 for i in xrange(7):
-    print "P(N = %d)" % i, "=", ejercicio05b(i)
+    print "P(N = %d)" % i, "=", probabilidad(i)

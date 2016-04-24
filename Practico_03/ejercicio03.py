@@ -23,9 +23,9 @@ def montecarlo(funcion, a, b, n):
     return ((b-a)/float(n))*acumulador
 
 
-def ejercicio03a(n):
+def funcionA(n):
     """
-    Ejercicio 3a del Practico 3.
+    Ejercicio 3a.
     """
     a = 0
     for _ in xrange(n):
@@ -35,9 +35,9 @@ def ejercicio03a(n):
     return (a/float(n))
 
 
-def ejercicio03b(n):
+def funcionB(n):
     """
-    Ejercicio 3b del Practico 3.
+    Ejercicio 3b.
     """
     a = 0
     for _ in xrange(n):
@@ -47,9 +47,9 @@ def ejercicio03b(n):
     return (a/float(n))
 
 
-def ejercicio03c(n):
+def funcionC(n):
     """
-    Ejercicio 3c del Practico 3.
+    Ejercicio 3c.
     """
     a = 0
     for _ in xrange(n):
@@ -60,9 +60,9 @@ def ejercicio03c(n):
     return (a/float(n))
 
 
-def ejercicio03d(n):
+def funcionD(n):
     """
-    Ejercicio 3d del Practico 3.
+    Ejercicio 3d.
     """
     a = 0
     for _ in xrange(n):
@@ -73,7 +73,10 @@ def ejercicio03d(n):
     return (a/float(n))
 
 
-def ejercicio03e(n):
+def funcionE(n):
+    """
+    Ejercicio 3e.
+    """
     a = 0
     for _ in xrange(n):
         w = random.random()
@@ -89,24 +92,24 @@ def ejercicio03e(n):
 L = [100, 1000, 10000, 100000, 1000000]
 
 for n in L:
-    print "n =", n, "--> Ejercicio 3a =", ejercicio03a(n)
+    print "n =", n, "--> Funcion A =", funcionA(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "--> Ejercicio 3b =", ejercicio03b(n)
+    print "n =", n, "--> Funcion B =", funcionB(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "--> Ejercicio 3c =", ejercicio03c(n)
+    print "n =", n, "--> Funcion C =", funcionC(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "--> Ejercicio 3d =", ejercicio03d(n)
+    print "n =", n, "--> Funcion D =", funcionD(n)
 
 print "-------------------------------------------------------------"
 
 for n in L:
-    print "n =", n, "--> Ejercicio 3e =", ejercicio03e(n)
+    print "n =", n, "--> Funcion E =", funcionE(n)

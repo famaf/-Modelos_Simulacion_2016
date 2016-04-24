@@ -4,9 +4,9 @@ import random
 import math
 
 
-def ejercicio04a(n):
+def aproximacion(n):
     """
-    Ejercicio 4a del Practico 3.
+    Ejercicio 4a.
     """
     a = 0 # Acumulador de la suma de N's tq' min{ N : Sn > 1 }
     for i in xrange(n):
@@ -24,9 +24,9 @@ def ejercicio04a(n):
     return float(a)/n
 
 
-# def ejercicio04a(n):
+# def aproximacion(n):
 #     """
-#     Ejercicio 4a del Practico 3.
+#     Ejercicio 4a.
 #     Version optimizada.
 #     """
 #     a = 0 # Acumulador de la suma de n tq' min{ n : Sn > 1 }
@@ -45,4 +45,4 @@ def ejercicio04a(n):
 #     return float(a)/n
 
 for n in [100, 1000, 10000, 100000, 1000000]:
-    print "n =", n,  "--> e =", ejercicio04a(n)
+    print "n =", n,  "--> e =", aproximacion(n)

@@ -2,9 +2,9 @@
 
 import random
 
-def ejercicio02c(n):
+def ejercicio02(n):
     """
-    Ejericio 2c del Practico 3.
+    Ejericio 2c.
     """
     exitos = 0
     for _ in xrange(n):
@@ -26,4 +26,4 @@ def ejercicio02c(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> P(X >= 1) =", ejercicio02c(n)
+    print "n =", n, "--> P(X >= 1) =", ejercicio02(n)
