@@ -27,6 +27,7 @@ def procesoPoissonHomogeneo(lamda, tiempo):
             i += 1
             s.append(t)
 
+    # Asigno a cada colectivo una capacidad {20...40}
     while j < i:
         aficionados += intervalo(20, 21) # Numero entre 20 y 40 -> aficionados
         j += 1

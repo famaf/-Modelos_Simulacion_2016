@@ -11,7 +11,7 @@ def esperanza_exponeciales(n):
     """
     a = 0
     for _ in xrange(n):
-        a += normalEstadar1()
+        a += normalEstandar2()
 
     return a/float(n)
 
@@ -29,5 +29,13 @@ def esperanza_polar(n):
 
 
 
-print esperanza_exponeciales(10000)
-print esperanza_polar(10000)
+print "Esperanza de Normal con Metodo de Exponenciales"
+for n in [100, 1000, 10000, 100000]:
+    print "n =", n, "E(X) =", esperanza_exponeciales(n)
+
+print "---------------------------------------"
+
+print "Esperanza de Normal con Metodo Polar"
+for n in [100, 1000, 10000, 100000]:
+    print "n =", n, "E(X) =", esperanza_polar(n)
+

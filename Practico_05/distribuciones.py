@@ -55,7 +55,7 @@ def minUniformes(n):
     return minimo
 
 
-def normalEstadar1():
+def normalEstandar1():
     """
     Genera una v.a. Z con distribucion Normal Estandar.
     Z ~ N(0, 1)
@@ -76,7 +76,7 @@ def normalEstadar1():
     return z
 
 
-def normalEstadar2():
+def normalEstandar2():
     """
     Genera una v.a. Z con distribucion Normal Estandar.
     Z ~ N(0, 1)
@@ -97,7 +97,7 @@ def normalEstadar2():
     return z
 
 
-def normalEstadar3():
+def normalEstandar3():
     """
     Genera una v.a. Z con distribucion Normal Estandar ==> Z ~ N(0, 1)
     Genera una v.a. X con distribucion Exponencial ==> X ~ Exp(1).
@@ -117,6 +117,15 @@ def normalEstadar3():
         z = -y1
 
     return z
+
+
+def normal(mu, sigma):
+    """
+    Genera una v.a. Z con distribucion Normal ==> Z ~ N(mu, sigma)
+    """
+    z = normalEstandar1()
+
+    return (mu + sigma*z)
 
 
 def normalPolar1():
