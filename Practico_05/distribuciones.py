@@ -119,7 +119,7 @@ def normalEstandar2():
     """
     y1 = exponencial(1)
     y2 = exponencial(1)
-    while y2 > ((y1 - 1)**2/2.0):
+    while y2 <= ((y1 - 1)**2/2.0):
         y1 = exponencial(1)
         y2 = exponencial(1)
 
@@ -140,7 +140,7 @@ def normalEstandar3():
     """
     y1 = exponencial(1)
     y2 = exponencial(1)
-    while y2 - ((y1 - 1)**2/2.0) > 0:
+    while y2 - ((y1 - 1)**2/2.0) <= 0:
         y1 = exponencial(1)
         y2 = exponencial(1)
 
@@ -159,7 +159,7 @@ def normal(mu, sigma):
     """
     Genera una v.a. Z con distribucion Normal ==> Z ~ N(mu, sigma)
     """
-    z = normalEstandar1()
+    z = normalEstandar3()
 
     return (mu + sigma*z)
 
