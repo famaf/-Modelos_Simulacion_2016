@@ -9,7 +9,9 @@ def procesoPoissonMetodo1(lamda, tiempo):
     """
     Metodo 1 de generacion de un Proceso de Poisson Homogeneo.
     """
-    return procesoPoissonHomogeneo(lamda, tiempo)
+    i, s = procesoPoissonHomogeneo(lamda, tiempo)
+    
+    return s
 
 
 def procesoPoissonMetodo2(lamda, tiempo):

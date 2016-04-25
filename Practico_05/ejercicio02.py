@@ -10,7 +10,7 @@ def weibull(alfa, beta):
     Ejercicio 2 con Metodo de Transformada Inversa.
     """
     u = random.random()
-    x = raizGeneral(beta, -(math.log(1-u)/float(alfa)))
+    x = raizGeneral(-(math.log(1-u)/float(alfa)), beta)
 
     return x
 

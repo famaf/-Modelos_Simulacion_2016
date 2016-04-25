@@ -41,7 +41,7 @@ def esperanza(n):
     """
     a = 0
     for _ in xrange(n):
-        a += procesoPoissonHomogeneo(5, 1)
+        a += procesoPoissonHomogeneo(5, 10)
 
     return a/float(n)
 

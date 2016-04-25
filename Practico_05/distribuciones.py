@@ -13,7 +13,7 @@ def intervalo(inicio, longitud):
     return math.floor(longitud*u) + inicio
 
 
-def raizGeneral(raiz, radicando):
+def raizGeneral(radicando, raiz):
     """
     Calcula la raiz N-esima de un numero.
     """
@@ -218,7 +218,7 @@ def procesoPoissonHomogeneo(lamda, tiempo):
             i += 1
             s.append(t)
 
-    return s
+    return i, s
 
 
 def adelgazamiento(lamda, lamda_t, tiempo):
@@ -242,4 +242,4 @@ def adelgazamiento(lamda, lamda_t, tiempo):
                 i += 1
                 s.append(t)
 
-    return i
+    return i, s

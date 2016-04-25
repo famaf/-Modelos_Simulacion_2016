@@ -17,7 +17,7 @@ def transformadaInversa(n):
     Ejercicio 6 con Metodo de Transformada Inversa.
     """
     u = random.random()
-    x = raizGeneral(n, u)
+    x = raizGeneral(u, n)
 
     return x
 
