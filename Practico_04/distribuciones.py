@@ -3,6 +3,7 @@
 import random
 import math
 
+
 def intervalo(longitud, inicio):
     """
     Devuelve un numero aleatorio entre [inicio, inicio+longitud-1].
@@ -85,5 +86,16 @@ def binomial(n, p):
         i += 1
 
     x = i
+
+    return x
+
+
+def urna(digitos, vector):
+    """
+    Metodo de la Urna
+    """
+    u = random.random()
+    j = math.floor(u * 10**digitos)
+    x = vector[j]
 
     return x

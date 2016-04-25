@@ -62,6 +62,7 @@ def poisson(lamda):
     """
     Genera una v.a. X con distribucion Poisson de parametro lambda
     X ~ Poisson(lambda)
+    Con Metodo de Transformada Inversa.
     """
     i = 0
     u = random.random()
