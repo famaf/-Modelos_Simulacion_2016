@@ -8,6 +8,8 @@ from distribuciones import exponencial
 def aceptacionRechazo():
     """
     Ejercicio 7 con Metodo de Aceptacion y Rechazo.
+    X ~ Gamma(alfa, beta) = ((beta^alfa)/Gamma(alfa)) * e^(-beta*x) * x^(alfa-1)
+    E(X) = alfa/beta
     """
     y = exponencial(0.5)
     u = random.random()

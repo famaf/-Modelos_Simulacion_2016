@@ -3,6 +3,9 @@
 import random
 import math
 
+# abrir imagen con "eog"
+
+
 def aproximacion(n):
     """
     Ejericicio 2, usando la Ley de los Grandes Numeros.

@@ -27,21 +27,31 @@ def permutacionAleatoria(lista):
     return lista
 
 
+# P(X = i) = p * (1-p)**(i-1) tq' i>=1
+# min{j : (1-p)**j < 1-U}
+# ln es creciente y ln(1-p) < 0
+# v = 1-u es U(0, 1)
+# X = min{j : j > ln(1-u)/ln(1-p)} => X = piso( ln(1-u)/ln(1-p) ) + 1
+
 def geometrica(p):
     """
     Genera una v.a. X con distribucion Geometrica de parametro p.
     X ~ Geom(p).
     """
     u = random.random()
-    x = math.floor(math.log(u)/math.log(p)) + 1
+    x = math.floor(math.log(u)/math.log(1-p)) + 1
 
     return x
 
+
+# P(X = i) = e**(-lambda) * (lambda**i/i!) tq' i>=0
 
 def poisson(lamda):
     """
     Genera una v.a. X con distribucion Poisson de parametro lamda.
     X ~ P(lamda).
+    E(X) = lamda
+    V(X) = lamda
     """
     u = random.random()
     i = 0
@@ -56,6 +66,8 @@ def poisson(lamda):
 
     return x
 
+
+# P(X = i) = (n!/i!*(n-i)!) * p**i * (1-p)**(n-i) tq' 0<=i<=n
 
 def binomial(n, p):
     """

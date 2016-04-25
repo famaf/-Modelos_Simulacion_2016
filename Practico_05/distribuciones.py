@@ -24,6 +24,9 @@ def exponencial(lamda):
     """
     Genera una v.a. X con distribucion Exponencial de parametro lamda.
     X ~ Exp(lamda).
+    f(x) = lamda * e^(-lambda*x)
+    F(x) = 1 - e**(-x) tq' lambda = 1
+    E(x) = 1/lambda
     """
     u = random.random()
     x = -(1/float(lamda))*math.log(u)
@@ -53,6 +56,39 @@ def minUniformes(n):
         minimo = min(minimo, u)
 
     return minimo
+
+
+def poisson(lamda):
+    """
+    Genera una v.a. X con distribucion Poisson de parametro lambda
+    X ~ Poisson(lambda)
+    """
+    i = 0
+    u = random.random()
+    while u >= math.exp(-lamda):
+        u *= random.random()
+        i += 1
+
+    x = i
+
+    return x
+
+
+def gamma(n, lamda):
+    """
+    Genera una v.a. X con distribucion Gamma de parametros (n, lamda)
+    X ~ Gamma(n ,lamda)
+    """
+    u = 1 # Acumula la productoria de la uniformes.
+    i = 0
+    # Hago el producto de n uniformes
+    while i < n:
+        u *= random.random()
+        i += 1
+
+    x = -(1/float(lamda)) * math.log(u)
+
+    return x
 
 
 def normalEstandar1():

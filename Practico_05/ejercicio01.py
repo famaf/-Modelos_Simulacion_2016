@@ -4,6 +4,11 @@ import random
 import math
 
 
+# Transformada Inversa
+# F distribucion continua e inversible y U ~ U(0,1)
+# ==> X = F^(-1)(U) v.a. con distribucion F
+# P(X<=a) = P(F^(-1)(U)<=a) = P(F(F^(-1)(U))<=F(a)) = P(U<=F(a)) = F(a)
+
 def transformadaInversa():
     """
     Ejercicio 1 con Metodo de Transformada Inversa.

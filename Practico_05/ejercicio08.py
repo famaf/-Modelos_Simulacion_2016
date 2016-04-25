@@ -65,15 +65,15 @@ print "Esperanza de Normal con Metodo de Exponenciales"
 for n in [100, 1000, 10000, 100000]:
     print "n =", n, "--> E(X) =", esperanza_exponeciales(n)
 
-print "\nVarianza de Normal con Metodo de Exponenciales"
-for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> V(X) =", varianza_exponeciales(n)
-
-print "---------------------------------------"
-
 print "Esperanza de Normal con Metodo Polar"
 for n in [100, 1000, 10000, 100000]:
     print "n =", n, "--> E(X) =", esperanza_polar(n)
+
+print "---------------------------------------"
+
+print "\nVarianza de Normal con Metodo de Exponenciales"
+for n in [100, 1000, 10000, 100000]:
+    print "n =", n, "--> V(X) =", varianza_exponeciales(n)
 
 print "\nVarianza de Normal con Metodo Polar"
 for n in [100, 1000, 10000, 100000]:
