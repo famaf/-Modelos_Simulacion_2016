@@ -218,7 +218,7 @@ def procesoPoissonHomogeneo(lamda, tiempo):
             i += 1
             s.append(t)
 
-    return i
+    return s
 
 
 def adelgazamiento(lamda, lamda_t, tiempo):
