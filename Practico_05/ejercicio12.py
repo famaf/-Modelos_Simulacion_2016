@@ -29,8 +29,8 @@ def esperanza(n):
 
 
 
-for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza(n)
+#for n in [100, 1000, 10000, 100000]:
+#    print "n =", n, "--> E(X) =", esperanza(n)
 
 
 #################
@@ -49,7 +49,7 @@ def transformadaInversa(tiempo):
             break
         else:
             i += 1
-            s[i] = ((s[i-1]+1)/raizGeneral(1-u, 4)) - (s[i-1] + 1)
+            s.append(((s[i-1]+1)/raizGeneral(1-u, 4)) - (s[i-1] + 1))
 
     return i, s
 
@@ -62,11 +62,11 @@ def ejercicio12c(tiempo):
     i_homogeneo, s_homogeneo = procesoPoissonHomogeneo(3, tiempo)
     i_inversa, s_inversa = transformadaInversa(tiempo)
 
-    s = s_homogeneo ++ s_inversa
+    s = s_homogeneo + s_inversa
     i = i_homogeneo + i_inversa
 
     return i, s
 
 
-# i, s = ejercicio12c(10)
-# print "i =", i, "len(s) =", len(s)
+i, s = ejercicio12c(10)
+print "i =", i, "len(s) =", len(s)

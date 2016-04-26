@@ -29,6 +29,7 @@ def permutacionAleatoria(lista):
 
 
 # P(X = i) = p * (1-p)**(i-1) tq' i>=1
+# 1 - q**(j-1) <= u < 1 - q**j
 # min{j : (1-p)**j < 1-U}
 # ln es creciente y ln(1-p) < 0
 # v = 1-u es U(0, 1)

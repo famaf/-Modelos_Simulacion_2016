@@ -253,7 +253,7 @@ def normalPolar2():
         V2 = 2 * U2 - 1
         S = V1**2 + V2**2
 
-    C = (-2 * log(S) / S)
+    C = sqrt((-2 * log(S) / S))
     X = C * V1
     Y = C * V2
 
