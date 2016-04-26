@@ -33,6 +33,10 @@ def transformadaInversa(k, lamda):
     return x
 
 
+# buscar q
+# Encontrar maximo (m) de p ie pi > pi-1 y pi > pi+1
+# Valuar: pm <= c*qm ====> Encuentro c
+
 def aceptacionRechazo(k, lamda):
     """
     Ejercicio 5 con Metodo de Aceptacion y Rechazo.
