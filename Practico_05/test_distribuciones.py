@@ -17,7 +17,7 @@ def ejercicio02(n):
 
 def ejercicio07(n):
     """
-    Esperanza con Distribucion Weibull.
+    Esperanza con Distribucion Gamma.
     """
     a = 0
     for _ in xrange(n):
@@ -28,7 +28,7 @@ def ejercicio07(n):
 
 def ejercicio08(n):
     """
-    Esperanza con Distribucion Weibull.
+    Esperanza con Distribucion Normal.
     """
     a = 0
     for _ in xrange(n):
