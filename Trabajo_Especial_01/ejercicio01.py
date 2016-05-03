@@ -45,18 +45,18 @@ def lavadero1(N, S, Tf, Tr):
 
     t_estrella = INFINITO # Tiempo de maquinas en reparacion
 
-    aleatorio = [] # Lista de variables aleatorias
+    lavadoras = [] # Lista de variables aleatorias
 
     # Generamos N tiempos de falla (uno para cada maquina)
     for _ in xrange(N):
         F = exponencial(lamda_falla) # Tiempo hasta Fallar
-        aleatorio.append(F)
+        lavadoras.append(F)
 
     while True:
-        aleatorio.append(t_estrella)
-        aleatorio.sort() # Ordenamos la lista de variables aleatorias
+        lavadoras.append(t_estrella)
+        lavadoras.sort() # Ordenamos la lista de variables aleatorias
 
-        if t_estrella <= aleatorio[0]:
+        if t_estrella <= lavadoras[0]:
             t = t_estrella
             if r == 0:
                 t_estrella = INFINITO
@@ -64,15 +64,15 @@ def lavadero1(N, S, Tf, Tr):
                 Y = exponencial(lamda_reparacion)
                 t_estrella = t + Y
 
-        elif aleatorio[0] < t_estrella:
-            t = aleatorio[0]
+        elif lavadoras[0] < t_estrella:
+            t = lavadoras[0]
             if r == S:
                 T = t
                 break
             else:
                 X = exponencial(lamda_falla)
-                aleatorio[0] = t + X
-                aleatorio.sort()
+                lavadoras[0] = t + X
+                lavadoras.sort()
 
                 if r == 0:
                     Y = exponencial(lamda_reparacion)
@@ -93,8 +93,8 @@ def lavadero2(N, S, Tf, Tr):
     Tr = Tiempo medio de reparacion
     """
 
-    lamda_falla = devolverLambda(Tf)
-    lamda_reparacion = devolverLambda(Tr)
+    lamda_falla = devolverLambda(Tf) # Lambda de los tiempos de falla
+    lamda_reparacion = devolverLambda(Tr) # Lambda de los tiempos de reparacion
 
     T = 0 # Tiempo en que falla
     t = 0 # Variable de tiempo
@@ -102,37 +102,38 @@ def lavadero2(N, S, Tf, Tr):
 
     t_estrella = INFINITO # Tiempo de maquinas en reparacion
 
-    aleatorio = [] # Lista de variables aleatorias
+    lavadoras = [] # Lista de variables aleatorias
 
     # Generamos N tiempos de falla (uno para cada maquina)
     for _ in xrange(N):
         F = exponencial(lamda_falla) # Tiempo hasta Fallar
-        aleatorio.append(F)
+        lavadoras.append(F)
 
     while True:
-        if aleatorio[0] < t_estrella:
-            t = aleatorio[0]
-            r += 1
-            # Si hay mas de S maquinas descompuestas (no hay repuestos)
+        if lavadoras[0] < t_estrella:
+            t = lavadoras[0]
+            r += 1 # Se rompio una Lavadora
+            # Si hay mas de S Lavadoras descompuestas (no hay repuestos)
             if r == S+1:
                 T = t
                 break
             elif r < S+1:
-                X = exponencial(lamda_falla)
-                aleatorio.pop(0)
-                aleatorio.append(t+X)
-                aleatorio.sort()
-                if r == 1:
-                    Y = exponencial(lamda_reparacion)
-                    t_estrella = t + Y
+                X = exponencial(lamda_falla) # Tiempo hasta fallar de la lavadora de repuesto
+                lavadoras.pop(0)
+                lavadoras.append(t+X)
+            elif r == 1:
+                Y = exponencial(lamda_reparacion) # Lavadora entra en reparacion
+                t_estrella = t + Y
 
-        elif t_estrella <= aleatorio[0]:
+        elif t_estrella <= lavadoras[0]:
             t = t_estrella
             r -= 1
+            # Hay maquinas para Reparar
             if r > 0:
-                Y = exponencial(lamda_reparacion)
+                Y = exponencial(lamda_reparacion) # Tiempo de reparacion de la Lavadora para reparar
                 t_estrella = t + Y
-            if r == 0:
+            # No hay maquinas que Reparar
+            elif r == 0:
                 t_estrella = INFINITO
 
     return T
@@ -140,13 +141,13 @@ def lavadero2(N, S, Tf, Tr):
 
 def esperanza(n):
     """
-    Esperanza con Metodo de Maximo de Uniformes.
+    Esperanza del Tiempo de Fallo del Sistema del Lavadero.
     """
-    a = 0
+    suma = 0
     for _ in xrange(n):
-        a += lavadero2(5, 2, 1, 1/8.0)
+        suma += lavadero2(5, 2, 1, 0.125) # N=5, S=2, Tf=1, Tr=1/8
 
-    return a/float(n)
+    return suma/float(n)
 
 
 for n in [100, 1000, 10000, 100000]:
