@@ -4,7 +4,7 @@ import random
 import math
 
 
-INFINITO = float("inf")
+INFINITO = float("inf") # Constante Infinito
 
 
 def exponencial(lamda):
@@ -100,9 +100,9 @@ def lavadero2(N, S, Tf, Tr):
     t = 0 # Variable de tiempo
     r = 0 # Variable de estado del sistema (r: numero de maquina rotas en el instante t)
 
-    t_estrella = INFINITO # Tiempo de maquinas en reparacion
+    t_estrella = INFINITO # Tiempo en el que la Lavadora en reparacion vuelve a funcionar
 
-    lavadoras = [] # Lista de variables aleatorias
+    lavadoras = [] # Lista de tiempos de falla de las Lavadoras
 
     # Generamos N tiempos de falla (uno para cada maquina)
     for _ in xrange(N):
@@ -110,6 +110,7 @@ def lavadero2(N, S, Tf, Tr):
         lavadoras.append(F)
 
     while True:
+        # Lavadora falla antes de que se repare alguna
         if lavadoras[0] < t_estrella:
             t = lavadoras[0]
             r += 1 # Se rompio una Lavadora
@@ -124,7 +125,8 @@ def lavadero2(N, S, Tf, Tr):
             elif r == 1:
                 Y = exponencial(lamda_reparacion) # Lavadora entra en reparacion
                 t_estrella = t + Y
-
+        
+        # Lavadora que estaba en reparacion esta disponible
         elif t_estrella <= lavadoras[0]:
             t = t_estrella
             r -= 1
@@ -134,21 +136,30 @@ def lavadero2(N, S, Tf, Tr):
                 t_estrella = t + Y
             # No hay maquinas que Reparar
             elif r == 0:
-                t_estrella = INFINITO
+                t_estrella = INFINITO # Tiempo de
 
     return T
 
 
-def esperanza(n):
+def esperanzaYVarianza(n):
     """
-    Esperanza del Tiempo de Fallo del Sistema del Lavadero.
+    Esperanza y Varianza del Tiempo de Fallo del Sistema del Lavadero.
     """
-    suma = 0
-    for _ in xrange(n):
-        suma += lavadero2(5, 2, 1, 0.125) # N=5, S=2, Tf=1, Tr=1/8
+    suma1 = 0
+    suma2 = 0
 
-    return suma/float(n)
+    for _ in xrange(n):
+        exito = lavadero2(5, 2, 1, 0.125) # N=5, S=2, Tf=1, Tr=1/8
+        
+        suma1 += exito # x
+        suma2 += exito**2 # x^2
+
+    esperanza = suma1/float(n)
+    varianza = suma2/float(n) - esperanza**2 # V(x) = E(x^2) - E(x)^2
+    
+    return esperanza, varianza
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza(n)
+    esperanza, varianza = esperanzaYVarianza(n)
+    print "n =", n, "--> E(X) =", esperanza, ", V(X) =", varianza
