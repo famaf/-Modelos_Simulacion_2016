@@ -2,6 +2,7 @@
 
 import random
 import math
+import matplotlib.pyplot as plt
 
 
 INFINITO = float("inf") # Constante Infinito
@@ -41,7 +42,7 @@ def lavadero01(N, S, Tf, Tr):
 
     T = 0 # Tiempo en que falla el sistema
     t = 0 # Variable de tiempo
-    r = 0 # Variable de estado del sistema (r: numero de lavadoras rotas en el instante t)
+    r = 0 # Numero de Lavadoras rotas en el instante t
 
     t_estrella = INFINITO # Tiempo en el que la Lavadora en reparacion vuelve a funcionar
 
@@ -66,16 +67,16 @@ def lavadero01(N, S, Tf, Tr):
             # Se agrega la Lavadora de repuesto, ya que fallo alguna
             if r < S+1:
                 X = exponencial(lamda_falla) # Tiempo hasta fallar de la lavadora de repuesto
-                lavadoras.pop(0)
-                lavadoras.append(t+X)
-                lavadoras.sort()
+                lavadoras.pop(0) # Quitamos la Lavadora que fallo
+                lavadoras.append(t+X) # Agregamos la nueva Lavadora al sistema
+                lavadoras.sort() # Ordenamos los tiempos en que fallan las Lavadoras
             # La Lavadora rota es la unica descompuesta, entonces se comienza a reparar
             if r == 1:
                 Y = exponencial(lamda_reparacion) # Lavadora entra en reparacion
                 t_estrella = t + Y
         
         # Lavadora que estaba en reparacion, esta disponible
-        elif t_estrella <= lavadoras[0]:
+        elif lavadoras[0] >= t_estrella:
             t = t_estrella
             r -= 1
             # Hay maquinas para Reparar
@@ -103,13 +104,11 @@ def lavadero02(N, S, Tf, Tr):
 
     T = 0 # Tiempo en que falla el sistema
     t = 0 # Variable de tiempo
-    r = 0 # Variable de estado del sistema (r: numero de lavadoras rotas en el instante t)
+    r = 0 # Numero de Lavadoras rotas en el instante t
 
     t_estrella = [INFINITO, INFINITO] # Tiempo en el que las Lavadoras en reparacion vuelve a funcionar
 
     lavadoras = [] # Lista de tiempos de falla de las Lavadoras
-
-    tecnicos_libres = 2
 
     # Generamos N tiempos de falla (uno para cada maquina)
     for _ in xrange(N):
@@ -120,7 +119,7 @@ def lavadero02(N, S, Tf, Tr):
 
     while True:
         # Lavadora falla antes de que se repare alguna
-        if lavadoras[0] < t_estrella:
+        if lavadoras[0] < t_estrella[0]:
             t = lavadoras[0]
             r += 1 # Se rompio una Lavadora
             # Si hay mas de S Lavadoras descompuestas (no hay repuestos)
@@ -130,45 +129,50 @@ def lavadero02(N, S, Tf, Tr):
             # Se agrega la Lavadora de repuesto, ya que fallo alguna
             if r < S+1:
                 X = exponencial(lamda_falla) # Tiempo hasta fallar de la lavadora de repuesto
-                lavadoras.pop(0)
-                lavadoras.append(t+X)
-                lavadoras.sort()
+                lavadoras.pop(0) # Quitamos la Lavadora que fallo
+                lavadoras.append(t+X) # Agregamos la nueva Lavadora al sistema
+                lavadoras.sort() # Ordenamos los tiempos en que fallan las Lavadoras
             # Primera Lavadora rota es la unica descompuesta, entonces se comienza a reparar
             if r == 1:
                 Y = exponencial(lamda_reparacion) # Lavadora entra en reparacion
-                tecnicos_libres -= 1
                 t_estrella[0] = t + Y
             # Segunda Lavadora rota es la unica descompuesta, entonces se comienza a reparar
             if r == 2:
                 Y = exponencial(lamda_reparacion) # Lavadora entra en reparacion
-                tecnicos_libres -= 1
                 t_estrella[1] = t + Y
+            
+            t_estrella.sort() # Ordenamos los tiempos de reparacion en orden decreciente
         
         # Lavadora que estaba en reparacion, esta disponible
-        elif t_estrella <= lavadoras[0]:
-            t = t_estrella
+        elif lavadoras[0] >= t_estrella[0]:
+            t = t_estrella[0]
             r -= 1 # Se reparo una maquina
-            tecnicos_libres += 1
             # Hay maquinas para Reparar
-            if r - tecnicos_libres > 0:
+            if r > 0:
                 Y = exponencial(lamda_reparacion) # Tiempo de reparacion de la Lavadora para reparar
-                t_estrella = t + Y
+                t_estrella[0] = t + Y
             # No hay maquinas que Reparar
             if r == 0:
-                t_estrella = INFINITO
+                t_estrella = [INFINITO, INFINITO]
 
     return T
 
 
-def esperanzaYVarianza01(n):
+def esperanzaYVarianza(lavadero, N, S, Tf, Tr):
     """
-    Esperanza y Varianza del Tiempo de Fallo del Sistema del Lavadero 1.
+    Esperanza y Varianza del Tiempo de Fallo del Sistema del Lavadero.
+    N = Lavadoras en servicio
+    S = Lavadoras de repuesto
+
+    Tf = Tiempo medio hasta fallar
+    Tr = Tiempo medio de reparacion
     """
+    n = 10000 # Simulaciones
     suma1 = 0
     suma2 = 0
 
     for _ in xrange(n):
-        exito = lavadero01(5, 3, 1, 1/8.0) # N=5, S=2, Tf=1, Tr=1/8
+        exito = lavadero(N, S, Tf, Tr)
         
         suma1 += exito # x
         suma2 += exito**2 # x^2
@@ -179,33 +183,34 @@ def esperanzaYVarianza01(n):
     return esperanza, varianza
 
 
-def esperanzaYVarianza02(n):
-    """
-    Esperanza y Varianza del Tiempo de Fallo del Sistema del Lavadero 2.
-    """
-    suma1 = 0
-    suma2 = 0
 
-    for _ in xrange(n):
-        exito = lavadero02(5, 2, 1, 1/8.0) # N=5, S=2, Tf=1, Tr=1/8
-        
-        suma1 += exito # x
-        suma2 += exito**2 # x^2
-
-    esperanza = suma1/float(n)
-    varianza = suma2/float(n) - esperanza**2 # V(x) = E(x^2) - E(x)^2
-    
-    return esperanza, varianza
-
-
-print "Lavadero con 3 Repuestos y 1 Tecnico"
-for n in [100, 1000, 10000, 100000]:
-    esperanza, varianza = esperanzaYVarianza01(n)
-    print "n =", n, "--> E(X) =", esperanza, ", V(X) =", varianza
+print "\n### Lavadero con 2 Repuestos y 1 Tecnico ###"
+esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 2, 1, 1/8.0)
+print "E(X) =", esperanza, ", V(X) =", varianza
 
 print "----------------------------------------------------------------------"
 
-print "Lavadero con 2 Repuestos y 2 Tecnico"
-for n in [100, 1000, 10000, 100000]:
-    esperanza, varianza = esperanzaYVarianza02(n)
-    print "n =", n, "--> E(X) =", esperanza, ", V(X) =", varianza
+print "### Lavadero con 3 Repuestos y 1 Tecnico ###"
+esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 3, 1, 1/8.0)
+print "E(X) =", esperanza, ", V(X) =", varianza
+
+print "----------------------------------------------------------------------"
+
+print "### Lavadero con 2 Repuestos y 2 Tecnico ###"
+# (2.61, 2.76)
+esperanza, varianza = esperanzaYVarianza(lavadero02, 5, 2, 1, 1/8.0)
+print "E(X) =", esperanza, ", V(X) =", varianza
+print ""
+
+
+##############
+### PLOTEO ###
+##############
+
+v1 = [lavadero01(5, 2, 1, 1/8.0) for _ in xrange(10000)] # S = 2 y Tecnicos = 1
+v2 = [lavadero01(5, 3, 1, 1/8.0) for _ in xrange(10000)] # S = 3 y Tecnicos = 1
+v3 = [lavadero02(5, 2, 1, 1/8.0) for _ in xrange(10000)] # S = 2 y Tecnicos = 2
+plt.hist(v1, bins=20)
+plt.hist(v2, bins=20)
+plt.hist(v3, bins=20)
+plt.show()
