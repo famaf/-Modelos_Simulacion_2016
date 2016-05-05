@@ -119,7 +119,8 @@ def lavadero02(N, S, Tf, Tr):
 
     while True:
         # Lavadora falla antes de que se repare alguna
-        if lavadoras[0] < t_estrella[0]:
+        t_min = min(t_estrella)
+        if lavadoras[0] < t_min:
             t = lavadoras[0]
             r += 1 # Se rompio una Lavadora
             # Si hay mas de S Lavadoras descompuestas (no hay repuestos)
@@ -133,29 +134,25 @@ def lavadero02(N, S, Tf, Tr):
                 lavadoras.append(t+X) # Agregamos la nueva Lavadora al sistema (tiempo actual + tiempo de falla)
                 lavadoras.sort() # Ordenamos los tiempos en que fallan las Lavadoras
             # Primera Lavadora rota es la unica descompuesta, entonces se comienza a reparar
-            if r == 1:
-                Y = exponencial(lamda_reparacion) # Primera Lavadora entra en reparacion
-                t_estrella[0] = t + Y
-            # Segunda Lavadora rota es la unica descompuesta, entonces se comienza a reparar
-            if r == 2:
-                Y = exponencial(lamda_reparacion) # Segunda Lavadora entra en reparacion
-                t_estrella[1] = t + Y
-            
-            t_estrella.sort() # Ordenamos los tiempos de reparacion en orden decreciente
+            if r == 1 or r == 2:
+                if t_estrella[0] == INFINITO:
+                    Y = exponencial(lamda_reparacion) # Primera Lavadora entra en reparacion
+                    t_estrella[0] = t + Y
+                elif t_estrella[1] == INFINITO:
+                    Y = exponencial(lamda_reparacion) # Primera Lavadora entra en reparacion
+                    t_estrella[1] = t + Y
         
         # Lavadora que estaba en reparacion, esta disponible
-        elif lavadoras[0] >= t_estrella[0]:
-            t = t_estrella[0]
+        elif lavadoras[0] >= t_min:
+            t = t_min
             r -= 1 # Se reparo una maquina
-            # Hay maquinas para Reparar
+            # Hay por lo menos una maquina para reparar
             if r > 1:
                 Y = exponencial(lamda_reparacion) # Tiempo de reparacion de la Lavadora para reparar
-                t_estrella[0] = t + Y
+                t_estrella[t_estrella.index(t_min)] = t + Y
             # No hay maquinas que Reparar
-            elif r <= 0:
-                t_estrella = [INFINITO, INFINITO]
-
-            t_estrella.sort() # Ordenamos los tiempos de reparacion en orden decreciente
+            if r <= 1:
+                t_estrella[t_estrella.index(t_min)] = INFINITO
 
 
     return T
@@ -187,21 +184,21 @@ def esperanzaYVarianza(lavadero, N, S, Tf, Tr):
 
 
 def printEV():
-    print "\n### Lavadero con 2 Repuestos y 1 Tecnico ###"
-    esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 2, 1, 1/8.0)
-    print "E(X) =", esperanza, ", V(X) =", varianza
+    # print "\n### Lavadero con 2 Repuestos y 1 Tecnico ###"
+    # esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 2, 1, 1/8.0)
+    # print "E(X) =", esperanza, ", V(X) =", varianza
 
-    print "----------------------------------------------------------------------"
+    # print "----------------------------------------------------------------------"
 
-    print "### Lavadero con 3 Repuestos y 1 Tecnico ###"
-    esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 3, 1, 1/8.0)
-    print "E(X) =", esperanza, ", V(X) =", varianza
+    # print "### Lavadero con 3 Repuestos y 1 Tecnico ###"
+    # esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 3, 1, 1/8.0)
+    # print "E(X) =", esperanza, ", V(X) =", varianza
 
     print "----------------------------------------------------------------------"
 
     print "### Lavadero con 2 Repuestos y 2 Tecnico ###"
     # (2.61, 2.76)
-    esperanza, varianza = esperanzaYVarianza(lavadero02, 5, 2, 1, 1/8.0)
+    esperanza, varianza = esperanzaYVarianza(lavadero02, 5, 4, 1, 1/8.0)
     print "E(X) =", esperanza, ", V(X) =", varianza
     print ""
 
@@ -226,4 +223,4 @@ def plot():
 
 
 printEV()
-plot()
+#plot()
