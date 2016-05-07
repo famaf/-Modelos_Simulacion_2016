@@ -38,6 +38,28 @@ def generarPI():
     return PI
 
 
+def estimacion1():
+    """
+    Ejercicio 4.
+    """
+    n = 1000 # Simulaciones
+    X = generarPI()
+    M = X # Media Muestral (valor inicial: M(1) = X1)
+    S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
+    # Calculamos M(n) y  S_cuadrado(n)
+    for j in xrange(2, n+1):
+        X = generarPI()
+        A = M
+        M += (X - M)/float(j)
+        S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
+
+    S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral (sigma)
+
+    IC = (M - 1.96*(S/math.sqrt(n)) , M + 1.96*(S/math.sqrt(n)))
+
+    return IC
+
+
 def estimacion():
     """
     Ejercicio 3.
@@ -63,6 +85,4 @@ def estimacion():
 
 
 IC, n = estimacion()
-print "\nIntervalo de Confianza (IC) =", IC
-print "Ejecuciones Necesarias =", n
-print ""
+print "Intervalo de Confianza 2 (IC) =", IC, "n =", n
