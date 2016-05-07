@@ -1,0 +1,18 @@
+INTRODUCCION
+============
+El problema que se presenta es el de una lavanderia, en la cual hay N lavadoras
+funcionando y S lavadoras de repuesto para el caso en el que alguna de las N lavadoras
+que estan en funcionamiento se descomponga y deje de funcionar, ademas la lavanderia
+cuenta con un Tecnico el cual se encarga de reparar las lavadoras que se dejen de funcionar
+
+
+ALGORITMO Y DESCRIPCION DE LAS VARIABLES
+========================================
+
+
+RESULTADOS
+==========
+
+
+CONCLUSIONES
+============

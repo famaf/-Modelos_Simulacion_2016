@@ -167,7 +167,7 @@ def esperanzaYVarianza(lavadero, N, S, Tf, Tr):
     Tf = Tiempo medio hasta fallar
     Tr = Tiempo medio de reparacion
     """
-    n = 10000 # Simulaciones
+    n = 100000 # Simulaciones
     suma1 = 0
     suma2 = 0
 
@@ -194,11 +194,11 @@ def printEV():
     # esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 3, 1, 1/8.0)
     # print "E(X) =", esperanza, ", V(X) =", varianza
 
-    print "----------------------------------------------------------------------"
+    # print "----------------------------------------------------------------------"
 
     print "### Lavadero con 2 Repuestos y 2 Tecnico ###"
     # (2.61, 2.76)
-    esperanza, varianza = esperanzaYVarianza(lavadero02, 5, 4, 1, 1/8.0)
+    esperanza, varianza = esperanzaYVarianza(lavadero02, 5, 2, 1, 1/8.0)
     print "E(X) =", esperanza, ", V(X) =", varianza
     print ""
 

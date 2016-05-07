@@ -2,80 +2,44 @@
 
 import random
 import math
+from distribuciones import *
 
 
-def raizGeneral(radicando, raiz):
-    """
-    Calcula la raiz N-esima de un numero.
-    """
-    return radicando**(1.0/raiz)
-
-
-def exponencial(lamda):
-    """
-    Genera una v.a. X con distribucion Exponencial de parametro lamda.
-    X ~ Exp(lamda).
-    f(x) = lamda * e^(-lambda*x)
-    F(x) = 1 - e**(-x) tq' lambda = 1
-    E(x) = 1/lambda
-    """
-    u = random.random()
-    x = -(1/float(lamda))*math.log(u)
-
-    return x
-
-
-def poisson(lamda):
-    """
-    Genera una v.a. X con distribucion Poisson de parametro lambda
-    X ~ Poisson(lambda)
-    Con Metodo de Transformada Inversa.
-    """
-    i = 0
-    u = random.random()
-    while u >= math.exp(-lamda):
-        u *= random.random()
+def mediaMuestral(n, funcion):
+    i = 1
+    X = funcion
+    F = X
+    while i <= n:
+        X = X + (funcion - X)/float(i+1)
+        F += X
         i += 1
 
-    x = i
-
-    return x
+    return F
 
 
-def gamma(n, lamda):
-    """
-    Genera una v.a. X con distribucion Gamma de parametros (n, lamda)
-    X ~ Gamma(n ,lamda)
-    """
-    u = 1 # Acumula la productoria de la uniformes.
-    i = 0
-    # Hago el producto de n uniformes
-    while i < n:
-        u *= random.random()
+def varianzaMuestral(n, funcion):
+    i = 1
+    S = 0
+    F = S
+    while i <= n:
+        S = (1 - 1/float(i)) * S + (i + 1) * (mediaMuestral(i+1, funcion) - mediaMuestral(i, funcion))**2
+        F += S
         i += 1
 
-    x = -(1/float(lamda)) * math.log(u)
-
-    return x
+    return F
 
 
-def normalEstandar1():
-    """
-    Genera una v.a. Z con distribucion Normal Estandar ==> Z ~ N(0, 1)
-    Genera una v.a. X con distribucion Exponencial ==> X ~ Exp(1).
-    """
-    y1 = exponencial(1)
-    y2 = exponencial(1)
-    while y2 - ((y1 - 1)**2/2.0) <= 0:
-        y1 = exponencial(1)
-        y2 = exponencial(1)
+def ejercicio(n):
+    z = normalEstandar()
+    a = z
+    for i in xrange(1, n+1):
+        if varianzaMuestral(i, z)/math.sqrt(n) < 0.1:
+            z = normalEstandar()
+            a += z
+        else:
+            break
 
-    x = y2 - ((y1 - 1)**2/2.0)
-    u = random.random()
+    return a/float(n)
 
-    if u < 0.5:
-        z = y1
-    else:
-        z = -y1
-
-    return z
+for n in [100, 1000, 10000, 100000]:
+    print "n =", n, "--> E(X) =", ejercicio(n)

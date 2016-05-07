@@ -1,17 +1,11 @@
-import numpy as np
 import matplotlib.pyplot as plt
-
-mu, sigma = 100, 15
-x = mu + sigma * np.random.randn(10000)
-
-# the histogram of the data
-n, bins, patches = plt.hist(x, 50, normed=1, facecolor='g', alpha=0.75)
-
-
-plt.xlabel('Smarts')
-plt.ylabel('Probability')
-plt.title('Histograma Lavadero')
-plt.text(60, .025, r'$\mu=100,\ \sigma=15$')
-plt.axis([40, 160, 0, 0.03])
-plt.grid(True)
+from numpy.random import normal, uniform
+gaussian_numbers = normal(size=1000)
+uniform_numbers = uniform(low=-3, high=3, size=1000)
+plt.hist(gaussian_numbers, bins=20, histtype='stepfilled', normed=True, color='b', label='Gaussian')
+plt.hist(uniform_numbers, bins=20, histtype='stepfilled', normed=True, color='r', alpha=0.5, label='Uniform')
+plt.title("Gaussian/Uniform Histogram")
+plt.xlabel("Value")
+plt.ylabel("Probability")
+plt.legend()
 plt.show()
