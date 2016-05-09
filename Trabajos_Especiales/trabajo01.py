@@ -11,7 +11,8 @@ INFINITO = float("inf") # Constante Infinito
 def exponencial(lamda):
     """
     Genera una v.a. X con distribucion Exponencial de parametro lamda.
-    X ~ Exp(lamda).
+    Usando el Metodo de Transformada Inversa.
+    X ~ Exponencial(lamda).
     """
     u = random.random()
     x = -(1/float(lamda))*math.log(u)
@@ -36,7 +37,6 @@ def lavadero01(N, S, Tf, Tr):
     Tf = Tiempo medio hasta fallar
     Tr = Tiempo medio de reparacion
     """
-
     lamda_falla = devolverLambda(Tf) # Lambda de los tiempos de falla
     lamda_reparacion = devolverLambda(Tr) # Lambda de los tiempos de reparacion
 
@@ -85,7 +85,7 @@ def lavadero01(N, S, Tf, Tr):
                 t_estrella = t + Y # Tiempo en que concluira la reparacion de la Lavadora rota
             # No hay Lavadoras que Reparar
             if r == 0:
-                t_estrella = INFINITO # Operario no tiene nada que reparar
+                t_estrella = INFINITO # Tecnico no tiene nada que reparar
 
     return T
 
@@ -151,18 +151,18 @@ def lavadero02(N, S, Tf, Tr):
             if r > 1:
                 Y = exponencial(lamda_reparacion) # Tiempo de reparacion de la Lavadora para reparar
                 t_estrella[0] = t + Y # Tiempo en que concluira la reparacion de la Lavadora rota
-                                      # Se la damos al Operario que termino primero de reparar
+                                      # Se la damos al Tecnico que termino primero de reparar
             # Hay 1 o 0 Lavadoras para reparar
             elif r <= 1:
-                t_estrella[0] = INFINITO # Operario queda no tiene nada que reparar
-                                         # El otro Operario esta reparando la lavadora
+                t_estrella[0] = INFINITO # Tecnico queda no tiene nada que reparar
+                                         # El otro Tecnico esta reparando la lavadora
 
             t_estrella.sort() # Ordenamos los tiempos de reparacion en orden decreciente (para ver quien tarda menos)
 
     return T
 
 
-def esperanzaYVarianza(lavadero, N, S, Tf, Tr):
+def esperanzaYVarianza(lavadero, N, S, Tf, Tr, n):
     """
     Esperanza y Varianza del Tiempo de Fallo del Sistema del Lavadero.
     N = Lavadoras en servicio
@@ -171,7 +171,6 @@ def esperanzaYVarianza(lavadero, N, S, Tf, Tr):
     Tf = Tiempo medio hasta fallar
     Tr = Tiempo medio de reparacion
     """
-    n = 100000 # Simulaciones
     suma1 = 0
     suma2 = 0
 
@@ -183,54 +182,97 @@ def esperanzaYVarianza(lavadero, N, S, Tf, Tr):
 
     esperanza = suma1/float(n)
     varianza = suma2/float(n) - esperanza**2 # V(x) = E(x^2) - E(x)^2
-    
-    return esperanza, varianza
+
+    des_est = math.sqrt(varianza) # Desviacion estandar = V(X)**(1/2.0)
+
+    return esperanza, varianza, des_est
+
 
 
 def printEV():
-    # print "\n### Lavadero con 2 Repuestos y 1 Tecnico ###"
-    # esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 2, 1, 1/8.0)
-    # print "E(X) =", esperanza, ", V(X) =", varianza
-
-    # print "----------------------------------------------------------------------"
-
-    print "### Lavadero con 3 Repuestos y 1 Tecnico ###"
-    esperanza, varianza = esperanzaYVarianza(lavadero01, 5, 3, 1, 1/8.0)
-    print "E(X) =", esperanza, ", V(X) =", varianza
+    print "\n### Lavadero con 2 Repuestos y 1 Tecnico ###"
+    for n in [100, 1000, 10000, 100000]:
+        esperanza, varianza, des_est = esperanzaYVarianza(lavadero01, 5, 2, 1, 1/8.0, n)
+        print "E[T] =", esperanza, ", V[T] =", varianza,", V[T]**(1/2.0) =", des_est
 
     print "----------------------------------------------------------------------"
 
-    print "### Lavadero con 2 Repuestos y 2 Tecnico ###"
+    print "### Lavadero con 2 Repuestos y 2 Tecnicos ###"
     # (2.61, 2.76)
-    esperanza, varianza = esperanzaYVarianza(lavadero02, 5, 2, 1, 1/8.0)
-    print "E(X) =", esperanza, ", V(X) =", varianza
+    for n in [100, 1000, 10000, 100000]:
+        esperanza, varianza, des_est = esperanzaYVarianza(lavadero02, 5, 2, 1, 1/8.0, n)
+        print "E[T] =", esperanza, ", V[T] =", varianza,", V[T]**(1/2.0) =", des_est
+
+    print "----------------------------------------------------------------------"
+
+    print "### Lavadero con 3 Repuestos y 1 Tecnico ###"
+    for n in [100, 1000, 10000, 100000]:
+        esperanza, varianza, des_est = esperanzaYVarianza(lavadero01, 5, 3, 1, 1/8.0, n)
+        print "E[T] =", esperanza, ", V[T] =", varianza,", V[T]**(1/2.0) =", des_est
     print ""
 
 
 def plot():
     """
-    Ploteo en Histogramas
+    Ploteo de Histogramas
     """
-    n = 10000
+    n = 100000
     v1 = [lavadero01(5, 2, 1, 1/8.0) for _ in xrange(n)] # S = 2 y Tecnicos = 1
-    v2 = [lavadero01(5, 3, 1, 1/8.0) for _ in xrange(n)] # S = 3 y Tecnicos = 1
-    v3 = [lavadero02(5, 2, 1, 1/8.0) for _ in xrange(n)] # S = 2 y Tecnicos = 2
-    #plt.figure(1)
-    plt.title("Histograma Lavadero")
-    plt.ylabel("Frecuencia de Fallo")
-    plt.xlabel("Tiempo de Falla (por mes)")
-    plt.grid()
+    v2 = [lavadero02(5, 2, 1, 1/8.0) for _ in xrange(n)] # S = 2 y Tecnicos = 2
+    v3 = [lavadero01(5, 3, 1, 1/8.0) for _ in xrange(n)] # S = 3 y Tecnicos = 1
+    
+    plt.figure(1)
+    plt.title("Sistema de Lavadero Actual")
+    plt.ylabel("Frecuencia de Fallo (%)")
+    plt.xlabel("Tiempo hasta Fallar [Meses]")
+    plt.grid(True)
     plt.xticks(xrange(0, 20, 1))
     plt.xlim(0, 20)
-    plt.hist(v3, bins=20, normed=True, color="b", align="mid", label="2 Repuestos y 2 Operarios")
-    plt.hist(v2, bins=20, normed=True, color="r", label="3 Repuestos y 1 Operarios")
-    # plt.figure(2)
-    # plt.hist(v2, bins=100, color="g")
-    # #plt.figure(3)
-    # plt.hist(v3, bins=100, color="b")
+    plt.text(10, 0.35, "E[T] = " + str(round(1.75451847743, 2)))
+    plt.text(10, 0.3, "V[T] = " + str(round(2.56715632376, 2)))
+    plt.text(10, 0.25, "Desviacion estandar[T] = " + str(round(1.60223479046, 2)))
+    plt.hist(v1, bins=50, normed=True, color="g", label="2 Repuestos y 1 Tecnico")
     plt.legend()
+
+    plt.figure(2)
+    plt.title("Sistema de Lavadero con Opcion 1")
+    plt.ylabel("Frecuencia de Fallo (%)")
+    plt.xlabel("Tiempo hasta Fallar [Meses]")
+    plt.grid(True)
+    plt.xticks(xrange(0, 20, 1))
+    plt.xlim(0, 20)
+    plt.text(10, 0.25, "E[T] = " + str(round(2.58903738453, 2)))
+    plt.text(10, 0.2, "V[T] = " + str(round(6.07975267469, 2)))
+    plt.text(10, 0.15, "Desviacion estandar[T] = " + str(round(2.46571544885, 2)))
+    plt.hist(v2, bins=50, normed=True, color="b", label="2 Repuestos y 2 Tecnicos")
+    plt.legend()
+
+    plt.figure(3)
+    plt.title("Sistema de Lavadero con Opcion 2")
+    plt.ylabel("Frecuencia de Fallo (%)")
+    plt.xlabel("Tiempo hasta Fallar [Meses]")
+    plt.grid(True)
+    plt.xticks(xrange(0, 20, 1))
+    plt.xlim(0, 20)
+    plt.text(10, 0.2, "E[T] = " + str(round(3.60410154483, 2)))
+    plt.text(10, 0.15, "V[T] = " + str(round(11.0641450939, 2)))
+    plt.text(10, 0.1, "Desviacion estandar[T] = " + str(round(3.32628097037, 2)))
+    plt.hist(v3, bins=50, normed=True, color="r", label="3 Repuestos y 1 Tecnico")
+    plt.legend()
+
+    plt.figure(4)
+    plt.title("Sistema de Lavadero comparacion de Opcion 1 y Opcion 2")
+    plt.ylabel("Frecuencia de Fallo (%)")
+    plt.xlabel("Tiempo hasta Fallar [Meses]")
+    plt.grid(True)
+    plt.xticks(xrange(0, 20, 1))
+    plt.xlim(0, 20)
+    plt.hist(v2, bins=50, normed=True, color="b", label="2 Repuestos y 2 Tecnicos")
+    plt.hist(v3, bins=50, normed=True, color="r", label="3 Repuestos y 1 Tecnico")
+    plt.legend()
+
     plt.show()
 
 
-#printEV()
+printEV()
 plot()
