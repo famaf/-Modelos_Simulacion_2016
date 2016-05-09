@@ -2,10 +2,9 @@
 
 import random
 import math
-from distribuciones import *
 
 
-def calculoN():
+def generarN():
     """
     Calcula el min{ N : Sn > 1 }
     """
@@ -24,12 +23,12 @@ def estimacion():
     Ejercicio 3.
     """
     n = 1000 # Simulaciones
-    X = calculoN()
+    X = generarN()
     M = X # Media Muestral (valor inicial: M(1) = X1)
     S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
     # Calculamos M(n) y  S_cuadrado(n)
     for j in xrange(2, n+1):
-        X = calculoN()
+        X = generarN()
         A = M
         M += (X - M)/float(j)
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)

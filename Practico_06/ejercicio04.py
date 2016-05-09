@@ -2,10 +2,12 @@
 
 import random
 import math
-from distribuciones import *
 
 
-def calculoM():
+def generarM():
+    """
+    Genera M tq' M = {n : U1 <= U2 <= ... <= Un-1 > Un}
+    """
     n = 2
     U = random.random() # Un-1
     Un = random.random() # Un
@@ -15,7 +17,9 @@ def calculoM():
         U = Un # U pasa a ser Un (nuevo Un-1)
         Un = random.random() # Generamos un nuevo valor Un
 
-    return n
+    M = n
+
+    return M
 
 
 def estimacion():
@@ -23,12 +27,12 @@ def estimacion():
     Ejercicio 4.
     """
     n = 1000 # Simulaciones
-    X = calculoM()
+    X = generarM()
     M = X # Media Muestral (valor inicial: M(1) = X1)
     S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
     # Calculamos M(n) y  S_cuadrado(n)
     for j in xrange(2, n+1):
-        X = calculoM()
+        X = generarM()
         A = M
         M += (X - M)/float(j)
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)

@@ -2,10 +2,12 @@
 
 import random
 import math
-from distribuciones import *
 
 
 def integral():
+    """
+    Genera un valor X de la integral con el Metodo de Monte Carlo.
+    """
     y = random.random()
     X = math.exp(y**2)
 

@@ -38,12 +38,13 @@ def generarPI():
     return PI
 
 
-def estimacion1():
+def estimacion():
     """
-    Ejercicio 4.
+    Ejercicio 5.
     """
-    n = 1000 # Simulaciones
-    X = generarPI()
+    n = 30 # Minimo numero de simulaciones
+    N = n # Observaciones Realizadas
+    X = generarPI() # X ~ N(0, 1)
     M = X # Media Muestral (valor inicial: M(1) = X1)
     S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
     # Calculamos M(n) y  S_cuadrado(n)
@@ -53,36 +54,23 @@ def estimacion1():
         M += (X - M)/float(j)
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
 
-    S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral (sigma)
+    j = n
+    # Iteramos hasta que: (2*1.96*S)/sqrt(j) < 0.1
+    while 2 * 1.96 * math.sqrt(S_cuadrado/float(j)) > 0.1:
+        N += 1
+        j += 1
+        X = generarPI()
+        A = M
+        M += (X - M)/float(j)
+        S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
+
+    S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
 
     IC = (M - 1.96*(S/math.sqrt(n)) , M + 1.96*(S/math.sqrt(n)))
 
-    return IC
+    print IC[1] - IC[0]
+    return IC, N
 
 
-def estimacion():
-    """
-    Ejercicio 3.
-    """
-    n = 1 # Simulaciones
-    X = generarPI()
-    M = X # Media Muestral (valor inicial: M(1) = X1)
-    S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
-    # Calculamos M(n) y  S_cuadrado(n)
-    while n/1536.64 >= S_cuadrado:
-        n += 1
-        for j in xrange(2, n+1):
-            X = generarPI()
-            A = M
-            M += (X - M)/float(j)
-            S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
-
-    S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral (sigma)
-
-    IC = (M - 1.96*(S/math.sqrt(n)) , M + 1.96*(S/math.sqrt(n)))
-
-    return IC, n
-
-
-IC, n = estimacion()
-print "Intervalo de Confianza 2 (IC) =", IC, "n =", n
+IC, N = estimacion()
+print "Intervalo de Confianza 2 (IC) =", IC, "n =", N
