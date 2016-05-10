@@ -45,7 +45,7 @@ def estimacion():
 
     j = n
     # Iteramos hasta que: S/sqrt(j) < 0.1
-    while math.sqrt(S_cuadrado/float(j)) >= 0.1:
+    while math.sqrt(S_cuadrado/float(j)) > 0.1:
         N += 1
         j += 1
         X = normalEstandar()
@@ -57,10 +57,19 @@ def estimacion():
 
     return M, S, N
 
+a, b, c = 0,0,0
+for n in xrange(10000):
+    M, S, N = estimacion()
+    a += M
+    b += S
+    c += N
 
+print "Media ==>", a/10000.0
+print "DE ==>", b/10000.0
+print "N ==>", c/10000.0
 
-M, S, N = estimacion()
-print "\nMedia Muestral =", M
-print "Desviacion Estandar Muestral =", S
-print "Ejecuciones Necesarias =", N
-print ""
+# M, S, N = estimacion()
+# print "\nMedia Muestral =", M
+# print "Desviacion Estandar Muestral =", S
+# print "Ejecuciones Necesarias =", N
+# print ""

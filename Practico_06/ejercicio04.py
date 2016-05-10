@@ -2,6 +2,7 @@
 
 import random
 import math
+from distribuciones import *
 
 
 def generarM():
@@ -20,6 +21,17 @@ def generarM():
     M = n
 
     return M
+
+
+def promedio(n):
+    a = 0
+    for _ in xrange(n):
+        a += poisson(1)
+    
+    return (math.e*a)/float(n)
+
+
+print "E = =)",promedio(100000)
 
 
 def estimacion():
@@ -43,6 +55,11 @@ def estimacion():
 
     return M, S_cuadrado, IC
 
+def estaciones():
+    X = poisson(1)
+    return X
+
+print estaciones()
 
 
 M, S_cuadrado, IC = estimacion()

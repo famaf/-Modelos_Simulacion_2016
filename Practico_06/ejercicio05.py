@@ -35,7 +35,7 @@ def generarPI():
 
     PI = 4 * PI
 
-    return PI
+    return float(PI)
 
 
 def estimacion():
@@ -56,18 +56,19 @@ def estimacion():
 
     j = n
     # Iteramos hasta que: (2*1.96*S)/sqrt(j) < 0.1
-    while 2 * 1.96 * math.sqrt(S_cuadrado/float(j)) > 0.1:
+    while True:
         N += 1
         j += 1
         X = generarPI()
         A = M
         M += (X - M)/float(j)
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
+        
+        S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
 
-    S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
-
-    IC = (M - 1.96*(S/math.sqrt(n)) , M + 1.96*(S/math.sqrt(n)))
-
+        IC = (M - 1.96*(S/math.sqrt(j)) , M + 1.96*(S/math.sqrt(j)))
+        if IC[1] - IC[0] < 0.1:
+            break
     print IC[1] - IC[0]
     return IC, N
 

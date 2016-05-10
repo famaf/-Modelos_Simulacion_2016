@@ -32,7 +32,7 @@ def monteCarlo():
 
     j = n
     # Iteramos hasta que: S/sqrt(j) < 0.1
-    while math.sqrt(S_cuadrado/float(j)) >= 0.01:
+    while math.sqrt(S_cuadrado/float(j)) > 0.01:
         N += 1
         j += 1
         X = integral()

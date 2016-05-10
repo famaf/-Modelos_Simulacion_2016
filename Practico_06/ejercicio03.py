@@ -37,7 +37,7 @@ def estimacion():
 
     IC = (M - 1.96*(S/math.sqrt(n)) , M + 1.96*(S/math.sqrt(n)))
 
-    return IC
+    return M, S, IC
 
 
 

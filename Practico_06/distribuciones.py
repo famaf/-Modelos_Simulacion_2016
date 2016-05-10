@@ -16,7 +16,7 @@ def geometrica(p):
 
 # P(X = i) = e**(-lambda) * (lambda**i/i!) tq' i>=0
 
-def poisson1(lamda):
+def poisson(lamda):
     """
     Genera una v.a. X con distribucion Poisson de parametro lamda.
     X ~ P(lamda).
