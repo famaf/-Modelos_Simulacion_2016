@@ -2,6 +2,27 @@
 
 import random
 import math
+from scipy.special import ndtr, ndtri
+
+
+def intervalo(inicio, longitud):
+    """
+    Devuelve un numero aleatorio entre [inicio, inicio+longitud-1].
+    """
+    u = random.random()
+
+    return math.floor(longitud*u) + inicio
+
+
+def raizGeneral(radicando, raiz):
+    """
+    Calcula la raiz N-esima de un numero.
+    """
+    return radicando**(1.0/raiz)
+
+
+# Variables Aleatorias: Discretas
+
 
 def geometrica(p):
     """
@@ -13,8 +34,6 @@ def geometrica(p):
 
     return x
 
-
-# P(X = i) = e**(-lambda) * (lambda**i/i!) tq' i>=0
 
 def poisson(lamda):
     """
@@ -57,20 +76,7 @@ def binomial(n, p):
     return x
 
 
-def intervalo(inicio, longitud):
-    """
-    Devuelve un numero aleatorio entre [inicio, inicio+longitud-1].
-    """
-    u = random.random()
-
-    return math.floor(longitud*u) + inicio
-
-
-def raizGeneral(radicando, raiz):
-    """
-    Calcula la raiz N-esima de un numero.
-    """
-    return radicando**(1.0/raiz)
+# Variables Aleatorias: Continuas
 
 
 def exponencial(lamda):
@@ -150,3 +156,43 @@ def normal(mu, sigma):
     z = normalEstandar3()
 
     return (mu + sigma*z)
+
+
+# Calculos de Φ y la inversa de Φ con la Normal Estadar
+
+
+def fi(valor):
+    """
+    Devuelve el FI(valor) de la Normal Estadar.
+    """
+    return ndtr(valor)
+
+
+def fi_inversa(resultado):
+    """
+    Devuelve el "valor" tq' FI(valor) = resultado.
+    """
+    return ndtri(resultado)
+
+
+def calculoZalfasobre2(confianza):
+    """
+    Devuelve el valor Z_alfa/2 segun la confianza ingresada.
+    """
+    alfa = 1 - confianza/100.0
+    beta = alfa/2.0
+    result = ndtri(1 - beta) # FI(Z_alfa/2) = 1 - alfa/2
+
+    return result
+
+
+def calculoConfianza(z_alfaSobre2):
+    """
+    Devuelve la confianza segun el z_alfaSobre2.
+    """
+    result = ndtr(z_alfaSobre2)
+    beta = 1 - result
+    alfa = 2*beta
+    confianza = 1 -alfa # Confianza sin porcentual
+
+    return confianza*100
