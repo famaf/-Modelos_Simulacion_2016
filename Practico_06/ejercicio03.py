@@ -8,8 +8,8 @@ def generarN():
     """
     Calcula el min{ N : Sn > 1 }
     """
-    N = 0
-    Sn = 0
+    N = 0 # Uniformes generadas
+    Sn = 0 # Acumulador de suma de uniformes
     # Si Sn <= 1 entonces sumamos otro numero aleatorio y aumentamos el N
     while Sn <= 1.0:
         Sn += random.random()
@@ -40,6 +40,13 @@ def estimacion():
     return M, S, IC
 
 
+def printEstimacion():
+    M, S, IC = estimacion()
+    print "\n### e =", math.e, "###"
+    print "Media Muestral =", M
+    print "Desviacion Estandar Muestral =", S
+    print "Intervalo de Confianza =", IC
+    print ""
 
-print "\nIntervalo de Confianza (IC) =", estimacion()
-print ""
+
+printEstimacion()

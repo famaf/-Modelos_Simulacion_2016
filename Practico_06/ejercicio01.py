@@ -5,34 +5,12 @@ import math
 from distribuciones import *
 
 
-# def mediaMuestral(n, funcion):
-#     i = 1
-#     X = funcion
-#     F = X
-#     while i <= n:
-#         X = X + (funcion - X)/float(i+1)
-#         F += X
-#         i += 1
-#     return F
-
-
-# def varianzaMuestral(n, funcion):
-#     i = 1
-#     S = 0
-#     F = S
-#     while i <= n:
-#         S = (1 - 1/float(i)) * S + (i + 1) * (mediaMuestral(i+1, funcion) - mediaMuestral(i, funcion))**2
-#         F += S
-#         i += 1
-#     return F
-
-
 def estimacion():
     """
     Ejercicio 1.
     """
     n = 30 # Minimo numero de simulaciones
-    N = n # Observaciones Realizadas
+    N = n # Simulaciones realizadas
     X = normalEstandar() # X ~ N(0, 1)
     M = X # Media Muestral (valor inicial: M(1) = X1)
     S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
@@ -55,21 +33,41 @@ def estimacion():
 
     S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
 
-    return M, S, N
+    return M, S_cuadrado, N
 
-a, b, c = 0,0,0
-for n in xrange(10000):
-    M, S, N = estimacion()
-    a += M
-    b += S
-    c += N
 
-print "Media ==>", a/10000.0
-print "DE ==>", b/10000.0
-print "N ==>", c/10000.0
+def promedioMSN():
+    n = 10000
+    a, b, c = 0, 0, 0
 
-# M, S, N = estimacion()
-# print "\nMedia Muestral =", M
-# print "Desviacion Estandar Muestral =", S
-# print "Ejecuciones Necesarias =", N
-# print ""
+    for n in xrange(n):
+        M, S_cuadrado, N = estimacion()
+        a += M
+        b += S_cuadrado
+        c += N
+
+    proM = a/float(n)
+    proS_cuadrado = b/float(n)
+    proN = c/float(n)
+
+    return proM, proS_cuadrado, proN
+
+
+def printEstimacion():
+    M, S_cuadrado, N = estimacion()
+    print "\nMedia Muestral =", M
+    print "Varianza Muestral =", S_cuadrado
+    print "Ejecuciones Necesarias =", N
+    print ""
+
+
+def printPromedioMSN():
+    proM, proS_cuadrado, proN = promedioMSN()
+    print "Promedio Media Muestral =", proM
+    print "Promedio Desviacion Estandar =", proS_cuadrado
+    print "Promedio Observaciones =", proN
+    print ""
+
+
+printEstimacion()
+printPromedioMSN()

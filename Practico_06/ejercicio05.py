@@ -2,24 +2,6 @@
 
 import random
 import math
-from distribuciones import *
-
-
-# def generarPI(n):
-#     PI = 0
-#     for _ in xrange(n):
-#         U = random.random() # U ~ U(0, 1)
-#         V = random.random() # V ~ U(0, 1)
-#         X = 2*U - 1 # X ~ U(-1, 1)
-#         Y = 2*V - 1 # Y ~ U(-1, 1)
-
-#         # Punto cae adentro del circulo de radio 1
-#         if X**2 + Y**2 <= 1:
-#             PI += 1
-
-#     PI = 4 * PI/float(n) # PI = 4 * PI/4
-
-#     return PI
 
 
 def generarPI():
@@ -33,9 +15,9 @@ def generarPI():
     if X**2 + Y**2 <= 1:
         PI += 1
 
-    PI = 4 * PI
+    PI = 4 * PI # Puede ser 0 o 1
 
-    return float(PI)
+    return PI
 
 
 def estimacion():
@@ -55,7 +37,8 @@ def estimacion():
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
 
     j = n
-    # Iteramos hasta que: (2*1.96*S)/sqrt(j) < 0.1
+
+    # Iteramos hasta que el IC sea < 0.1
     while True:
         N += 1
         j += 1
@@ -67,11 +50,22 @@ def estimacion():
         S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
 
         IC = (M - 1.96*(S/math.sqrt(j)) , M + 1.96*(S/math.sqrt(j)))
+        
+        # Si el ancho del IC < 0.1 cortamos el bucle
         if IC[1] - IC[0] < 0.1:
             break
-    print IC[1] - IC[0]
-    return IC, N
+
+    ancho_IC = IC[1] - IC[0] # Ancho del intervalo
+    
+    return IC, ancho_IC, N
 
 
-IC, N = estimacion()
-print "Intervalo de Confianza 2 (IC) =", IC, "n =", N
+def printEstimacion():
+    IC, ancho_IC, N = estimacion()
+    print "\nIntervalo de Confianza =", IC
+    print "Ancho de IC =", ancho_IC
+    print "Ejecuciones necesarias =", N
+    print ""
+
+
+printEstimacion()

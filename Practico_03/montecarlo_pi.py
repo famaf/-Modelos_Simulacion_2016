@@ -4,22 +4,28 @@ import random
 import math
 
 
-def montecarlo(n):
+def generarPI(n):
     """
-    Calcula y devuelve el valor aproximado de pi usando el
-    metodo de Montecarlo a partir de 'n' puntos.
+    Calcula y devuelve el valor aproximado de PI usando el
+    metodo de Monte Carlo a partir de 'n' puntos.
     """
-    g = 0
-    for i in range(n):
-        x = random.random()
-        y = random.random()
-        d = math.sqrt(x**2 + y**2)
+    PI = 0
+    for _ in xrange(n):
+        U = random.random() # U ~ U(0, 1)
+        V = random.random() # V ~ U(0, 1)
+        X = 2*U - 1 # X ~ U(-1, 1)
+        Y = 2*V - 1 # Y ~ U(-1, 1)
 
-        if d < 1:
-            g += 1
-    return 4*g/float(n)
+        # Punto cae adentro del circulo de radio 1
+        if X**2 + Y**2 <= 1:
+            PI += 1
+
+    PI = 4 * PI/float(n) # PI = 4 * PI/4
+
+    return PI
 
 
 n = int(raw_input("Ingrese la cantidad de puntos: "))
 
-print "Pi =", montecarlo(n)
+
+print "Pi =", generarPI(n)

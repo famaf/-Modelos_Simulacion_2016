@@ -19,7 +19,7 @@ def monteCarlo():
     Ejercicio 2.
     """
     n = 100 # Minimo numero de simulaciones
-    N = n # Observaciones Realizadas
+    N = n # Simulaciones realizadas
     X = integral()
     M = X # Media Muestral (valor inicial: M(1) = X1)
     S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
@@ -45,9 +45,12 @@ def monteCarlo():
     return M, S, N
 
 
+def printMonteCarlo():
+    M, S, N = monteCarlo()
+    print "\nMedia Muestral =", M
+    print "Desviacion Estandar Muestral =", S
+    print "Ejecuciones Necesarias =", N
+    print ""
 
-M, S, N = monteCarlo()
-print "\nMedia Muestral =", M
-print "Desviacion Estandar Muestral =", S
-print "Ejecuciones Necesarias =", N
-print ""
+
+printMonteCarlo()
