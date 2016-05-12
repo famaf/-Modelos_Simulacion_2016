@@ -14,8 +14,8 @@ def generarPI():
     # Punto cae adentro del circulo de radio 1
     if X**2 + Y**2 <= 1:
         PI += 1
-
-    PI = 4 * PI # Puede ser 0 o 1
+    
+    PI = 4 * PI # Puede ser 0 o 4
 
     return PI
 
@@ -26,7 +26,7 @@ def estimacion():
     """
     n = 30 # Minimo numero de simulaciones
     N = n # Observaciones Realizadas
-    X = generarPI() # X ~ N(0, 1)
+    X = generarPI()
     M = X # Media Muestral (valor inicial: M(1) = X1)
     S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
     # Calculamos M(n) y  S_cuadrado(n)
@@ -37,8 +37,7 @@ def estimacion():
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
 
     j = n
-
-    # Iteramos hasta que el IC sea < 0.1
+    # Iteramos hasta que el ancho de IC sea < 0.1
     while True:
         N += 1
         j += 1
