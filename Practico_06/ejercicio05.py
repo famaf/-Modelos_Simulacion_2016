@@ -20,7 +20,7 @@ def generarPI():
     return PI
 
 
-def estimacion():
+def estimacion01():
     """
     Ejercicio 5.
     """
@@ -59,12 +59,56 @@ def estimacion():
     return IC, ancho_IC, N
 
 
-def printEstimacion():
-    IC, ancho_IC, N = estimacion()
+def estimacion02():
+    """
+    Ejercicio 5.
+    """
+    n = 30 # Minimo numero de simulaciones
+    N = n # Observaciones Realizadas
+    X = generarPI()
+    M = X # Media Muestral (valor inicial: M(1) = X1)
+    S_cuadrado = 0 # Varianza Muestral (valor inicial: S_cuadrado(1) = 0)
+    # Calculamos M(n) y  S_cuadrado(n)
+    for j in xrange(2, n+1):
+        X = generarPI()
+        A = M
+        M += (X - M)/float(j)
+        S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
+
+    j = n
+    # Iteramos hasta que el ancho de IC sea < 0.1
+    while 2 * 1.96 * math.sqrt(S_cuadrado/float(j)) >= 0.1:
+        N += 1
+        j += 1
+        X = generarPI()
+        A = M
+        M += (X - M)/float(j)
+        S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
+    
+    S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
+
+    IC = (M - 1.96*(S/math.sqrt(j)) , M + 1.96*(S/math.sqrt(j)))
+    
+    ancho_IC = IC[1] - IC[0] # Ancho del intervalo
+    
+    return IC, ancho_IC, N
+
+
+def printEstimacion01():
+    IC, ancho_IC, N = estimacion01()
     print "\nIntervalo de Confianza =", IC
     print "Ancho de IC =", ancho_IC
     print "Ejecuciones necesarias =", N
     print ""
 
 
-printEstimacion()
+def printEstimacion02():
+    IC, ancho_IC, N = estimacion02()
+    print "\nIntervalo de Confianza =", IC
+    print "Ancho de IC =", ancho_IC
+    print "Ejecuciones necesarias =", N
+    print ""
+
+
+printEstimacion01()
+printEstimacion02()
