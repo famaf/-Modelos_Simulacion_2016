@@ -27,26 +27,21 @@ def bootstrap(B, n, muestra):
 
     media_muestral = suma/float(n) # Media muestral de la muetra dada (X barra)
 
-    i = 0
     # Hacemos el sorteo para B muestras aleatorias
-    while i < B:
+    for _ in xrange(B):
         temporal = [] # Lista que contiene elementos de la muestra aplicando Bootstrap
 
-        j = 0
         # Seleccionamos de forma aleatoria 10 elementos de la muestra
         # (se puede repetir) para el calculo de la expresion correspondiente
-        while j < n:
+        for _ in xrange(n):
             elemento = muestra[random.randint(0, 9)]
             temporal.append(elemento)
-            j += 1
 
         v = calculoPromedio(temporal) - media_muestral # Calculamos la expresion
 
         # Si a < v < b ==> tenemos un exito
         if v > a and v < b:
             exitos += 1
-
-        i += 1
 
     # La probabilidad esta dada las veces que se cumple la condicion sobre
     # las veces que se realizo
