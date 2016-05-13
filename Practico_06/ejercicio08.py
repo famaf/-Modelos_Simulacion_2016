@@ -21,7 +21,7 @@ def servidor():
     tiempos = [] # Lista de tiempo de atencion de clientes en el sistema
 
     # Agregamos los tiempos de atencion de los clientes en el sistema
-    for _ in xrange(clientes):
+    for _ in xrange(3):
         tiempos.append(tiempoAtencion())
 
     tiempos.sort() # Ordenamos los tiempos de atencion de los clientes
@@ -32,7 +32,6 @@ def servidor():
         print "T =", T
         T += tiempos[0] # Menor tiempo de atencion
         tiempos.pop(0) # Cliente termino de ser atendido
-        clientes -= 1
 
         if clientes <= 3:
             tiempos.append(tiempoAtencion()) # Cliente nuevo
@@ -43,7 +42,7 @@ def servidor():
         if T >= 8:
             break
 
-    return tiempo_espera/8.0
+    return tiempo_espera/float(clientes)
 
 
 print servidor()
