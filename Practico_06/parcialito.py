@@ -9,14 +9,14 @@ def integral():
     Genera un valor X de la integral con el Metodo de Monte Carlo.
     """
     y = random.random()
-    X = math.exp(y**2)
+    X = math.exp(-y/2.0)
 
     return X
 
 
 def monteCarlo():
     """
-    Ejercicio 2.
+    Ejercicio de Parcialito.
     """
     n = 100 # Minimo numero de simulaciones
     N = n # Simulaciones realizadas
@@ -31,8 +31,8 @@ def monteCarlo():
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
 
     j = n
-    # Iteramos hasta que: S/sqrt(j) < 0.01
-    while math.sqrt(S_cuadrado/float(j)) > 0.01:
+    # Iteramos hasta que: S/sqrt(j) < 0.001
+    while math.sqrt(S_cuadrado/float(j)) > 0.001:
         N += 1
         j += 1
         X = integral()
@@ -45,12 +45,9 @@ def monteCarlo():
     return M, S, N
 
 
-def printMonteCarlo():
+def evaluar():
     M, S, N = monteCarlo()
-    print "\nMedia Muestral =", M
-    print "Desviacion Estandar Muestral =", S
-    print "Ejecuciones Necesarias =", N
-    print ""
+    print "Integral = ", M
 
 
-printMonteCarlo()
+evaluar()
