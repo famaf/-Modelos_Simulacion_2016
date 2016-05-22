@@ -267,12 +267,12 @@ def plot():
     plt.grid(True)
     plt.xticks(xrange(0, 20, 1))
     plt.xlim(0, 20)
-    plt.hist(v2, bins=50, normed=True, color="b", label="2 Repuestos y 2 Tecnicos")
-    plt.hist(v3, bins=50, normed=True, color="r", label="3 Repuestos y 1 Tecnico")
+    plt.hist([v2, v3], bins=50, normed=True, color=["b", "r"], label=["2 Repuestos y 2 Tecnicos", "3 Repuestos y 1 Tecnico"])
+    #plt.hist(v3, bins=50, normed=True, color="r", label="3 Repuestos y 1 Tecnico")
     plt.legend()
 
     plt.show()
 
 
-printEV()
+#printEV()
 plot()
