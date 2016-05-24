@@ -21,22 +21,23 @@ def estadistico(k, n, N, p):
 
 
 def chiCuadrado():
-    p_blanca = 1/4.0
-    p_rosa = 1/2.0
-    p_roja = 1/4.0
+    pro = 1/6.0
 
-    guisantes = 564
+    lanzamientos = 1000
 
-    blancas = 141
-    rosas = 291
-    rojas = 132
+    valor1 = 158
+    valor2 = 172
+    valor3 = 164
+    valor4 = 181
+    valor5 = 160
+    valor6 = 165
 
-    N = [blancas, rosas, rojas]
-    p = [p_blanca, p_rosa, p_roja]
+    N = [valor1, valor2, valor3, valor4, valor5, valor6]
+    p = [pro for _ in xrange(6)]
 
-    T = estadistico(3, guisantes, N, p)
+    T = estadistico(6, lanzamientos, N, p)
 
-    grados_libertad = 2
+    grados_libertad = 5
 
     p_valor = pValor(grados_libertad, T)
 
@@ -50,4 +51,3 @@ def simulacion(r):
 
 
 print "p-valor =", chiCuadrado()
-
