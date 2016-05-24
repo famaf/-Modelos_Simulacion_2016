@@ -44,10 +44,46 @@ def chiCuadrado():
 
 
 def simulacion(r):
-    pass
+    n = 50
+    k = 5
+    t = 12.8
+    P = [0.2, 0.2, 0.2, 0.2, 0.2]
+
+
+    Q = [0.2, 0.4, 0.6, 0.8, 1]
+
+    B = [0, 0, 0, 0, 0]
+    C = [0, 0, 0, 0, 0]
+    X = [0, 0, 0, 0, 0]
+    for j in xrange(k):
+        B[j] = n * P[j]
+        C[j] = 1.0/B[j]
+
+    exitos = 0
+    for _ in xrange(r):
+        for _ in xrange(n):
+            u = random.random()
+            i = 0
+
+            while u >= Q[i]:
+                i += 1
+
+            X[i] += 1
+
+        T = 0
+
+        for l in xrange(k):
+            Ti = (X[l] - B[l])**2 * C[l]
+            T += Ti
+
+        if T >= t:
+            exitos += 1
+
+    return exitos/float(r)
+
 
 
 
 
 print "p-valor =", chiCuadrado()
-
+print simulacion(1000)
