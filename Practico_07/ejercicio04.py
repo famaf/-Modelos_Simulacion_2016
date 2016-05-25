@@ -81,5 +81,11 @@ def testKS():
     return p_valor
 
 
+def chiCuadrado():
+    valores = [86, 133, 75, 22, 11, 144, 78, 122, 8, 146, 33, 41, 99]
+    n = len(valores) # Tamaño de la muestra
+    k = 6
+
+
 
 print "p-valor =", testKS()
