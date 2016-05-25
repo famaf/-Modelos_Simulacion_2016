@@ -44,46 +44,50 @@ def chiCuadrado():
 
 
 def simulacion(r):
-    n = 50
-    k = 5
-    t = 12.8
-    P = [0.2, 0.2, 0.2, 0.2, 0.2]
+    n = 564 # Tamaño de la muestra
+    k = 3 # Cantidad de intevalos
+    prob = [0.25, 0.50, 0.25] # Probabilidades
+    t = 0.8617 # Estadistico
 
+    prob_acumuladas = [0.25, 0.75, 1.0]
+    exitos = 0 # Cantidad de veces que Ti >= t
 
-    Q = [0.2, 0.4, 0.6, 0.8, 1]
+    fe = [] # Frecuencias Observadas
+    
+    # Obtenemos las Frecuencias Esperadas
+    for i in xrange(len(prob)):
+        fe.append(n*prob[i])
 
-    B = [0, 0, 0, 0, 0]
-    C = [0, 0, 0, 0, 0]
-    X = [0, 0, 0, 0, 0]
-    for j in xrange(k):
-        B[j] = n * P[j]
-        C[j] = 1.0/B[j]
-
-    exitos = 0
+    # Hacemos r simulaciones
     for _ in xrange(r):
+
+        fo = [] # Frecuencias Observadas (son los N)
+        for _ in xrange(k):
+            fo.append(0)
+        
+        # Calculamos las Frecuencias Obsevadas en un experimento
         for _ in xrange(n):
             u = random.random()
             i = 0
-
-            while u >= Q[i]:
+            while u >= prob_acumuladas[i]:
                 i += 1
 
-            X[i] += 1
+            fo[i] += 1
 
         T = 0
-
-        for l in xrange(k):
-            Ti = (X[l] - B[l])**2 * C[l]
-            T += Ti
+        # Sumamos todos los estadisticos Ti
+        for i in xrange(k):
+            Ti = (fo[i] - fe[i])**2/float(fe[i]) # Calculamos los estadistios Ti
+            T +=  Ti
 
         if T >= t:
             exitos += 1
 
-    return exitos/float(r)
+    p_valor = exitos/float(r)
+
+    return p_valor
 
 
 
-
-
-print "p-valor =", chiCuadrado()
-print simulacion(1000)
+print "Chi-Cuadrado --> p-valor =", chiCuadrado()
+print "Simulacion --> p-valor =", simulacion(10000)
