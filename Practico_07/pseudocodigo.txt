@@ -1,0 +1,44 @@
+Print "TAMAÑO DE LA PRIMERA MUESTRA:"
+Input N
+
+Print "TAMAÑO DE LA SEGUNDA MUESTRA:"
+Input M
+
+Print "SUMA DE LOS RANGOS DE LA PRIMERA MUESTRA:"
+Input R
+
+Dim P(N, M, R+1)
+
+For I = 1 to N:
+    For K = I * (I + 1)/2 to R:
+        P(I, 0, K) = 1
+    End
+End
+
+For K = 1 to R+1:
+    For J = 1 to M:
+        P(0, J, K-1) = 1
+    End
+End
+
+For I = 1 to N:
+    For J = 1 to M:
+        For K = 1 to R:
+            If K < (I + J):
+                P(I, J, K) = (J/(I+J)) * P(I, J-1, K)
+            Else:
+                P(I, J, K) = (I/(I+J)) * P(I-1, J, K-I-J) + (J/(I+J)) * P(I, J-1, K)
+            End
+        End
+    End
+End
+
+If P(N, M, R) < 1 - P(N, M, R-1):
+    V = P(N, M, R)
+Else:
+    V = 1 - P(N, M, R-1)
+End
+
+p_valor = 2*V
+
+Print p_valor

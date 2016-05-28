@@ -21,8 +21,6 @@ def estadistico(k, n, N, p):
 
 
 def chiCuadrado():
-    pro = 1/6.0
-
     lanzamientos = 1000
 
     valor1 = 158
@@ -33,7 +31,7 @@ def chiCuadrado():
     valor6 = 165
 
     N = [valor1, valor2, valor3, valor4, valor5, valor6]
-    p = [pro for _ in xrange(6)]
+    p = [1/6.0 for _ in xrange(6)]
 
     T = estadistico(6, lanzamientos, N, p)
 
@@ -44,11 +42,15 @@ def chiCuadrado():
     return p_valor
 
 
-def simulacion(r):
+def simulacion01(r):
+    """
+    Algoritmo que esta en el libro de Simulacion.
+    """
     n = 1000 # Tamaño de la muestra
     k = 6 # Cantidad de intevalos
-    prob = [1/6.0, 1/6.0, 1/6.0, 1/6.0, 1/6.0, 1/6.0] # Probabilidades
-    t = 2.18 # Estadistico
+    prob = [1/6.0 for _ in xrange(6)] # Probabilidades
+    N = [158, 172, 164, 181, 160, 165]
+    t = estadistico(k, n, N, prob) # Estadistico
 
     prob_acumuladas = [1/6.0, 1/3.0, 0.5, 2/3.0, 5/6.0, 1.0]
     exitos = 0 # Cantidad de veces que Ti >= t
@@ -89,6 +91,41 @@ def simulacion(r):
     return p_valor
 
 
+def simulacion02(r):
+    """
+    Algoritmo que esta en las Filminas.
+    """
+    n = 1000 # Tamaño de la muestra
+    k = 6 # Cantidad de intevalos
+    prob = [1/6.0 for _ in xrange(6)] # Probabilidades
+    N = [158, 172, 164, 181, 160, 165]
+    t = estadistico(k, n, N, prob) # Estadistico
+    exitos = 0 # Cantidad de veces que Ti >= t
+
+    for _ in xrange(r):
+        Y = []
+        N = []
+        # Generamos los Y's
+        for _ in xrange(n):
+            Y.append(random.randint(1, 6))
+        
+        # Generamos los Nj
+        # j va de 1 a k
+        for j in xrange(1, k+1):
+            N.append(Y.count(j))
+
+        # Calculamos el estadistico correspondiente
+        T = estadistico(k, n, N, prob)
+
+        if T >= t:
+            exitos += 1
+
+    p_valor = exitos/float(r)
+
+    return p_valor
+
+
 
 print "Chi-Cuadrado --> p-valor =", chiCuadrado()
-print "Simulacion --> p-valor =", simulacion(10000)
+print "Simulacion 1 --> p-valor =", simulacion01(10000)
+print "Simulacion 2 --> p-valor =", simulacion02(10000)
