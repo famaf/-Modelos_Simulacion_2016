@@ -69,7 +69,7 @@ def testKS():
 
     # Estimamos la media y la desviacion estandar
     media = estimacionMedia(valores)
-    varianza = estimacionDE(valores)
+    des_est = estimacionDE(valores)
 
     n = len(valores) # Tamaño de la muestra
     
@@ -77,7 +77,7 @@ def testKS():
     valoresD = [] # Contiene los elementos del conjunto D+ y D-
     j = 1
     for valor in valores:
-        z = (valor - media)/varianza
+        z = (valor - media)/des_est
         F = fi(z)
         valoresD.append(j/float(n) - F)
         valoresD.append(F - (j-1)/float(n))
