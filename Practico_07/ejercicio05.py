@@ -33,16 +33,18 @@ def estimacionP(t, lista):
     return p
 
 
+# binomial(n, p)
+
 def estimacion():
     datos = [6, 7, 3, 4, 7, 3, 7, 2, 6, 3, 7, 8, 2, 1, 3, 5, 8, 7]
-    n = len(datos)
+    p = estimacionP(8, datos) # Estimamos la probabilidad 'p'
     
-    # Estimamos p
-    p = estimacionP(8, datos)
-    
-    k = 9 # Tomamos 9 intervalos
+    n = len(datos) # Tamaño de la muetra
+    k = 8 # Valores que pueden tomar los datos observados
 
-    pro = 1/9.0
+    pro
+
+
 
 
 

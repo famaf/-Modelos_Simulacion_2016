@@ -72,7 +72,7 @@ def testKS():
     n = len(valores) # Tamaño de la muestra
     
     # Calculamos D
-    valoresD = [] # Contendra los elementos del conjunto D+ y D-
+    valoresD = [] # Contiene los elementos del conjunto D+ y D-
     j = 1
     for valor in valores:
         F = acumuladaExponencial(valor, 1.0/media)

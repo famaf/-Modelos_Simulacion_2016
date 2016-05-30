@@ -74,10 +74,11 @@ def testKS():
     n = len(valores) # Tamaño de la muestra
     
     # Calculamos D
-    valoresD = [] # Contendra los elementos del conjunto D+ y D-
+    valoresD = [] # Contiene los elementos del conjunto D+ y D-
     j = 1
     for valor in valores:
-        F = fi((valor - media)/varianza)
+        z = (valor - media)/varianza
+        F = fi(z)
         valoresD.append(j/float(n) - F)
         valoresD.append(F - (j-1)/float(n))
         j += 1
