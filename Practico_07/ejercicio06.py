@@ -85,6 +85,7 @@ def testKS():
 
 
 def promedio(n):
+    # Porque varia por la exponencial
     a = 0
     for _ in xrange(n):
         a += testKS()
@@ -92,4 +93,4 @@ def promedio(n):
     return a/float(n)
 
 
-print "p-valor =", promedio(10)
+print "p-valor =", promedio(100)
