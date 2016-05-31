@@ -2,7 +2,7 @@
 
 import math
 import random
-from distribuciones import *
+#from distribuciones import *
 
 
 def acumuladaExponencial(x, lamda):
@@ -54,17 +54,18 @@ def testKS():
     """
     Test de Kolmogorov-Smirnov.
     """
+    lamda = 1/50.0
     valores = [86, 133, 75, 22, 11, 144, 78, 122, 8, 146, 33, 41, 99]
     #valores = [66, 72, 81, 94, 112, 116, 124, 140, 145, 155]
     valores.sort()
 
     n = len(valores) # Tamaño de la muestra
-    
+
     # Calculamos D
     valoresD = [] # Contendra los elementos del conjunto D+ y D-
     j = 1
     for valor in valores:
-        F = acumuladaExponencial(valor, 1/50.0)
+        F = acumuladaExponencial(valor, lamda)
         valoresD.append(j/float(n) - F)
         valoresD.append(F - (j-1)/float(n))
         j += 1
@@ -79,12 +80,6 @@ def testKS():
     #     print "No se rechaza H0"
 
     return p_valor
-
-
-def chiCuadrado():
-    valores = [86, 133, 75, 22, 11, 144, 78, 122, 8, 146, 33, 41, 99]
-    n = len(valores) # Tamaño de la muestra
-    k = 6
 
 
 
