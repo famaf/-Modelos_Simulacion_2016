@@ -38,7 +38,7 @@ def chiCuadrado():
 
     t = estadisticoT(6, lanzamientos, N, p) # Valor observado
 
-    grados_libertad = 5
+    grados_libertad = 5 # cantidad de intervalos - 1
 
     p_valor = pValor(grados_libertad, t)
 

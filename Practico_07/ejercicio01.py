@@ -39,7 +39,7 @@ def chiCuadrado():
 
     t = estadisticoT(3, guisantes, N, p) # Valor observado
 
-    grados_libertad = 2
+    grados_libertad = 2 # cantidad de intervalos - 1
 
     p_valor = pValor(grados_libertad, t)
 
