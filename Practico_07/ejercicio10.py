@@ -66,6 +66,7 @@ def valorExacto():
     R = sumaRangos(muestra1, muestra2)
 
     # Calculo de p-valor por recursion
+
     p_valor = 2 * min(P(n, m, R), 1 - P(n, m, R-1))
 
     return p_valor

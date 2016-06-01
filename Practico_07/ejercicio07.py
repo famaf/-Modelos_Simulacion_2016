@@ -15,8 +15,8 @@ def acumuladaExponencial(x, lamda):
 def pValor(r, n, d):
     """
     r = Numero de simulaciones
-    n = muestra
-    d = Estadistico
+    n = Tamaño de la muestra
+    d = Valor observado
     """
     uniformes = []
     valoresD = []
@@ -28,7 +28,7 @@ def pValor(r, n, d):
             uniformes.append(random.random())
         uniformes.sort()
 
-        # Calculamos D
+        # Calculamos el estadistico D correspondiente
         j = 1
         for U in uniformes:
             valoresD.append(j/float(n) - U)
@@ -66,23 +66,26 @@ def testKS():
     valores = [1.6, 10.3, 3.5, 13.5, 18.4, 7.7, 24.3, 10.7, 8.4, 4.9, 7.9, 12, 16.2, 6.8, 14.7]
     valores.sort()
 
-    # Estimamos la media
-    media = estimacionMedia(valores)
+    # Estimamos la media muestral
+    media_muestral = estimacionMedia(valores)
+
+    # Estimacion de lambda
+    lamda = 1/float(media_muestral)
 
     n = len(valores) # Tamaño de la muestra
     
-    # Calculamos D
+    # Calculamos el estadistico D
     valoresD = [] # Contiene los elementos del conjunto D+ y D-
     j = 1
     for valor in valores:
-        F = acumuladaExponencial(valor, 1.0/media)
+        F = acumuladaExponencial(valor, lamda)
         valoresD.append(j/float(n) - F)
         valoresD.append(F - (j-1)/float(n))
         j += 1
 
-    D = max(valoresD)
+    d = max(valoresD) # Valor observado
 
-    p_valor = pValor(10000, n, D)
+    p_valor = pValor(10000, n, d)
 
     # if p_valor < alfa:
     #     print "Se rechaza H0"

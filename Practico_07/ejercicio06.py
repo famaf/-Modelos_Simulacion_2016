@@ -15,8 +15,8 @@ def acumuladaExponencial(x, lamda):
 def pValor(r, n, d):
     """
     r = Numero de simulaciones
-    n = muestra
-    d = Estadistico
+    n = Tamaño de la muestra
+    d = Valor observado
     """
     uniformes = []
     valoresD = []
@@ -28,7 +28,7 @@ def pValor(r, n, d):
             uniformes.append(random.random())
         uniformes.sort()
 
-        # Calculamos D
+        # Calculamos el estadistico D correspondiente
         j = 1
         for U in uniformes:
             valoresD.append(j/float(n) - U)
@@ -63,7 +63,7 @@ def testKS():
     
     n = len(valores) # Tamaño de la muestra
 
-    # Calculamos D
+    # Calculamos el estadistico D
     valoresD = [] # Contendra los elementos del conjunto D+ y D-
     j = 1
     for valor in valores:
@@ -72,9 +72,9 @@ def testKS():
         valoresD.append(F - (j-1)/float(n))
         j += 1
 
-    D = max(valoresD)
+    d = max(valoresD) # Valor observado
 
-    p_valor = pValor(10000, n, D)
+    p_valor = pValor(10000, n, d)
 
     # if p_valor < alfa:
     #     print "Se rechaza H0"
@@ -84,8 +84,10 @@ def testKS():
     return p_valor
 
 
-def promedio(n):
-    # Porque varia por la exponencial
+def esperanza(n):
+    """
+    Calcula la esperanza del p-valor con el Test de KS.
+    """
     a = 0
     for _ in xrange(n):
         a += testKS()
@@ -93,4 +95,4 @@ def promedio(n):
     return a/float(n)
 
 
-print "p-valor =", promedio(100)
+print "p-valor =", esperanza(500)

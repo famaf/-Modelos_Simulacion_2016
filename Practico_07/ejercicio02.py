@@ -5,7 +5,7 @@ import random
 from distribuciones import *
 
 
-def estadistico(k, n, N, p):
+def estadisticoT(k, n, N, p):
     """
     Calcula el estadistico T.
     k = particiones (intervalos).
@@ -21,6 +21,9 @@ def estadistico(k, n, N, p):
 
 
 def chiCuadrado():
+    """
+    Calcula el p-valor por medio de una aproximacion Chi-Cuadrada.
+    """
     lanzamientos = 1000
 
     valor1 = 158
@@ -33,24 +36,24 @@ def chiCuadrado():
     N = [valor1, valor2, valor3, valor4, valor5, valor6]
     p = [1/6.0 for _ in xrange(6)]
 
-    T = estadistico(6, lanzamientos, N, p)
+    t = estadisticoT(6, lanzamientos, N, p) # Valor observado
 
     grados_libertad = 5
 
-    p_valor = pValor(grados_libertad, T)
+    p_valor = pValor(grados_libertad, t)
 
     return p_valor
 
 
 def simulacion01(r):
     """
-    Algoritmo que esta en el libro de Simulacion.
+    Algoritmo, para calcular el p-valor, que esta en el Libro de Simulacion.
     """
     n = 1000 # Tamaño de la muestra
     k = 6 # Cantidad de intevalos
     prob = [1/6.0 for _ in xrange(6)] # Probabilidades
     N = [158, 172, 164, 181, 160, 165]
-    t = estadistico(k, n, N, prob) # Estadistico
+    t = estadisticoT(k, n, N, prob) # Valor observado
 
     prob_acumuladas = [1/6.0, 1/3.0, 0.5, 2/3.0, 5/6.0, 1.0]
     exitos = 0 # Cantidad de veces que Ti >= t
@@ -93,13 +96,13 @@ def simulacion01(r):
 
 def simulacion02(r):
     """
-    Algoritmo que esta en las Filminas.
+    Algoritmo, para calcular el p-valor, que esta en las Filminas.
     """
     n = 1000 # Tamaño de la muestra
     k = 6 # Cantidad de intevalos
     prob = [1/6.0 for _ in xrange(6)] # Probabilidades
     N = [158, 172, 164, 181, 160, 165]
-    t = estadistico(k, n, N, prob) # Estadistico
+    t = estadisticoT(k, n, N, prob) # Valor observado
     exitos = 0 # Cantidad de veces que Ti >= t
 
     for _ in xrange(r):
@@ -114,8 +117,8 @@ def simulacion02(r):
         for j in xrange(1, k+1):
             N.append(Y.count(j))
 
-        # Calculamos el estadistico correspondiente
-        T = estadistico(k, n, N, prob)
+        # Calculamos el estadistico T correspondiente
+        T = estadisticoT(k, n, N, prob)
 
         if T >= t:
             exitos += 1
