@@ -23,9 +23,8 @@ def pValor(r, n, d):
     exitos = 0 # Cantidad de veces que se cumple que D >= d
 
     for _ in xrange(r):
-        # Generamos n U ~ U(0, 1)
-        for _ in xrange(n):
-            uniformes.append(random.random())
+        # Generamos n U ~ U(0, 1) y las ordenamos
+        uniformes = [random.random() for _ in xrange(n)]
         uniformes.sort()
 
         # Calculamos el estadistico D correspondiente
@@ -54,11 +53,8 @@ def testKS():
     """
     Test de Kolmogorov-Smirnov.
     """
-    # Generamos 10 exponenciales de lambda 1
-    valores = []
-    for _ in xrange(10):
-        valores.append(exponencial(1))
-
+    # Generamos 10 exponenciales de lambda 1 y las ordenamos
+    valores = [exponencial(1) for _ in xrange(10)]
     valores.sort()
     
     n = len(valores) # Tamaño de la muestra
@@ -94,5 +90,5 @@ def esperanza(n):
 
     return a/float(n)
 
-
-print "p-valor =", esperanza(500)
+print "p-valor =", testKS()
+#print "p-valor =", esperanza(100)

@@ -23,9 +23,8 @@ def pValor(r, n, d):
     exitos = 0 # Cantidad de veces que se cumple que D >= d
 
     for _ in xrange(r):
-        # Generamos n U ~ U(0, 1)
-        for _ in xrange(n):
-            uniformes.append(random.random())
+        # Generamos n U ~ U(0, 1) y las ordenamos
+        uniformes = [random.random() for _ in xrange(n)]
         uniformes.sort()
 
         # Calculamos el estadistico D correspondiente

@@ -67,11 +67,9 @@ def simulacion01(r):
 
     # Hacemos r simulaciones
     for _ in xrange(r):
+        # Frecuencias Observadas (son los N)
+        fo = [0 for _ in xrange(k)]
 
-        fo = [] # Frecuencias Observadas (son los N)
-        for _ in xrange(k):
-            fo.append(0)
-        
         # Calculamos las Frecuencias Obsevadas en un experimento
         for _ in xrange(n):
             u = random.random()
