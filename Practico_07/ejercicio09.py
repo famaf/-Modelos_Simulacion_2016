@@ -53,6 +53,24 @@ def P(n, m, k):
     return result
 
 
+def calcularSubmuestra(muestra, n):
+    """
+    Calcula una submuestra de una muestra dada.
+    muestra = Muestra dada.
+    n = Tamaño de la Submuestra.
+    """
+    sub_muestra = [] # Submuestra de la muestra
+
+    random.shuffle(muestra) # Desordenamos la muestra
+
+    # Calculo la submuestra de tamaño 'n'
+    for i in xrange(n):
+        valor = muestra[i]
+        sub_muestra.append(valor)
+
+    return sub_muestra
+
+
 def valorExacto():
     """
     Calculo exacto del p-valor.
@@ -103,26 +121,6 @@ def aproximacionNormal():
         p_valor = 2 * (1 - fi(z))
 
     return p_valor
-
-
-def calcularSubmuestra(muestra, n):
-    """
-    Calcula una submuestra de una muestra dada.
-    muestra = Muestra dada.
-    n = Tamaño de la Submuestra.
-    """
-    sub_muestra = [] # Submuestra de la muestra
-    N = len(muestra) # Tamaño de la muestra dada
-
-    # Calculo la submuestra
-    while len(sub_muestra) < n:
-        valor = muestra[random.randint(0, N-1)]
-
-        # Si el valor no esta en la submuestra, lo agrego
-        if valor not in sub_muestra:
-            sub_muestra.append(valor)
-
-    return sub_muestra
 
 
 def simulacion(k):
