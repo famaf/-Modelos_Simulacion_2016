@@ -105,6 +105,26 @@ def aproximacionNormal():
     return p_valor
 
 
+def calcularSubmuestra(muestra, n):
+    """
+    Calcula una submuestra de una muestra dada.
+    muestra = Muestra dada.
+    n = Tamaño de la Submuestra.
+    """
+    sub_muestra = [] # Submuestra de la muestra
+    N = len(muestra) # Tamaño de la muestra dada
+
+    # Calculo la submuestra
+    while len(sub_muestra) < n:
+        valor = muestra[random.randint(0, N-1)]
+
+        # Si el valor no esta en la submuestra, lo agrego
+        if valor not in sub_muestra:
+            sub_muestra.append(valor)
+
+    return sub_muestra
+
+
 def simulacion(k):
     """
     Calculo del p-valor, con una simulacion
@@ -131,13 +151,8 @@ def simulacion(k):
 
     # Ejecutamos k veces la simulacion
     for _ in xrange(k):
-        sub_muestra = [] # Contendra la submuestra
-        while len(sub_muestra) < n:
-            valor = muestra[random.randint(0, N-1)] # 
-            
-            # Si el valor no esta en la submuestra, lo agrego
-            if valor not in sub_muestra:
-                sub_muestra.append(valor)
+        # Calculamos la submuestra
+        sub_muestra = calcularSubmuestra(muestra, n)
 
         R = sumaRangos(sub_muestra, muestra2) # Generamos el R correspondiente
 
