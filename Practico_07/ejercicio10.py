@@ -5,11 +5,10 @@ import random
 from distribuciones import *
 
 
-def sumaRangos(muestra1, muestra2):
+def sumaRangos(muestra1, muestra):
     """
-    Calcula la suma de los rangos (R) de la muestra 1.
+    Calcula la suma de los rangos (R) de la 'muestra1' sobre la 'muestra'.
     """
-    muestra = muestra1 + muestra2
     muestra.sort()
 
     rangos = []
@@ -53,39 +52,23 @@ def P(n, m, k):
     return result
 
 
-def calcularSubmuestra(muestra, n):
-    """
-    Calcula una submuestra de una muestra dada.
-    muestra = Muestra dada.
-    n = Tamaño de la Submuestra.
-    """
-    sub_muestra = [] # Submuestra de la muestra
-    N = len(muestra) # Tamaño de la muestra dada
-
-    random.shuffle(muestra)
-
-    # Calculo la submuestra de tamaño 'n'
-    for i in xrange(n):
-        valor = muestra[i]
-        sub_muestra.append(valor)
-
-    return sub_muestra
-
-
 def valorExacto():
     """
     Calculo exacto del p-valor.
     """
     muestra1 = [19, 31, 39, 45, 47, 66, 75]
     muestra2 = [28, 36, 44, 49, 52, 72, 72]
+    muestra = muestra1 + muestra2
+
+    # muestra1 = [132, 104, 162, 171, 129]
+    # muestra2 = [107, 94, 136, 99, 114, 122, 108, 130, 106, 88]
 
     n = len(muestra1) # Tamaño de la primera muestra
     m = len(muestra2) # Tamaño de la segunda muestra
 
-    R = sumaRangos(muestra1, muestra2)
+    R = sumaRangos(muestra1, muestra)
 
     # Calculo de p-valor por recursion
-
     p_valor = 2 * min(P(n, m, R), 1 - P(n, m, R-1))
 
     return p_valor
@@ -97,13 +80,16 @@ def aproximacionNormal():
     """
     muestra1 = [19, 31, 39, 45, 47, 66, 75]
     muestra2 = [28, 36, 44, 49, 52, 72, 72]
+    muestra = muestra1 + muestra2
+
+    # muestra1 = [132, 104, 162, 171, 129]
+    # muestra2 = [107, 94, 136, 99, 114, 122, 108, 130, 106, 88]
 
     n = len(muestra1) # Tamaño de la primera muestra
     m = len(muestra2) # Tamaño de la segunda muestra
-
     N = n + m # Tamaño de la suma de las muestras
 
-    R = sumaRangos(muestra1, muestra2)
+    R = sumaRangos(muestra1, muestra)
 
     esp_R = n * (N+1)/2.0 # Esperanza de R
     var_R = n * m * (N+1)/12.0 # Varianza de R
@@ -121,42 +107,40 @@ def aproximacionNormal():
 
 def simulacion(k):
     """
-    Calculo del p-valor, con una simulacion
+    Calculo del p-valor, mediante simulacion.
     """
     muestra1 = [19, 31, 39, 45, 47, 66, 75]
     muestra2 = [28, 36, 44, 49, 52, 72, 72]
+    muestra = muestra1 + muestra2
+
+    # muestra1 = [132, 104, 162, 171, 129]
+    # muestra2 = [107, 94, 136, 99, 114, 122, 108, 130, 106, 88]
 
     n = len(muestra1) # Tamaño de la primera muestra
     m = len(muestra2) # Tamaño de la segunda muestra
 
-    N = n + m # Tamaño de la suma de las muestras
+    r = sumaRangos(muestra1, muestra)
 
-    r = sumaRangos(muestra1, muestra2)
-
-    # Lista con las dos muestras ordenadas
-    muestra = muestra1 + muestra2
-    muestra.sort()
-
-    R_mayor = 0 # Cantidad de veces que R >= r
-    R_menor = 0 # Cantidad de veces que R <= r
+    R_max = 0 # Cantidad de veces que R >= r
+    R_min = 0 # Cantidad de veces que R <= r
 
     # Ejecutamos k veces la simulacion
     for _ in xrange(k):
         # Calculamos la submuestra
-        sub_muestra = calcularSubmuestra(muestra, n)
+        random.shuffle(muestra) # Desordenamos la muestra
 
-        R = sumaRangos(sub_muestra, muestra2) # Generamos el R correspondiente
+        # Obtenemos la submuestra
+        sub_muestra = muestra[0:n] # Nos quedamos con los primeros 'n' elementos
+
+        R = sumaRangos(sub_muestra, muestra) # Generamos el R correspondiente
 
         if R >= r:
-            R_mayor += 1
-        elif R <= r:
-            R_menor += 1
-
-    pro_R_mayor = R_mayor/float(k)
-    pro_R_menor = R_menor/float(k)
+            R_max += 1
+        elif R < r:
+            R_min += 1
 
     # Calculo del p-valor
-    p_valor = 2 * min(pro_R_menor, pro_R_mayor)
+    p_valor = 2 * min(R_max/float(k), R_min/float(k))
 
     return p_valor
 
