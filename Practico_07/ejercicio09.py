@@ -60,9 +60,6 @@ def valorExacto():
     muestra2 = [59.4, 72.1, 68, 66.2, 58.5]
     muestra = muestra1 + muestra2
 
-    # muestra1 = [132, 104, 162, 171, 129]
-    # muestra2 = [107, 94, 136, 99, 114, 122, 108, 130, 106, 88]
-
     n = len(muestra1) # Tamaño de la primera muestra
     m = len(muestra2) # Tamaño de la segunda muestra
 
@@ -81,9 +78,6 @@ def aproximacionNormal():
     muestra1 = [65.2, 67.1, 69.4, 78.4, 74, 80.3]
     muestra2 = [59.4, 72.1, 68, 66.2, 58.5]
     muestra = muestra1 + muestra2
-
-    # muestra1 = [132, 104, 162, 171, 129]
-    # muestra2 = [107, 94, 136, 99, 114, 122, 108, 130, 106, 88]
 
     n = len(muestra1) # Tamaño de la primera muestra
     m = len(muestra2) # Tamaño de la segunda muestra
@@ -112,9 +106,6 @@ def simulacion(k):
     muestra1 = [65.2, 67.1, 69.4, 78.4, 74, 80.3]
     muestra2 = [59.4, 72.1, 68, 66.2, 58.5]
     muestra = muestra1 + muestra2
-
-    # muestra1 = [132, 104, 162, 171, 129]
-    # muestra2 = [107, 94, 136, 99, 114, 122, 108, 130, 106, 88]
 
     n = len(muestra1) # Tamaño de la primera muestra
     m = len(muestra2) # Tamaño de la segunda muestra

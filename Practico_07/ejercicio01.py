@@ -52,18 +52,15 @@ def simulacion01(r):
     """
     n = 564 # Tamaño de la muestra
     k = 3 # Cantidad de intevalos
+    N = [141, 291, 132]  # Frecuencias observadas
     prob = [0.25, 0.50, 0.25] # Probabilidades
-    N = [141, 291, 132]
-    t = estadisticoT(3, n, N, prob) # Valor observado
+    prob_acumuladas = [0.25, 0.75, 1.0] # Probabilidades acumuladas
+    t = estadisticoT(k, n, N, prob) # Valor observado
 
-    prob_acumuladas = [0.25, 0.75, 1.0]
     exitos = 0 # Cantidad de veces que Ti >= t
 
-    fe = [] # Frecuencias Observadas
-    
-    # Obtenemos las Frecuencias Esperadas
-    for i in xrange(len(prob)):
-        fe.append(n*prob[i])
+    # Frecuencias Observadas
+    fe = [n*prob[i] for i in xrange(len(prob))]
 
     # Hacemos r simulaciones
     for _ in xrange(r):
@@ -99,9 +96,11 @@ def simulacion02(r):
     """
     n = 564 # Tamaño de la muestra
     k = 3 # Cantidad de intevalos
+    N = [141, 291, 132] # Frecuencias observadas
     prob = [0.25, 0.50, 0.25] # Probabilidades
-    N = [141, 291, 132] # Ni
+    prob_acumuladas = [0.25, 0.75, 1.0] # Probabilidades acumuladas
     t = estadisticoT(k, n, N, prob) # Valor observado
+
     exitos = 0 # Cantidad de veces que Ti >= t
 
     for _ in xrange(r):
@@ -110,11 +109,11 @@ def simulacion02(r):
         # Generamos los Y's
         for _ in xrange(n):
             u = random.random()
-            if u < 0.5:
-                Y.append(2)
-            elif u < 0.75:
+            if u < 0.25:
                 Y.append(1)
-            elif u >= 0.75:
+            elif u < 0.75:
+                Y.append(2)
+            elif u < 1.0:
                 Y.append(3)
 
         # Generamos los Nj

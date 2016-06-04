@@ -68,13 +68,16 @@ def testKS():
 
     p_valor = pValor(10000, n, d)
 
-    # if p_valor < alfa:
+    # if p_valor < alfa: # o <= (menor igual)
+    #     # Se rechaza la H0 a un nivel alfa
     #     print "Se rechaza H0"
     # elif p_valor > alfa:
-    #     print "No se rechaza H0"
+    #     # No hay evidencia suficiente para rechazar H0 a un nivel alfa
+    #     print "No se rechaza H0"H0"
 
     return p_valor
 
 
-
+# Nivel de confianza = 1 - alfa
+# Alfas comunes: 0.05, 0.01, 0.1
 print "p-valor =", testKS()

@@ -33,13 +33,13 @@ def estimacionP(t, lista):
     return p
 
 
-def calculoBinomial(n, p, i):
+def probabilidadBinomial(n, p, i):
     """
     Funcion de masa de una distribucion Binomial B(n, p)
     """
     combinatorio = math.factorial(n)/float(math.factorial(i) * math.factorial(n-i))
 
-    return combinatorio * p**i * (1 - p)**(n-i)
+    return combinatorio * (p**i) * ((1 - p)**(n-i))
 
 
 def chiCuadrado():
@@ -48,20 +48,17 @@ def chiCuadrado():
     """
     datos = [6, 7, 3, 4, 7, 3, 7, 2, 6, 3, 7, 8, 2, 1, 3, 5, 8, 7]
     datos.sort()
+    n = len(datos) # Tamaño de la muetra
+    k = 3 # Cantidad de intervalos
+    N = [3, 6, 9] # Frecuencias observadas
 
     # Estimamos la probabilidad 'p' = 0.618
     p = estimacionP(8, datos)
 
     m = 1 # Cantidad de parametros estimados
-    n = len(datos) # Tamaño de la muetra
-    k = 3 # Cantidad de intervalos
 
-    N = [3, 6, 9] # Frecuencias observadas
-
-    # Calculamos las 9 probilidades de una B(8, p)
-    pro_binomial = []
-    for i in xrange(9):
-        pro_binomial.append(calculoBinomial(8, p, i))
+    # Calculamos las 9 (0...8) probilidades de una B(8, p)
+    pro_binomial = [probabilidadBinomial(8, p, i) for i in xrange(9)]
 
     # Obtenemos las probabilidades de los intervalos
     p1 = pro_binomial[0] + pro_binomial[1] + pro_binomial[2]
@@ -71,33 +68,30 @@ def chiCuadrado():
 
     t = estadisticoT(k, n, N, prob) # Valor observado
 
-    grados_libertad = k - m - 1 # En este caso son 7
+    grados_libertad = k - m - 1 # En este caso son 1
 
     p_valor = pValor(grados_libertad, t)
 
     return p_valor
 
 
-def simulacion01(r):
+def simulacion(r):
     """
     Algoritmo, para calcular el p-valor, que esta en el Libro de Simulacion.
     """
     datos = [6, 7, 3, 4, 7, 3, 7, 2, 6, 3, 7, 8, 2, 1, 3, 5, 8, 7]
     datos.sort()
+    n = len(datos) # Tamaño de la muetra
+    k = 3 # Cantidad de intervalos
+    N = [3, 6, 9] # Frecuencias observadas
 
     # Estimamos la probabilidad 'p' = 0.618
     p = estimacionP(8, datos)
 
     m = 1 # Cantidad de parametros estimados
-    n = len(datos) # Tamaño de la muetra
-    k = 3 # Cantidad de intervalos
 
-    N = [3, 6, 9] # Frecuencias observadas
-
-    # Calculamos las 9 probilidades de una B(8, p)
-    pro_binomial = []
-    for i in xrange(9):
-        pro_binomial.append(calculoBinomial(8, p, i))
+    # Calculamos las 9 (0...8) probilidades de una B(8, p)
+    pro_binomial = [probabilidadBinomial(8, p, i) for i in xrange(9)]
 
     # Obtenemos las probabilidades de los intervalos
     p1 = pro_binomial[0] + pro_binomial[1] + pro_binomial[2]
@@ -107,35 +101,32 @@ def simulacion01(r):
 
     t = estadisticoT(k, n, N, prob) # Valor observado
 
-    prob_acumuladas = [p1, p1+p2, p1+p2+p3]
-
     exitos = 0 # Cantidad de veces que Ti >= t
 
-    fe = [] # Frecuencias Observadas
-    
-    # Obtenemos las Frecuencias Esperadas
-    for i in xrange(len(prob)):
-        fe.append(n*prob[i])
-
-    # Hacemos r simulaciones
     for _ in xrange(r):
-        # Frecuencias Observadas (son los N)
-        fo = [0 for _ in xrange(k)]
+        Y = [binomial(8, p) for _ in xrange(n)]
 
-        # Calculamos las Frecuencias Obsevadas en un experimento
-        for _ in xrange(n):
-            u = random.random()
-            i = 0
-            while u >= prob_acumuladas[i]:
-                i += 1
+        N0 = 0
+        N1 = 0
+        N2 = 0
+        for i in xrange(n):
+            if 0 <= Y[i] <= 2:
+                N0 += 1
+            elif 3 <= Y[i] <= 5:
+                N1 += 1
+            elif 6 <= Y[i] <= 8:
+                N2 += 1
+        N = [N0, N1, N2]
 
-            fo[i] += 1
+        p_sim = estimacionP(8, Y)
 
-        T = 0
-        # Sumamos todos los estadisticos Ti
-        for i in xrange(k):
-            Ti = (fo[i] - fe[i])**2/float(fe[i]) # Calculamos los estadistios Ti
-            T +=  Ti
+        pro_binomial = [probabilidadBinomial(8, p_sim, i) for i in xrange(9)]
+        p1 = pro_binomial[0] + pro_binomial[1] + pro_binomial[2]
+        p2 = pro_binomial[3] + pro_binomial[4] + pro_binomial[5]
+        p3 = pro_binomial[6] + pro_binomial[7] + pro_binomial[8]
+        prob = [p1, p2, p3]
+
+        T = estadisticoT(k, n, N, prob)
 
         if T >= t:
             exitos += 1
@@ -146,5 +137,5 @@ def simulacion01(r):
 
 
 
-print "p-valor =", chiCuadrado()
-print "p-valor =", simulacion01(10000)
+print "Chi-Cuadrado --> p-valor =", chiCuadrado()
+print "Simulacion --> p-valor =", simulacion(100000)

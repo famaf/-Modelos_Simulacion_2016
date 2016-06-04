@@ -55,7 +55,6 @@ def testKS():
     """
     lamda = 1/50.0
     valores = [86, 133, 75, 22, 11, 144, 78, 122, 8, 146, 33, 41, 99]
-    #valores = [66, 72, 81, 94, 112, 116, 124, 140, 145, 155]
     valores.sort()
 
     n = len(valores) # Tamaño de la muestra
@@ -73,13 +72,16 @@ def testKS():
 
     p_valor = pValor(10000, n, d)
 
-    # if p_valor < alfa:
+    # if p_valor < alfa: # o <= (menor igual)
+    #     # Se rechaza la H0 a un nivel alfa
     #     print "Se rechaza H0"
     # elif p_valor > alfa:
+    #     # No hay evidencia suficiente para rechazar H0 a un nivel alfa
     #     print "No se rechaza H0"
 
     return p_valor
 
 
-
+# Nivel de confianza = 1 - alfa
+# Alfas comunes: 0.05, 0.01, 0.1
 print "p-valor =", testKS()

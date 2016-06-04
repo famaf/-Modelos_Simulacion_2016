@@ -51,18 +51,15 @@ def simulacion01(r):
     """
     n = 1000 # Tamaño de la muestra
     k = 6 # Cantidad de intevalos
+    N = [158, 172, 164, 181, 160, 165] # Frecuencias observadas
     prob = [1/6.0 for _ in xrange(6)] # Probabilidades
-    N = [158, 172, 164, 181, 160, 165]
+    prob_acumuladas = [1/6.0, 1/3.0, 0.5, 2/3.0, 5/6.0, 1.0] # Probabilidades acumuladas
     t = estadisticoT(k, n, N, prob) # Valor observado
 
-    prob_acumuladas = [1/6.0, 1/3.0, 0.5, 2/3.0, 5/6.0, 1.0]
     exitos = 0 # Cantidad de veces que Ti >= t
 
-    fe = [] # Frecuencias Observadas
-    
-    # Obtenemos las Frecuencias Esperadas
-    for i in xrange(len(prob)):
-        fe.append(n*prob[i])
+    # Frecuencias Observadas
+    fe = [n*prob[i] for i in xrange(len(prob))]
 
     # Hacemos r simulaciones
     for _ in xrange(r):
@@ -98,15 +95,17 @@ def simulacion02(r):
     """
     n = 1000 # Tamaño de la muestra
     k = 6 # Cantidad de intevalos
+    N = [158, 172, 164, 181, 160, 165] # Frecuencias observadas
     prob = [1/6.0 for _ in xrange(6)] # Probabilidades
-    N = [158, 172, 164, 181, 160, 165]
     t = estadisticoT(k, n, N, prob) # Valor observado
+
     exitos = 0 # Cantidad de veces que Ti >= t
 
     for _ in xrange(r):
         Y = []
         N = []
         # Generamos los Y's
+        # Todos tiene la misma probabilidad
         for _ in xrange(n):
             Y.append(random.randint(1, 6))
         

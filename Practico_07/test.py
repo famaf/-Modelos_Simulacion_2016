@@ -59,7 +59,7 @@ def estimacionMedia(lista):
     return sum(lista)/float(len(lista))
 
 
-def testKS(alfa):
+def testKS(alfa, r):
     """
     Test de Kolmogorov-Smirnov.
     """
@@ -85,16 +85,37 @@ def testKS(alfa):
 
     d = max(valoresD) # Valor observado
 
+    p_valor2 = 0
     p_valor = pValor(10000, n, d)
 
     if p_valor < alfa:
         print "Se rechaza H0"
     elif p_valor > alfa:
         print "No se rechaza H0"
+        exitos = 0
+        for _ in xrange(r):
+            Y = [exponencial(lamda) for _ in xrange(n)]
 
-    return p_valor
+            lamda_sim = 1/float(estimacionMedia(Y))
+
+            valoresD = [] # Contiene los elementos del conjunto D+ y D-
+            j = 1
+            for valor in Y:
+                F = acumuladaExponencial(valor, lamda_sim)
+                valoresD.append(j/float(n) - F)
+                valoresD.append(F - (j-1)/float(n))
+                j += 1
+
+            D = max(valoresD)
+
+            if D >= d:
+                exitos += 1
+
+        p_valor2 = exitos/float(r)
+
+    return p_valor, p_valor2
 
 
 # Nivel de confianza = 1 - alfa
 # Alfas comunes: 0.05, 0.01, 0.1
-print "p-valor =", testKS(0.05)
+print "p-valor =", testKS(0.05, 10000)
