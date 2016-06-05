@@ -90,11 +90,12 @@ def testKS(alfa, r):
 
     if p_valor < alfa:
         print "Se rechaza H0"
-    elif p_valor > alfa:
+    elif p_valor >= alfa:
         print "No se rechaza H0"
         exitos = 0
         for _ in xrange(r):
             Y = [exponencial(lamda) for _ in xrange(n)]
+            Y.sort()
 
             lamda_sim = 1/float(estimacionMedia(Y))
 

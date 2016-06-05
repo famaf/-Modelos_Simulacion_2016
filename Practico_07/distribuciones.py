@@ -5,6 +5,19 @@ import math
 from scipy.special import ndtr, ndtri # Normal
 from scipy.special import chdtrc, chdtri # Chi-cuadrado
 
+# Aproximaciones:
+# Sea L = lista de datos y L-barra = sum(L)/(largo de L) la media muestral
+# Uniforme: a=min(L), b=max(L)
+#   Si U(1, n)
+#   Rango = {1...n}
+#   Probabilidad(i) = 1/n
+# Exponecial: lambda = 1/L-barra
+# Normal: Mirar Ejercicio 08
+# Binomial(t, p desconocido): p = L-barra/t
+# Bernoulli: caso Binomial(1, p desconocido) --> probabilidad = p --> Rango = {0,1}
+# Geometrica: p = 1/L-barra
+# Poisson: lambda = L-barra
+
 
 def intervalo(inicio, longitud):
     """
@@ -24,6 +37,9 @@ def raizGeneral(radicando, raiz):
 
 # Variables Aleatorias: Discretas
 
+# Probabilidad Geometrica(p, i):
+# p * ((1-p)**(i-1))
+# Rango = {1...} los naturales
 
 def geometrica(p):
     """
@@ -35,6 +51,9 @@ def geometrica(p):
 
     return x
 
+# Probabilidad Poisson(lamda, i)
+# math.exp(-lamda) * ((lamda**i)/(math.factorial(i)))
+# Rango = {0, 1, 2, ...}
 
 def poisson(lamda):
     """
@@ -56,6 +75,10 @@ def poisson(lamda):
 
     return x
 
+# Probabilidad Binomial(n, p, i):
+# combinatorio = math.factorial(n)/float(math.factorial(i) * math.factorial(n-i))
+# combinatorio * (p**i) * ((1 - p)**(n-i))
+# Rango = {0...n}
 
 def binomial(n, p):
     """
@@ -79,6 +102,8 @@ def binomial(n, p):
 
 # Variables Aleatorias: Continuas
 
+# Acumulada Exponencial(x):
+# 1 - math.exp(-lamda*x)
 
 def exponencial(lamda):
     """
@@ -127,6 +152,9 @@ def gamma(n, lamda):
 
     return x
 
+
+# Acumulada Normal Estandar(z):
+# fi(z) = P(Z <= z)
 
 def normalEstandar():
     """

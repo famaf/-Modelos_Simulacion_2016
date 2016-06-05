@@ -83,15 +83,15 @@ def aproximacionNormal():
     m = len(muestra2) # Tamaño de la segunda muestra
     N = n + m # Tamaño de la suma de las muestras
 
-    R = sumaRangos(muestra1, muestra)
+    r = sumaRangos(muestra1, muestra)
 
     esp_R = n * (N+1)/2.0 # Esperanza de R
     var_R = n * m * (N+1)/12.0 # Varianza de R
 
-    z = (R - esp_R)/math.sqrt(var_R) # Normalizacion a una N(0, 1)
+    z = (r - esp_R)/math.sqrt(var_R) # Normalizacion a una N(0, 1)
 
     # Calculo del p-valor
-    if R <= esp_R:
+    if r <= esp_R:
         p_valor = 2 * fi(z)
     else:
         p_valor = 2 * (1 - fi(z))
@@ -127,7 +127,7 @@ def simulacion(k):
 
         if R >= r:
             R_max += 1
-        elif R < r:
+        if R <= r:
             R_min += 1
 
     # Calculo del p-valor

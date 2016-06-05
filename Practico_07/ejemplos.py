@@ -4,6 +4,14 @@ import math
 import random
 from distribuciones import *
 
+################################
+# Recordatorio para p-valor discreto:
+#    *Si me dan las probabilidades y el N hacer como el ejercicio01
+#    *Si me dan una muestra y parametros no especificados de una distribucion
+#     hacer como el ejercicio05 y ejemplo05Simulado
+#    *Si me dan una muestra y parametros especificados de una distribucion
+#     hacer como el ejemplo02Simulado
+################################
 
 #################################
 # Bondad de ajuste - Practico 7 #
@@ -34,7 +42,7 @@ def acumuladaExponencial(x, lamda):
 
 def ejemplo01():
     """
-    Distribucion exponencial con Chi-Cuadrado.
+    Distribucion Exponencial con Chi-Cuadrado.
     """
     lamda = 0.399
     n = 219 # Tamaño de la muestra
@@ -77,6 +85,58 @@ def ejemplo02():
     grados_libertad = k - 1 # En este caso son 2
 
     p_valor = pValor(grados_libertad, t)
+
+    return p_valor
+
+
+def ejemplo02Simulado(r):
+    """
+    Distribucion Geometrica con Simulacion.
+    """
+    # Intervalos:
+    # {1}
+    # {2, 3}
+    # {4, 5, ...}
+    p = 0.346
+    n = 159 # Tamaño de la muestra
+    k = 3 # Cantidad de intervalos
+    N = [59, 50, 47]
+
+    p1 = probabilidadGeometrica(p, 1)
+    p2 = probabilidadGeometrica(p, 2) + probabilidadGeometrica(p, 3)
+    p3 = 1.0 - p1 - p2
+    prob = [p1, p2, p3]
+    prob_acumuladas = [p1, p1+p2, p1+p2+p3]
+
+    t = estadisticoT(k, n, N, prob) # Valor observado
+
+    exitos = 0
+
+    for _ in xrange(r):
+        Y = []
+        N = []
+        # Generamos los Y's
+        for _ in xrange(n):
+            u = random.random()
+            if u < prob_acumuladas[0]:
+                Y.append(1)
+            elif u < prob_acumuladas[1]:
+                Y.append(2)
+            elif u < prob_acumuladas[2]:
+                Y.append(3)
+
+        # Generamos los Nj
+        # j va de 1 a k
+        for j in xrange(1, k+1):
+            N.append(Y.count(j))
+
+        # Calculamos el estadistico T correspondiente
+        T = estadisticoT(k, n, N, prob)
+
+        if T >= t:
+            exitos += 1
+
+    p_valor = exitos/float(r)
 
     return p_valor
 
@@ -205,10 +265,9 @@ def ejemplo05():
     return p_valor
 
 
-def ejemplo05Prima(r):
+def ejemplo05Simulado(r):
     """
     Distribucion Poisson con Simulacion.
-    TERMINAR PARTE DE LOS Nj
     """
     # Intervalos:
     # {0}
@@ -288,13 +347,139 @@ def ejemplo05Prima(r):
 
     return p_valor
 
+
+def estimacionP(t, lista):
+    """
+    Estimacion del valor 'p' en base a una lista de valores.
+    Clase: Analisis estadistico de datos simulados. Estimadores puntuales
+    Filmina: 16
+    """
+    media = sum(lista)/float(len(lista))
+
+    p = media/float(t)
+
+    return p
+
+
+def probabilidadBinomial(n, p, i):
+    """
+    Funcion de masa de una distribucion Binomial B(n, p)
+    """
+    combinatorio = math.factorial(n)/float(math.factorial(i) * math.factorial(n-i))
+
+    return combinatorio * (p**i) * ((1 - p)**(n-i))
+
+
+def ejemploRobertBinomialChi():
+    # Intervalos:
+    # {0, 1, 2, 3}
+    # {4}
+    # {5}
+    # {6}
+    # {7, 8}
+    datos = [6, 7, 3, 4, 7, 2, 6, 3, 7, 8, 2, 1, 3, 5, 8, 7]
+    datos.sort()
+    n = len(datos) # Tamaño de la muetra
+    k = 5 # Cantidad de intervalos
+    N = [6, 1, 1, 2, 6] # Frecuencias observadas
+
+    # Estimamos la probabilidad 'p' = 0.618
+    p = estimacionP(8, datos)
+
+    m = 1 # Cantidad de parametros estimados
+
+    # Calculamos las 9 (0...8) probilidades de una B(8, p)
+    pro_binomial = [probabilidadBinomial(8, p, i) for i in xrange(9)]
+
+    # Obtenemos las probabilidades de los intervalos
+    p1 = pro_binomial[0] + pro_binomial[1] + pro_binomial[2] + pro_binomial[3]
+    p2 = pro_binomial[4]
+    p3 = pro_binomial[5]
+    p4 = pro_binomial[6]
+    p5 = pro_binomial[7] + pro_binomial[8]
+    prob = [p1, p2, p3, p4, p5]
+
+    t = estadisticoT(k, n, N, prob) # Valor observado
+
+    grados_libertad = k - m - 1
+
+    p_valor = pValor(grados_libertad, t)
+
+    return p_valor
+
+
+def ejemploRobertBinomialSimulado(r):
+    # Intervalos:
+    # {0, 1, 2, 3}
+    # {4}
+    # {5}
+    # {6}
+    # {7, 8}
+    datos = [6, 7, 3, 4, 7, 2, 6, 3, 7, 8, 2, 1, 3, 5, 8, 7]
+    datos.sort()
+    n = len(datos) # Tamaño de la muetra
+    k = 5 # Cantidad de intervalos
+    N = [6, 1, 1, 2, 6] # Frecuencias observadas
+
+    # Estimamos la probabilidad 'p' = 0.618
+    p = estimacionP(8, datos)
+
+    m = 1 # Cantidad de parametros estimados
+
+    # Calculamos las 9 (0...8) probilidades de una B(8, p)
+    pro_binomial = [probabilidadBinomial(8, p, i) for i in xrange(9)]
+
+    # Obtenemos las probabilidades de los intervalos
+    p1 = pro_binomial[0] + pro_binomial[1] + pro_binomial[2] + pro_binomial[3]
+    p2 = pro_binomial[4]
+    p3 = pro_binomial[5]
+    p4 = pro_binomial[6]
+    p5 = pro_binomial[7] + pro_binomial[8]
+    prob = [p1, p2, p3, p4, p5]
+
+    t = estadisticoT(k, n, N, prob) # Valor observado
+
+    exitos = 0 # Cantidad de veces que Ti >= t
+
+    for _ in xrange(r):
+        Y = [binomial(8, p) for _ in xrange(n)]
+
+        N0 = sum( [Y.count(i) for i in [0, 1, 2, 3]] )
+        N1 = Y.count(4)
+        N2 = Y.count(5)
+        N3 = Y.count(6)
+        N4 = sum( [Y.count(i) for i in [7, 8]] )
+        N_sim = [N0, N1, N2, N3, N4]
+
+        p_sim = estimacionP(8, Y)
+
+        pro_binomial = [probabilidadBinomial(8, p_sim, i) for i in xrange(9)]
+        p1 = pro_binomial[0] + pro_binomial[1] + pro_binomial[2] + pro_binomial[3]
+        p2 = pro_binomial[4]
+        p3 = pro_binomial[5]
+        p4 = pro_binomial[6]
+        p5 = pro_binomial[7] + pro_binomial[8]
+        prob_sim = [p1, p2, p3, p4, p5]
+
+        T = estadisticoT(k, n, N_sim, prob_sim)
+
+        if T >= t:
+            exitos += 1
+
+    p_valor = exitos/float(r)
+
+    return p_valor
+
 print "########## Test de Bondad ##########"
 print "Ejemplo 1 --> p-valor =", ejemplo01()
 print "Ejemplo 2 --> p-valor =", ejemplo02()
+print "Ejemplo 2 Simulado --> p-valor =", ejemplo02Simulado(10000)
 print "Ejemplo 3 --> p-valor =", ejemplo03()
 print "Ejemplo 4 -->", ejemplo04(0.05)
 print "Ejemplo 5 --> p-valor =", ejemplo05()
-print "Ejemplo 5 Prima --> p-valor =", ejemplo05Prima(10000)
+print "Ejemplo 5 Simulado --> p-valor =", ejemplo05Simulado(10000)
+print "Ejemplo Robert Chi-Cuadrado --> p-valor =", ejemploRobertBinomialChi()
+print "Ejemplo Robert Simulacion --> p-valor =", ejemploRobertBinomialSimulado(10000)
 
 
 

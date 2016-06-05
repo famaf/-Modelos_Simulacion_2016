@@ -116,7 +116,11 @@ def simulacion(r):
                 N1 += 1
             elif 6 <= Y[i] <= 8:
                 N2 += 1
-        N = [N0, N1, N2]
+        N_sim= [N0, N1, N2]
+        # N0 = sum( [Y.count(i) for i in [0, 1, 2]] )
+        # N1 = sum( [Y.count(i) for i in [3, 4, 5]] )
+        # N2 = sum( [Y.count(i) for i in [6, 7, 8]] )
+        # N_sim = [N0, N1, N2]
 
         p_sim = estimacionP(8, Y)
 
@@ -124,9 +128,9 @@ def simulacion(r):
         p1 = pro_binomial[0] + pro_binomial[1] + pro_binomial[2]
         p2 = pro_binomial[3] + pro_binomial[4] + pro_binomial[5]
         p3 = pro_binomial[6] + pro_binomial[7] + pro_binomial[8]
-        prob = [p1, p2, p3]
+        prob_sim = [p1, p2, p3]
 
-        T = estadisticoT(k, n, N, prob)
+        T = estadisticoT(k, n, N_sim, prob_sim)
 
         if T >= t:
             exitos += 1
@@ -138,4 +142,4 @@ def simulacion(r):
 
 
 print "Chi-Cuadrado --> p-valor =", chiCuadrado()
-print "Simulacion --> p-valor =", simulacion(100000)
+print "Simulacion --> p-valor =", simulacion(10000)
