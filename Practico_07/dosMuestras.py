@@ -9,25 +9,19 @@ def sumaRangos(muestra1, muestra):
     rangos = []
     # Calculo los rangos de la muestra 1
     for valor in muestra1:
-        cantidad = muestra.count(valor)
-        if cantidad == 1:
-            print "Cantidad =", cantidad
-            print "    Sumar Indice =", muestra.index(valor) + 1
-            rangos.append(muestra.index(valor) + 1)
+        indice = muestra.index(valor) + 1
+        cantidad_valor = muestra.count(valor)
+        print "Cantidad '", valor,"' =", cantidad_valor
+        print "Indice = ", indice
+        for i in xrange(cantidad_valor):
+            indice += i
+            print "\t INDICES =", indice
 
-        else:
-            print "Cantidad =", cantidad
-            indices = muestra.index(valor) + 1
-            ultimo_indice = indices
-            print "Indice inicial", indices 
-            aux = cantidad
-            restantes = aux - 1
-            for i in xrange(restantes):
-                indices += indices + 1
-                ultimo_indice = indices + 1
-            print "    Suma de indices =", indices, "| Cantidad =", cantidad
-            print "    Sumar Indice =", indices/float(cantidad)
-            rangos.append(indices/float(cantidad))
+        result = indice/float(cantidad_valor)
+        print "\tIndice final =", indice
+        print "\tResult =", result
+
+        rangos.append(indice/float(cantidad_valor))
 
     R = sum(rangos) # Suma de los rangos
 
@@ -61,6 +55,8 @@ m1 = [2, 3, 5]
 m2 = [2, 2, 5, 7]
 # Falla con el segundo ejemplo
 # R = (1+2+3)/3 + 4 + (5+6)/2 = 2 + 4 + 11/2 = 11.5
+m1 = [2, 3, 4, 4, 4]
+m2 = [2, 3, 4, 5]
 m = m1+m2
 
 
