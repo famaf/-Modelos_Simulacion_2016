@@ -40,6 +40,15 @@ def estimacion():
     return M, S, IC
 
 
+# IC = (Xbarra - Z_alfa/2 * (S/sqrt(n)), Xbarra + Z_alfa/2 * (S/sqrt(n)))
+
+# Longitud
+# 2 * Z_alfa/2 * S/sqrt(n)
+
+# Longitud de a lo sumo d
+# 2 * Z_alfa/2 * S/sqrt(n) <= d
+
+
 def printEstimacion():
     M, S, IC = estimacion()
     print "\n### e =", math.e, "###"

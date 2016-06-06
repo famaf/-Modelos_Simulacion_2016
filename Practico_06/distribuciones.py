@@ -4,6 +4,33 @@ import random
 import math
 from scipy.special import ndtr, ndtri
 
+# Notacion:
+# mu = media
+# sigma = DE
+# sigma^2 = Varianza
+
+
+# Aproximaciones:
+# Sea X = lista de datos y X-barra = sum(X)/(largo de X) la media muestral
+# --------------------------------
+# Uniforme: a=min(X), b=max(X)
+#   Si U(1, n)
+#   Rango = {1...n}
+#   Probabilidad(i) = 1/n
+# --------------------------------
+# Exponecial: lambda = 1/X-barra
+# --------------------------------
+# Normal: Mirar Ejercicio 08
+# --------------------------------
+# Binomial(t, p desconocido): p = X-barra/t
+# --------------------------------
+# Bernoulli: caso Binomial(1, p desconocido) --> probabilidad = p --> Rango = {0,1}
+# --------------------------------
+# Geometrica: p = 1/X-barra
+# --------------------------------
+# Poisson: lambda = X-barra
+# --------------------------------
+
 
 def intervalo(inicio, longitud):
     """
@@ -160,6 +187,7 @@ def normal(mu, sigma):
 
 # Calculos de Φ y la inversa de Φ con la Normal Estadar
 
+# FI(Z_beta) = 1 - beta
 
 def fi(valor):
     """
@@ -193,6 +221,33 @@ def calculoConfianza(z_alfaSobre2):
     result = ndtr(z_alfaSobre2)
     beta = 1 - result
     alfa = 2*beta
-    confianza = 1 -alfa # Confianza sin porcentual
+    confianza = 1 - alfa # Confianza sin porcentual
 
     return confianza*100
+
+
+
+# Media Muestral
+# Xbarra = (X1+X2+...+Xn)/n
+def mediaMuestral(lista):
+    return sum(lista)/float(len(lista))
+
+
+# Varianza Muestral
+# Scuadrado = sumatoria(1, n, (Xi - Xbarra)^2) / (n-1)
+def varianzaMuestral(lista):
+    media_muestral = mediaMuestral(lista)
+    suma = 0
+    for valor in lista:
+        suma += (valor - media_muestral)**2
+
+    varianza_muestral = suma/float(len(lista)-1)
+
+    return varianza_muestral
+
+
+# Desviacion Estandar Muestral
+# S = raiz(Scuadrado)
+def deMuestral(lista):
+    de = math.sqrt(varianzaMuestral(lista))
+    return de

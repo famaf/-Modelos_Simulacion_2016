@@ -8,9 +8,7 @@ muestra2 = [1, 3]
 
 
 def promedio(lista):
-    suma = sum(lista)
-
-    return suma/float(len(lista))
+    return sum(lista)/float(len(lista))
 
 
 def varianza(lista):

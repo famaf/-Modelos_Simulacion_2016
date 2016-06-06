@@ -27,6 +27,7 @@ def sumaRangos(muestra1, muestra):
 
     return R
 
+# Rango de Joni --> Funciona
 def rangoRBien(muestra1, nmMuestras):
     nmMuestras.sort()
 
@@ -51,15 +52,16 @@ def rangoRBien(muestra1, nmMuestras):
 
 m1 = [2, 3, 4]
 m2 = [3, 5, 7]
+
 m1 = [2, 3, 5]
 m2 = [2, 2, 5, 7]
-# Falla con el segundo ejemplo
+# Falla con el segundo ejemplo con mi rango, el de joni anda bien
 # R = (1+2+3)/3 + 4 + (5+6)/2 = 2 + 4 + 11/2 = 11.5
 m1 = [2, 3, 4, 4, 4]
 m2 = [2, 3, 4, 5]
+
 m = m1+m2
 
-
 #R = sumaRangos(m1, m)
-R = rangoRBien(m1, m)
+R = rangoRBien(m2, m)
 print "R =", R

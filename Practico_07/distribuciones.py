@@ -6,17 +6,25 @@ from scipy.special import ndtr, ndtri # Normal
 from scipy.special import chdtrc, chdtri # Chi-cuadrado
 
 # Aproximaciones:
-# Sea L = lista de datos y L-barra = sum(L)/(largo de L) la media muestral
-# Uniforme: a=min(L), b=max(L)
+# Sea X = lista de datos y X-barra = sum(X)/(largo de X) la media muestral
+# --------------------------------
+# Uniforme: a=min(X), b=max(X)
 #   Si U(1, n)
 #   Rango = {1...n}
 #   Probabilidad(i) = 1/n
-# Exponecial: lambda = 1/L-barra
+# --------------------------------
+# Exponecial: lambda = 1/X-barra
+# --------------------------------
 # Normal: Mirar Ejercicio 08
-# Binomial(t, p desconocido): p = L-barra/t
+# --------------------------------
+# Binomial(t, p desconocido): p = X-barra/t
+# --------------------------------
 # Bernoulli: caso Binomial(1, p desconocido) --> probabilidad = p --> Rango = {0,1}
-# Geometrica: p = 1/L-barra
-# Poisson: lambda = L-barra
+# --------------------------------
+# Geometrica: p = 1/X-barra
+# --------------------------------
+# Poisson: lambda = X-barra --> mirar ejemplos.py
+# --------------------------------
 
 
 def intervalo(inicio, longitud):
@@ -188,6 +196,8 @@ def normal(mu, sigma):
 
 
 # Calculos de Φ y la inversa de Φ con la Normal Estadar
+
+# FI(Z_beta) = 1 - beta
 
 def fi(valor):
     """

@@ -22,7 +22,7 @@ def estimacion():
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
 
     j = n
-    # Iteramos hasta que: S/sqrt(j) < 0.1
+    # Iteramos hasta que: S/sqrt(j) < 0.1 --> 0.1 = d "error"
     while math.sqrt(S_cuadrado/float(j)) > 0.1:
         N += 1
         j += 1
@@ -64,7 +64,7 @@ def printEstimacion():
 def printPromedioMSN():
     proM, proS_cuadrado, proN = promedioMSN()
     print "Promedio Media Muestral =", proM
-    print "Promedio Desviacion Estandar =", proS_cuadrado
+    print "Promedio Varianza Estandar =", proS_cuadrado
     print "Promedio Observaciones =", proN
     print ""
 

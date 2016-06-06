@@ -77,6 +77,7 @@ def estimacion02():
 
     j = n
     # Iteramos hasta que el ancho de IC sea < 0.1
+    # Parar cuando: 2 * z(alfa/2) * S(k)/raiz(n) <= d --> calcular S(k) en cada paso
     while 2 * 1.96 * math.sqrt(S_cuadrado/float(j)) >= 0.1:
         N += 1
         j += 1
@@ -93,6 +94,13 @@ def estimacion02():
     
     return IC, ancho_IC, N
 
+# IC = (Xbarra - Z_alfa/2 * (S/sqrt(n)), Xbarra + Z_alfa/2 * (S/sqrt(n)))
+
+# Longitud
+# 2 * Z_alfa/2 * S/sqrt(n)
+
+# Longitud de a lo sumo d
+# 2 * Z_alfa/2 * S/sqrt(n) <= d
 
 def printEstimacion01():
     IC, ancho_IC, N = estimacion01()

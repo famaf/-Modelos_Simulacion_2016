@@ -44,6 +44,13 @@ def estimacion01():
 
     return M, S_cuadrado, IC
 
+# IC = (Xbarra - Z_alfa/2 * (S/sqrt(n)), Xbarra + Z_alfa/2 * (S/sqrt(n)))
+
+# Longitud
+# 2 * Z_alfa/2 * S/sqrt(n)
+
+# Longitud de a lo sumo d
+# 2 * Z_alfa/2 * S/sqrt(n) <= d
 
 def estimacion02():
     """
@@ -76,8 +83,8 @@ def puntoC(n):
 
 
 def printEstimacion01():
-    M, S_cuadrado, IC = estimacion01()
-    print "\nESTIMACION CON LA GENERACION DE M"
+    M, S_cuadrado, IC = estimacion02()
+    print "ESTIMACION CON LA POISSON(1)"
     print "### e =", math.e, "###"
     print "Media Muestral =", M
     print "Varianza Muestral =", S_cuadrado
@@ -86,13 +93,14 @@ def printEstimacion01():
 
 
 def printEstimacion02():
-    M, S_cuadrado, IC = estimacion02()
-    print "ESTIMACION CON LA POISSON(1)"
+    M, S_cuadrado, IC = estimacion01()
+    print "\nESTIMACION CON LA GENERACION DE M"
     print "### e =", math.e, "###"
     print "Media Muestral =", M
     print "Varianza Muestral =", S_cuadrado
     print "Intervalo de Confianza (IC) =", IC
     print ""
+
 
 
 printEstimacion01()
