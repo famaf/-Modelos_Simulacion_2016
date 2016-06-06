@@ -4,6 +4,9 @@ import math
 import random
 from distribuciones import *
 
+# T = sumatoria(1, k, (fo - fe)^2/fe)
+# fo = Ni
+# fe = n*pi
 
 def estadisticoT(k, n, N, p):
     """
@@ -105,12 +108,13 @@ def simulacion02(r):
         Y = []
         N = []
         # Generamos los Y's
+        # Tiene que tomar los valores 1...k con probabilidad pj
         # Todos tiene la misma probabilidad
         for _ in xrange(n):
             Y.append(random.randint(1, 6))
         
         # Generamos los Nj
-        # j va de 1 a k
+        # Nj = {i | Yi = j}  j=1...k
         for j in xrange(1, k+1):
             N.append(Y.count(j))
 

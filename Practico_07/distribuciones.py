@@ -243,6 +243,7 @@ def pValor(v, T):
     Calculo de alfa?????
     v = Grados de libertad.
     T = Estadistico.
+    Calcula: P(chi(v) >= T)
 
     T ... infinito
     """

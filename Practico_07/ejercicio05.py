@@ -4,6 +4,9 @@ import math
 import random
 from distribuciones import *
 
+# T = sumatoria(1, k, (fo - fe)^2/fe)
+# fo = Ni
+# fe = n*pi
 
 def estadisticoT(k, n, N, p):
     """

@@ -4,6 +4,8 @@ import random
 import math
 from distribuciones import *
 
+# Conviene generar al menos 100 datos para normalidad de Xbarra y disminuir la
+# varianza de S
 
 def estimacion():
     """

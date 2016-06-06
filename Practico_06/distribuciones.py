@@ -20,7 +20,7 @@ from scipy.special import ndtr, ndtri
 # --------------------------------
 # Exponecial: lambda = 1/X-barra
 # --------------------------------
-# Normal: Mirar Ejercicio 08
+# Normal: sqrt(((n-1)/n)*Scuadrado) --> Mirar Ejercicio 08 Practico 7
 # --------------------------------
 # Binomial(t, p desconocido): p = X-barra/t
 # --------------------------------

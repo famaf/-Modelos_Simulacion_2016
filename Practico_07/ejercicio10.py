@@ -5,6 +5,24 @@ import random
 from distribuciones import *
 
 
+def sumaRangosHarcodeado(m1, m):
+    m.sort()
+    rangos = []
+
+    for valor in m1:
+        cantidad_valor = m.count(valor)
+        if cantidad_valor == 1:
+            rangos.append(m.index(valor) + 1)
+        else:
+            indice1 = m.index(valor) + 1
+            indice2 = indice1 + 1
+            rangos.append((indice1+indice2)/float(cantidad_valor))
+
+    R = sum(rangos)
+
+    return R
+
+
 def sumaRangos(muestra1, muestra):
     """
     Calcula la suma de los rangos (R) de la 'muestra1' sobre la 'muestra'.
@@ -123,7 +141,7 @@ def simulacion(k):
         # Obtenemos la submuestra
         sub_muestra = muestra[0:n] # Nos quedamos con los primeros 'n' elementos
 
-        R = sumaRangos(sub_muestra, muestra) # Generamos el R correspondiente
+        R = sumaRangosHarcodeado(sub_muestra, muestra) # Generamos el R correspondiente
 
         if R >= r:
             R_max += 1
