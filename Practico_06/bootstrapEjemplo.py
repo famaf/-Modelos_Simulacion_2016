@@ -47,16 +47,16 @@ def varianzaFe(lista):
     return sum([(x - media)**2 for x in lista]) / float(len(lista))
 
 
-
 def bootstrap(B, muestra):
     """
     B = Numero de sorteos.
     muestra = Lista con los datos de la muestra.
     """
-    media_muestral = mediaMuestral(muestra)
-    varianza_muestral = varianzaMuestral(muestra)
+    media_muestral = mediaMuestral(muestra) # 12.2
+    varianza_muestral = varianzaMuestral(muestra) # 34.3142
 
-    varianza_Fe = varianzaFe(muestra)
+    media_Fe = mediaFe(muestra) # 12.2
+    varianza_Fe = varianzaFe(muestra) # 32.03
 
     acumulador = 0
     # Hacemos el sorteo para B muestras aleatorias
