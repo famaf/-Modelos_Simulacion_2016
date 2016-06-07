@@ -47,26 +47,31 @@ def bootstrap(muestra):
     """
     muestra = Lista con los datos de la muestra.
     """
+    # Xbarra y Scuadrado
     media_muestral = mediaMuestral(muestra)
     varianza_muestral = varianzaMuestral(muestra)
 
-    varianza_Fe = varianzaFe(muestra)
+    # mu_Fe y sigma^2_Fe 
     media_Fe = mediaFe(muestra)
+    varianza_Fe = varianzaFe(muestra)
 
+    # Acumulan los resultados de la sumatoria
     acumulador1 = 0
     acumulador2 = 0
 
+    # Las 4 posibilidades
     temporal1 = [1, 1]
     temporal2 = [1, 3]
     temporal3 = [3, 1]
     temporal4 = [3, 3]
+
     temporal = [temporal1, temporal2, temporal3, temporal4]
 
     for fila in temporal:
         acumulador1 += (mediaMuestral(fila) - media_Fe)**2
         acumulador2 += (varianzaMuestral(fila) - varianza_Fe)**2
 
-    # Sacamos el promedio de los B terminos obtenidos
+    # Calculamos Var(Xbarra) y Var(S^2)
     var_Xbarra = acumulador1/4.0
     var_Scuadrado = acumulador2/4.0
 
@@ -77,3 +82,4 @@ def bootstrap(muestra):
 var_Xbarra, var_Scuadrado = bootstrap(muestra)
 print "Var(Xbarra) =",var_Xbarra
 print "Var(S^2) =", var_Scuadrado
+print calcularPeso(muestra)

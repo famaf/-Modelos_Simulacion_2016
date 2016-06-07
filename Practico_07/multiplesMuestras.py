@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from distribuciones import *
+
 
 def sumaRangos(muestra1, muestra):
     muestra.sort()
@@ -13,41 +16,48 @@ def sumaRangos(muestra1, muestra):
     return R
 
 
-m1 = [2, 7, 9]
-m2 = [3, 5, 6]
-m3 = [4, 8, 10]
 
-cantidad_muestras = 3
+muestra1 = [2, 7, 9]
+muestra2 = [3, 5, 6]
+muestra3 = [4, 8, 10]
 
-m = m1+m2+m3 # Muetra general
+m = 3
 
-tamanos = [len(m1), len(m2), len(m3)]
+n1 = len(muestra1)
+n2 = len(muestra2)
+n3 = len(muestra3)
 
-n = sum(tamanos) # Tamano de la muestra general
+tamanos = [n1, n2, n3]
 
 
-R1 = sumaRangos(m1, m) # Rango de la muestra 1
-R2 = sumaRangos(m2, m) # Rango de la muestra 1
-R3 = sumaRangos(m3, m) # Rango de la muestra 1
+muestra = muestra1+muestra2+muestra3 # Muestra general
+
+n = sum(tamanos) # Tamaño de la muestra general
+
+
+R1 = sumaRangos(muestra1, muestra) # Rango de la muestra 1
+R2 = sumaRangos(muestra2, muestra) # Rango de la muestra 1
+R3 = sumaRangos(muestra3, muestra) # Rango de la muestra 1
 
 Rs = [R1, R2, R3]
 
-esp_R1 = len(m1) * (n + 1)/2.0 # Esperanza de la muestra 1
+esp_R1 = n1 * (n + 1)/2.0 # Esperanza de la muestra 1
 
-var_R1 = len(m1) * (len(m2)+len(m3)) * (n+1)/12.0 # Varianza de la muestra 1
+var_R1 = n1 * (n2+n3) * (n+1)/12.0 # Varianza de la muestra 1 --> nose si esta bien
 
 # Estadistico
 p1 = 12.0/(n*(n+1))
 suma = 0
-for i in xrange(cantidad_muestras):
+for i in xrange(m):
     suma += ((Rs[i] - (tamanos[i]*(n+1))/2.0)**2)/float(tamanos[i])
-
 R = p1 * suma
-print "R =", R
+
 
 y = R
-grados_libertad = cantidad_muestras - 1
+grados_libertad = m - 1
 
 p_valor = pValor(grados_libertad, y)
 
+
+print "R =", R
 print "p-valor =", p_valor

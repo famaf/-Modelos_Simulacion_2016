@@ -4,7 +4,11 @@ import random
 import math
 
 # 15 observaciones
+# Pesos
+# p(21) = 2/15
+# p = 1/15 para el resto de los datos
 muestra = [5, 4, 9, 6, 21, 17, 11, 20, 7, 10, 21, 15, 13, 16, 8]
+
 
 def calcularPeso(muestra):
     pesos = [(muestra.count(valor)/float(len(muestra))) for valor in muestra]
