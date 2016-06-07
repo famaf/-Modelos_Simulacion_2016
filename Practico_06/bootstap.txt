@@ -1,0 +1,36 @@
+Xbarra(n) = (x1+...+x2)/n
+Scuadrado(n) = sumatoria(1, n, (xi - Xbarra(n))^2)/(n-1)
+
+mu_Fe = (x1+...+x2)/n = E_Fe[Xbarra]
+sigma^2_Fe = sumatoria(1, n, (xi - mu_Fe)^2)/n = E_Fe[Scuadrado]
+
+Dadas n observaciones x1,...,xn se pide calcular la aprox. bootstrap de:
+ECM(Xbarra, mu)
+ECM(Scuadrado, sigma^2)
+
+Paso1: calcular Xbarra y Scuadrado de la muestra.
+
+Nota: Dado que Xbarra y Scuadrado son estimadores insesgados de la media y la
+varianza respectivamente, entonces:
+    ECM(Xbarra, mu) = Var(Xbarra) = E[(Xbarra - mu_Fe)^2]
+    ECM(Scuadrado, sigma^2) = Var(Scuadrado) = E[(Scuadrado - sigma^2_Fe)^2]
+
+Nota: Para la aproximacion bootstrap usamos la distribucion empirica que da
+peso: p1=p2=...=pn= 1/n (si son todos distintos) sino mirar bootstrapEjemplo.py
+
+
+Calculo Var(Xbarra):
+====================
+
+Var_Fe(Xbarra) = E_Fe[(Xbarra - mu_Fe)^2]
+               = sumatoria(1, n^n, (Xbarra_i - mu_Fe)^2 / n^n)
+
+Tabla con las n^n posibilidades
+
+Calculo Var(Scuadrado):
+=======================
+
+Var_Fe(Scuadrado) = E_Fe[(Scuadrado - sigma^2_Fe)^2]
+                  = sumatoria(1, n^n, (Scuadrado_i - sigma^2_Fe)^2 / n^n)
+
+Tabla con las n^n posibilidades

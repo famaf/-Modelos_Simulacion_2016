@@ -8,14 +8,15 @@ def calculoPromedio(lista):
     return sum(lista)/float(len(lista))
 
 
-def bootstrap(B, n, muestra):
+def bootstrap(B, muestra):
     """
     Ejericicio 6 b.
-    B = numero de sorteos.
-    n = tamaño de la muestra.
-    muestra = lista con los datos de la muestra.
+    B = Numero de sorteos.
+    muestra = Lista con los datos de la muestra.
     """
     a, b = -5, 5 # Limites
+
+    n = len(muestra) # Tamaño de la muestra
 
     exitos = 0 # Cantidad de veces que: a < v < b
 
@@ -47,4 +48,4 @@ muestra = [56, 101, 78, 67, 93, 87, 64, 72, 80, 69] # Valores de la muetra obten
 
 for B in [100, 1000, 10000, 100000]:
     # Si B = 1000000 ---> p = 0.761043
-    print "B =", B, "---> p =", bootstrap(B, 10, muestra)
+    print "B =", B, "---> p =", bootstrap(B, muestra)

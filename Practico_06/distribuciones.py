@@ -251,3 +251,26 @@ def varianzaMuestral(lista):
 def deMuestral(lista):
     de = math.sqrt(varianzaMuestral(lista))
     return de
+
+
+# Monte Carlo
+# ===========
+# integral(a, b, g(x) dx)
+# y = (x-a)/(b-a)
+# dy = dx/(b-a)
+
+# integral(0, inf, g(x) dx)
+# y = 1/(x+1)
+# dy = -y^2 * dx
+# ==> integral(1, 0, -g(...)/y^2) = integral(0, 1, g(...)/y^2)
+
+# integral(-inf, inf, g(x) dx)
+# ==>
+# Si g(x) es par (g(x)=g(-x)):
+# 2 * integral(0, inf, g(x) dx)
+# Si g(x) no es par:
+# integral(0, inf, g(x) dx) - integral(0, -inf, g(x) dx)
+# u = -x
+# du = -dx
+# ===>
+# integral(0, inf, g(x) dx) + integral(0, inf, g(-u) du)
