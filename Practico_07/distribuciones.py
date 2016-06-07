@@ -256,3 +256,24 @@ def calculoT(v, p):
     p = Probabilidad. (¿ alfa ?)
     """
     return chdtri(v, p)
+
+
+# Estimacion de parametros de una Lognormal (distribucion Discreta)
+
+def muLogNormal(lista):
+    """
+    mu_estimado = sumatoria(1, n, log(xi))/n
+    """
+    return sum([math.log(x) for x in lista])/float(len(lista))
+
+def sigmaLogNormal(lista):
+    """
+    sigma_estimado = sqrt(sumatoria(1, n, (log(xi) - mu_estimado)^2)/n)
+    """
+    mu = muLogNormal(lista)
+
+    suma = 0
+    for x in lista:
+        suma += (math.log(x) - mu)**2
+
+    return math.sqrt(suma/float(len(lista)))
