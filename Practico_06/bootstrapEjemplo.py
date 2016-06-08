@@ -67,7 +67,7 @@ def bootstrap(B, muestra):
         # (se puede repetir) para el calculo de la expresion correspondiente
         temporal = [muestra[random.randint(0, 14)] for _ in xrange(15)]
 
-        acumulador = sum([(x - varianza_Fe)**2 for x in temporal])
+        acumulador += (varianzaMuestral(temporal) - varianza_Fe)**2
 
     # Sacamos el promedio de los B terminos obtenidos
     var_Scuadrado = acumulador/float(B)
