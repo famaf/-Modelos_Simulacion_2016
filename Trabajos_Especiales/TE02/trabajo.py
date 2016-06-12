@@ -126,7 +126,7 @@ def ejercicio01(grafo, simulaciones):
     P_mod = g2p_pagerank(grafo, 0.85) # Matriz de Transicion PageRank
 
     dist_est1 = distribucionEstacionaria01(n, P, 100, simulaciones)
-    dist_est2 = distribucionEstacionaria02(n, P, 100, simulaciones)
+    dist_est2 = distribucionEstacionaria01(n, P_mod, 100, simulaciones)
 
     potencias1 = metodoPotencias(n, P, 100)
     potencias2 = metodoPotencias(n, P_mod, 100)
@@ -247,13 +247,23 @@ def ejercicio03prima(grafo, simulaciones):
     P_s = g2p_pagerank(grafo, alfa) # Matrices de Transicion
 
 
-    pasos1 = 0
+    pasos = 0
     for _ in xrange(simulaciones):
-        pasos1 += tiempoCubrimiento(n, P_s)
+        pasos += tiempoCubrimiento(n, P_s)
 
-    tiempo1 = pasos1/float(simulaciones)
+    tiempo = pasos/float(simulaciones)
 
-    return tiempo1
+    return tiempo
+
+
+def testGrafo(grafo, simulaciones):
+    n = len(grafo)
+    P = g2p(grafo)
+    pasos = 0
+    for _ in xrange(simulaciones):
+        pasos += tiempoCubrimiento(n, P)
+
+    return pasos/float(simulaciones)
 
 ##################################
 ########## Ejercicio 04 ##########
@@ -382,10 +392,10 @@ def printEjercicio01():
     dist_est1, dist_est2, potencias1, potencias2 = ejercicio01(G1, simulaciones)
     print "### Ejercicio 01 --> Sobre G1 ###"
     print "Simulaciones =", str(simulaciones)
-    print "Dist Est 1 =", dist_est1
-    print "Dist Est 2 =", dist_est2
+    print "Caminante P-Original =", dist_est1
     print "Potencias P-Original =", potencias1
-    print "Potencias P-Tilde =", potencias2
+    print "Caminante P-Modificada =", dist_est2
+    print "Potencias P-Modificada =", potencias2
 
 
 def printEjercicio02():
@@ -396,10 +406,10 @@ def printEjercicio02():
     print "Simulaciones =", str(simulaciones)
     # print "Distribucion de Tiempos G1 =", tiempos1
     print "P-Original --> Media de Tiempos G1 =", media1
-    print "P-Tilde --> Media de Tiempos G1 =", media2
+    print "P-Modificada --> Media de Tiempos G1 =", media2
     # print "Distribucion de Tiempos G2 =", tiempos2
     print "P-Original --> Media de Tiempos G2 =", media3
-    print "P-Tilde --> Media de Tiempos G2 =", media4
+    print "P-Modificada --> Media de Tiempos G2 =", media4
 
 
 def printEjercicio03():
@@ -410,10 +420,13 @@ def printEjercicio03():
     print "Alfas =", alfas
     print "Tiempo de cubrimiento G1 =", ejercicio03(G1, simulaciones)
     print "Tiempo de cubrimiento G2 =", ejercicio03(G2, simulaciones)
+    print "Con P original"
+    print "Tiempo de cubrimiento G1 =", testGrafo(G1, simulaciones)
+    print "Tiempo de cubrimiento G2 =", testGrafo(G2, simulaciones)
 
 
 def printEjercicio05():
-    K = 5
+    K = 75
     ranking1, ranking2 = paginasFictias(G2, K)
     ranking3, ranking4 = hackearPaginas(G2, K)
     print "### Ejercicio 05 --> Sobre G2 ###"
@@ -425,12 +438,15 @@ def printEjercicio05():
     print "Dist Est --> Ranking Pagina S =", ranking3
     print "Met Pote --> Ranking Pagina S =", ranking4
 
-# print ""
-# printEjercicio01()
-# print ""
-# printEjercicio02()
-# print ""
-# printEjercicio03()
-# print ""
-# ejercicio04()
+
+print ""
+printEjercicio01()
+print ""
+printEjercicio02()
+print ""
+printEjercicio03()
+print ""
+ejercicio04()
+print ""
 printEjercicio05()
+print ""
