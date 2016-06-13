@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from pagerank import *
+import matplotlib.pyplot as plt
 
-ejemplo2 = ((2,), (2, 3), (1, 3, 4), (4,), (5,), (4,))
-ejemplo = ((2,), (0, 2), (1,))
+# ejemplo2 = ((2,), (2, 3), (1, 3, 4), (4,), (5,), (4,))
+# ejemplo = ((2,), (0, 2), (1,))
 
 ###############################################################################
 ############################ Funciones Auxiliares #############################
@@ -31,13 +32,6 @@ def elegirVecino(nodo, P, length_grafo):
     while u >= F:
         x += 1
         F += dist_vecinos[x]
-
-    # dist_prob = P[nodo] # Distribucion de probabilidad de los vecinos
-    # vecino = random.randint(0, length_grafo-1) # Vecino elegido al azar
-
-    # # Buscamos un vecino al cual podamos ir
-    # while dist_prob[vecino] == 0:
-    #     vecino = random.randint(0, length_grafo-1)
 
     return x
 
@@ -211,7 +205,7 @@ def ejercicio03(grafo, simulaciones):
     Ejercicio 3.
     """
     n = len(grafo) # Tamaño del grafo
-    alfas = [0.40, 0.60, 0.80, 0.90, 0.99]
+    alfas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.99]
     P_s = [g2p_pagerank(grafo, alfa) for alfa in alfas] # Matrices de Transicion
 
 
@@ -220,20 +214,38 @@ def ejercicio03(grafo, simulaciones):
     pasos3 = 0
     pasos4 = 0
     pasos5 = 0
+    pasos6 = 0
+    pasos7 = 0
+    pasos8 = 0
+    pasos9 = 0
+    pasos10 = 0
+    pasos11 = 0
     for _ in xrange(simulaciones):
         pasos1 += tiempoCubrimiento(n, P_s[0])
         pasos2 += tiempoCubrimiento(n, P_s[1])
         pasos3 += tiempoCubrimiento(n, P_s[2])
         pasos4 += tiempoCubrimiento(n, P_s[3])
         pasos5 += tiempoCubrimiento(n, P_s[4])
+        pasos6 += tiempoCubrimiento(n, P_s[5])
+        pasos7 += tiempoCubrimiento(n, P_s[6])
+        pasos8 += tiempoCubrimiento(n, P_s[7])
+        pasos9 += tiempoCubrimiento(n, P_s[8])
+        pasos10 += tiempoCubrimiento(n, P_s[9])
+        pasos11 += tiempoCubrimiento(n, P_s[10])
 
     tiempo1 = pasos1/float(simulaciones)
     tiempo2 = pasos2/float(simulaciones)
     tiempo3 = pasos3/float(simulaciones)
     tiempo4 = pasos4/float(simulaciones)
     tiempo5 = pasos5/float(simulaciones)
+    tiempo6 = pasos6/float(simulaciones)
+    tiempo7 = pasos7/float(simulaciones)
+    tiempo8 = pasos8/float(simulaciones)
+    tiempo9 = pasos9/float(simulaciones)
+    tiempo10 = pasos10/float(simulaciones)
+    tiempo11 = pasos11/float(simulaciones)
 
-    tiempo = [tiempo1, tiempo2, tiempo3, tiempo4, tiempo5]
+    tiempo = [tiempo1, tiempo2, tiempo3, tiempo4, tiempo5, tiempo6, tiempo7, tiempo8, tiempo9, tiempo10, tiempo11]
 
     return tiempo
 
@@ -275,13 +287,17 @@ def ejercicio04():
     """
     grafo1 = randg(5)
     grafo2 = randg(10)
-    grafo3 = randg(50)
-    grafo4 = randg(100)
+    grafo3 = randg(30)
+    grafo4 = randg(50)
+    grafo5 = randg(75)
+    grafo6 = randg(100)
 
     print "Nodo: 5 --> Tiempo de cubrimiento =", ejercicio03prima(grafo1, 1000)
     print "Nodo: 10 --> Tiempo de cubrimiento =", ejercicio03prima(grafo2, 1000)
-    print "Nodo: 50 --> Tiempo de cubrimiento =", ejercicio03prima(grafo3, 1000)
-    print "Nodo: 100 --> Tiempo de cubrimiento =", ejercicio03prima(grafo4, 1000)
+    print "Nodo: 30 --> Tiempo de cubrimiento =", ejercicio03prima(grafo3, 1000)
+    print "Nodo: 50 --> Tiempo de cubrimiento =", ejercicio03prima(grafo4, 1000)
+    print "Nodo: 75 --> Tiempo de cubrimiento =", ejercicio03prima(grafo5, 1000)
+    print "Nodo: 100 --> Tiempo de cubrimiento =", ejercicio03prima(grafo6, 1000)
 
 ##################################
 ########## Ejercicio 05 ##########
@@ -327,7 +343,7 @@ def paginasFictias(grafo, K):
 
     P_mod = g2p_pagerank(grafo, 0.85) # Matriz de transicion con PageRank
 
-    dist_est = distribucionEstacionaria01(N, P_mod, 100, 10000)
+    dist_est = distribucionEstacionaria01(N, P_mod, 100, 1000)
     potencias = metodoPotencias(N, P_mod, 100)
 
     ranking1 = dist_est[n]
@@ -375,7 +391,7 @@ def hackearPaginas(grafo, K):
 
     P_mod = g2p_pagerank(grafo, 0.85) # Matriz de transicion con PageRank
 
-    dist_est = distribucionEstacionaria01(N, P_mod, 100, 10000)
+    dist_est = distribucionEstacionaria01(N, P_mod, 100, 1000)
     potencias = metodoPotencias(N, P_mod, 100)
 
     ranking1 = dist_est[n]
@@ -404,8 +420,9 @@ def printEjercicio02():
     tiempos3, tiempos4, media3, media4 = ejercicio02(G2, simulaciones)
     print "### Ejercicio 02 ###"
     print "Simulaciones =", str(simulaciones)
-    # print "Distribucion de Tiempos G1 =", tiempos1
+    print "P-Original --> Distribucion de Tiempos G1 =", tiempos1
     print "P-Original --> Media de Tiempos G1 =", media1
+    print "P-Modificada --> Distribucion de Tiempos G1 =", tiempos2
     print "P-Modificada --> Media de Tiempos G1 =", media2
     # print "Distribucion de Tiempos G2 =", tiempos2
     print "P-Original --> Media de Tiempos G2 =", media3
@@ -414,7 +431,7 @@ def printEjercicio02():
 
 def printEjercicio03():
     simulaciones = 1000
-    alfas = [0.40, 0.60, 0.80, 0.90, 0.99]
+    alfas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.99]
     print "### Ejercicio 03 ###"
     print "Simulaciones =", str(simulaciones)
     print "Alfas =", alfas
@@ -426,27 +443,123 @@ def printEjercicio03():
 
 
 def printEjercicio05():
-    K = 75
-    ranking1, ranking2 = paginasFictias(G2, K)
-    ranking3, ranking4 = hackearPaginas(G2, K)
-    print "### Ejercicio 05 --> Sobre G2 ###"
-    print "Simulaciones = 10000 ----- Pasos = 100"
-    print "########## Agregar", str(K), "Paginas ##########"
-    print "Dist Est --> Ranking Pagina S =", ranking1
-    print "Met Pote --> Ranking Pagina S =", ranking2
-    print "########## Hackear", str(K), "Paginas ##########"
-    print "Dist Est --> Ranking Pagina S =", ranking3
-    print "Met Pote --> Ranking Pagina S =", ranking4
+    K = [10, 25, 50, 75, 100]
+    for k in K:
+        ranking1, ranking2 = paginasFictias(G2, k)
+        ranking3, ranking4 = hackearPaginas(G2, k)
+        print "### Ejercicio 05 --> Sobre G2 ###"
+        print "Simulaciones = 1000 ----- Pasos = 100"
+        print "########## Agregar", str(k), "Paginas ##########"
+        print "Dist Est --> Ranking Pagina S =", ranking1
+        print "Met Pote --> Ranking Pagina S =", ranking2
+        print "########## Hackear", str(k), "Paginas ##########"
+        print "Dist Est --> Ranking Pagina S =", ranking3
+        print "Met Pote --> Ranking Pagina S =", ranking4
 
 
-print ""
-printEjercicio01()
-print ""
-printEjercicio02()
-print ""
-printEjercicio03()
-print ""
-ejercicio04()
-print ""
-printEjercicio05()
-print ""
+# print ""
+# printEjercicio01()
+# print ""
+# printEjercicio02()
+# print ""
+# printEjercicio03()
+# print ""
+# ejercicio04()
+# print ""
+# printEjercicio05()
+# print ""
+
+
+###############################################################################
+################################# Histogramas #################################
+###############################################################################
+
+def histograma01():
+    datos = [0.162, 0.077, 0.262, 0.133, 0.078, 0.055, 0.094, 0.062, 0.009, 0.068]
+    plt.title("Distribucion Estacionaria sobre G1")
+    plt.xlabel("Distribucion estacionaria")
+    plt.ylabel("Frecuencia Relativa")
+    plt.grid(True)
+    x = np.linspace(0, 1, len(datos))
+    plt.plot(x, datos)
+    plt.show()
+
+
+def histograma02():
+    datos1 = [6.14, 13.39, 3.48, 5.07, 12.83, 19.2, 10.71, 18.02, 112.73, 13.27]
+    datos2 = [7.07, 12.38, 4.71, 6.6, 10.94, 13.62, 8.95, 15.94, 46.09, 12.14]
+
+    media1 = 21.484
+    media2 = 13.884
+
+    plt.title("Tiempos de Cruce sobre G1")
+    plt.xlabel("Tiempos de Cruce")
+    plt.ylabel("Frecuencia Relativa")
+    plt.grid(True)
+    x = np.linspace(0, 1, len(datos1))
+    plt.text(50, 0.1, "Media de Tiempos Original = " + str(media1))
+    plt.text(50, 0.09, "Media de Tiempos Modificada = " + str(media2))
+    plt.hist([datos1, datos2], bins=50, normed=True, color=["g", "r"], label=["Matriz de Transicion Original", "Matriz de Transicion Modificada"])
+    plt.legend()
+    plt.show()
+
+
+def histograma03(number):
+    alfas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.99]
+    datos1 = [30.085, 30.599, 31.345, 32.985, 35.268, 36.955, 41.33, 49.072, 55.559, 64.563, 101.207]
+    datos2 = [521.989, 525.241, 520.37, 525.099, 525.577, 528.42, 535.184, 540.57, 539.437, 550.228, 552.693]
+
+    if number == 1:
+        plt.title("Tiempos de Cubrimiento sobre G1")
+    elif number == 2:
+        plt.title("Tiempos de Cubrimiento sobre G2")
+    else:
+        print "ERROR"
+    plt.ylabel("Tiempo de Cubrimiento")
+    plt.xlabel("Alfas")
+    plt.grid(True)
+    if number == 1:
+        plt.plot(alfas, datos1)
+    elif number == 2:
+        plt.plot(alfas, datos2)
+    else:
+        print "ERROR"
+    plt.show()
+
+
+def histograma04():
+    nodos = [5, 10, 30, 50, 75, 100]
+    datos = [36.053, 31.408, 134.328, 243.338, 401.133, 551.737]
+
+    plt.title("Tiempos de Cubrimiento")
+    plt.ylabel("Tiempo de Cubrimiento")
+    plt.xlabel("Nodos")
+    plt.grid(True)
+    plt.plot(nodos, datos)
+    plt.show()
+
+
+def histograma05(number):
+    K = [10, 25, 50, 75, 100]
+    datos1 = [0.014, 0.031, 0.057, 0.08, 0.101]
+    datos2 = [0.005, 0.008, 0.017, 0.021, 0.028]
+
+    if number == 1:
+        plt.title("Ranking con Estrategia A")
+    elif number == 2:
+        plt.title("Ranking con Estrategia B")
+    else:
+        plt.title("Comparacion de Estrategias A y B")
+    plt.ylabel("Frecuencia Relativa")
+    plt.xlabel("Rankings")
+    plt.grid(True)
+    if number == 1:
+        plt.plot(K, datos1)
+    elif number == 2:
+        plt.plot(K, datos2)
+    else:
+        plt.hist([datos1, datos2], bins=50, normed=True, color=["g", "r"], label=["Agregar Paginas", "Hackear Paginas"])
+    plt.legend()
+    plt.show()
+
+# histograma02()
