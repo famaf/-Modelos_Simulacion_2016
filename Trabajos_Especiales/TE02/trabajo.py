@@ -197,7 +197,7 @@ def tiempoCubrimiento(length_grafo, matriz_trans):
         if nodo not in nodos_vistos:
             nodos_vistos.append(nodo)
 
-    return pasos
+    return pasos1
 
 
 def ejercicio03(grafo, simulaciones):
@@ -338,9 +338,6 @@ def paginasFictias(grafo, K):
 
     N = n + K + 1
 
-    # Test
-    # grafo = ((2,), (0, 5, 3), (6, 0, 2, 7, 4), (3, 1), (1, 4, 2, 9, 5, 6, 3, 8, 7), (0, 4, 5), (6, 9, 0), (3, 9), (7, 2, 6, 5, 3, 1, 0), (2, 0), (), (10,), (10,), (10,), (10,), (10,))
-
     P_mod = g2p_pagerank(grafo, 0.85) # Matriz de transicion con PageRank
 
     dist_est = distribucionEstacionaria01(N, P_mod, 100, 1000)
@@ -383,9 +380,6 @@ def hackearPaginas(grafo, K):
         grafo[nodo] = tuple(grafo[nodo])
 
     grafo = tuple(grafo)
-
-    # Test
-    # grafo = ((2,), (0, 5, 3, 10), (6, 0, 2, 7, 4, 10), (3, 1), (1, 4, 2, 9, 5, 6, 3, 8, 7, 10), (0, 4, 5), (6, 9, 0, 10), (3, 9, 10), (7, 2, 6, 5, 3, 1, 0), (2, 0), ())
 
     N = n + 1
 
@@ -442,19 +436,35 @@ def printEjercicio03():
     print "Tiempo de cubrimiento G2 =", testGrafo(G2, simulaciones)
 
 
+# def printEjercicio05():
+#     K = [10, 25, 50, 75, 100]
+#     for k in K:
+#         ranking1, ranking2 = paginasFictias(G2, k)
+#         ranking3, ranking4 = hackearPaginas(G2, k)
+#         print "### Ejercicio 05 --> Sobre G2 ###"
+#         print "Simulaciones = 1000 ----- Pasos = 100"
+#         print "########## Agregar", str(k), "Paginas ##########"
+#         print "Dist Est --> Ranking Pagina S =", ranking1
+#         print "Met Pote --> Ranking Pagina S =", ranking2
+#         print "########## Hackear", str(k), "Paginas ##########"
+#         print "Dist Est --> Ranking Pagina S =", ranking3
+#         print "Met Pote --> Ranking Pagina S =", ranking4
+
+
 def printEjercicio05():
-    K = [10, 25, 50, 75, 100]
+    K = [1, 3, 5, 7, 10]
+    print "### Ejercicio 05 --> Sobre G1 ###"
+    print "Simulaciones = 1000 ----- Pasos = 100"
     for k in K:
-        ranking1, ranking2 = paginasFictias(G2, k)
-        ranking3, ranking4 = hackearPaginas(G2, k)
-        print "### Ejercicio 05 --> Sobre G2 ###"
-        print "Simulaciones = 1000 ----- Pasos = 100"
+        ranking1, a = paginasFictias(G1, k)
+        ranking2, b = hackearPaginas(G1, k)
         print "########## Agregar", str(k), "Paginas ##########"
-        print "Dist Est --> Ranking Pagina S =", ranking1
-        print "Met Pote --> Ranking Pagina S =", ranking2
+        print "Ranking Pagina S =", ranking1
         print "########## Hackear", str(k), "Paginas ##########"
-        print "Dist Est --> Ranking Pagina S =", ranking3
-        print "Met Pote --> Ranking Pagina S =", ranking4
+        print "Ranking Pagina S =", ranking2
+
+
+# printEjercicio05()
 
 
 # print ""
@@ -477,11 +487,10 @@ def printEjercicio05():
 def histograma01():
     datos = [0.162, 0.077, 0.262, 0.133, 0.078, 0.055, 0.094, 0.062, 0.009, 0.068]
     plt.title("Distribucion Estacionaria sobre G1")
-    plt.xlabel("Distribucion estacionaria")
-    plt.ylabel("Frecuencia Relativa")
+    plt.ylabel("Distribucion estacionaria")
+    plt.xlabel("Nodo numero")
     plt.grid(True)
-    x = np.linspace(0, 1, len(datos))
-    plt.plot(x, datos)
+    plt.plot(datos)
     plt.show()
 
 
@@ -541,15 +550,15 @@ def histograma04():
 
 def histograma05(number):
     K = [10, 25, 50, 75, 100]
-    datos1 = [0.014, 0.031, 0.057, 0.08, 0.101]
-    datos2 = [0.005, 0.008, 0.017, 0.021, 0.028]
+    datos1 = [0.023, 0.049, 0.072, 0.09, 0.112]
+    datos2 = [0.036, 0.14, 0.12, 0.167, 0.205]
 
     if number == 1:
         plt.title("Ranking con Estrategia A")
     elif number == 2:
         plt.title("Ranking con Estrategia B")
     else:
-        plt.title("Comparacion de Estrategias A y B")
+        plt.title("Comparacion de Estrategias A y B sobre G1")
     plt.ylabel("Frecuencia Relativa")
     plt.xlabel("Rankings")
     plt.grid(True)
@@ -562,4 +571,28 @@ def histograma05(number):
     plt.legend()
     plt.show()
 
-# histograma02()
+
+def histograma06(number):
+    K = [10, 25, 50, 75, 100]
+    datos1 = [0.014, 0.031, 0.057, 0.08, 0.101]
+    datos2 = [0.005, 0.008, 0.017, 0.021, 0.028]
+
+    if number == 1:
+        plt.title("Ranking con Estrategia A")
+    elif number == 2:
+        plt.title("Ranking con Estrategia B")
+    else:
+        plt.title("Comparacion de Estrategias A y B sobre G2")
+    plt.ylabel("Frecuencia Relativa")
+    plt.xlabel("Rankings")
+    plt.grid(True)
+    if number == 1:
+        plt.plot(K, datos1)
+    elif number == 2:
+        plt.plot(K, datos2)
+    else:
+        plt.hist([datos1, datos2], bins=50, normed=True, color=["g", "r"], label=["Agregar Paginas", "Hackear Paginas"])
+    plt.legend()
+    plt.show()
+
+# histograma05(27)
