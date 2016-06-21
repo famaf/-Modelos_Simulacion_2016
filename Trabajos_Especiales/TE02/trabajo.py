@@ -197,7 +197,7 @@ def tiempoCubrimiento(length_grafo, matriz_trans):
         if nodo not in nodos_vistos:
             nodos_vistos.append(nodo)
 
-    return pasos1
+    return pasos
 
 
 def ejercicio03(grafo, simulaciones):
@@ -255,8 +255,7 @@ def ejercicio03prima(grafo, simulaciones):
     Ejercicio 3.
     """
     n = len(grafo) # Tamaño del grafo
-    alfa = 0.85
-    P_s = g2p_pagerank(grafo, alfa) # Matrices de Transicion
+    P_s = g2p_pagerank(grafo, 0.85) # Matrices de Transicion
 
 
     pasos = 0
@@ -398,9 +397,16 @@ def hackearPaginas(grafo, K):
 ###############################################################################
 
 def printEjercicio01():
-    simulaciones = 10000
+    simulaciones = 1000
     dist_est1, dist_est2, potencias1, potencias2 = ejercicio01(G1, simulaciones)
     print "### Ejercicio 01 --> Sobre G1 ###"
+    print "Simulaciones =", str(simulaciones)
+    print "Caminante P-Original =", dist_est1
+    print "Potencias P-Original =", potencias1
+    print "Caminante P-Modificada =", dist_est2
+    print "Potencias P-Modificada =", potencias2
+    dist_est1, dist_est2, potencias1, potencias2 = ejercicio01(G2, simulaciones)
+    print "### Ejercicio 01 --> Sobre G2 ###"
     print "Simulaciones =", str(simulaciones)
     print "Caminante P-Original =", dist_est1
     print "Potencias P-Original =", potencias1
@@ -464,9 +470,6 @@ def printEjercicio05():
         print "Ranking Pagina S =", ranking2
 
 
-# printEjercicio05()
-
-
 # print ""
 # printEjercicio01()
 # print ""
@@ -485,30 +488,45 @@ def printEjercicio05():
 ###############################################################################
 
 def histograma01():
-    datos = [0.162, 0.077, 0.262, 0.133, 0.078, 0.055, 0.094, 0.062, 0.009, 0.068]
-    plt.title("Distribucion Estacionaria sobre G1")
-    plt.ylabel("Distribucion estacionaria")
-    plt.xlabel("Nodo numero")
+    dist_est1, dist_est2, potencias1, potencias2 = ejercicio01(G1, 10000)
+    plt.title("Distribuciones Estacionarias sobre G1")
+    plt.ylabel("Probabilidad")
+    plt.xlabel("Numero de nodo")
     plt.grid(True)
-    plt.plot(datos)
+    plt.plot(dist_est1, color="b", linestyle="-", label="Metodo 1 - MTO")
+    plt.plot(potencias1, color="r", linestyle="--", label="Metodo 2 - MTO")
+    plt.plot(dist_est2, color="y", linestyle="-", label="Metodo 1 - MTM")
+    plt.plot(potencias2, color="g", linestyle="--", label="Metodo 2 - MTM")
+    plt.legend()
     plt.show()
 
 
-def histograma02():
-    datos1 = [6.14, 13.39, 3.48, 5.07, 12.83, 19.2, 10.71, 18.02, 112.73, 13.27]
-    datos2 = [7.07, 12.38, 4.71, 6.6, 10.94, 13.62, 8.95, 15.94, 46.09, 12.14]
-
-    media1 = 21.484
-    media2 = 13.884
+def histograma02_G1():
+    tiemposO, tiemposM, mediaO, mediaM = ejercicio02(G1, 1000)
 
     plt.title("Tiempos de Cruce sobre G1")
-    plt.xlabel("Tiempos de Cruce")
-    plt.ylabel("Frecuencia Relativa")
+    plt.xlabel("Numero de nodo")
+    plt.ylabel("Tiempo de cruce [Pasos]")
     plt.grid(True)
-    x = np.linspace(0, 1, len(datos1))
-    plt.text(50, 0.1, "Media de Tiempos Original = " + str(media1))
-    plt.text(50, 0.09, "Media de Tiempos Modificada = " + str(media2))
-    plt.hist([datos1, datos2], bins=50, normed=True, color=["g", "r"], label=["Matriz de Transicion Original", "Matriz de Transicion Modificada"])
+    bins = np.linspace(0,max(tiemposO), 20)
+    plt.text(2, 96, "Media de Tiempos con MTO = " + str(mediaO))
+    plt.text(2, 88, "Media de Tiempos con MTM = " + str(mediaM))
+    plt.ylim(0, 140)
+    plt.plot(tiemposO, color="b", label="Matriz de Transicion Original")
+    plt.plot(tiemposM, color="r", label="Matriz de Transicion Modificada")
+    plt.legend()
+    plt.show()
+
+
+def histograma02_G2():
+    tiemposO, tiemposM, mediaO, mediaM = ejercicio02(G2, 100)
+
+    plt.title("Histograma de Tiempos de Cruce sobre G2")
+    plt.xlabel("Tiempo de Cruce [Pasos]")
+    plt.ylabel("Estimacion de Probabilidad")
+    plt.grid(True)
+    bins = np.linspace(0,max(tiemposO), 20)
+    plt.hist([tiemposO, tiemposM], bins=bins, normed=True, color=["g", "r"], label=["Matriz de Transicion Original", "Matriz de Transicion Modificada"])
     plt.legend()
     plt.show()
 
@@ -516,7 +534,7 @@ def histograma02():
 def histograma03(number):
     alfas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.99]
     datos1 = [30.085, 30.599, 31.345, 32.985, 35.268, 36.955, 41.33, 49.072, 55.559, 64.563, 101.207]
-    datos2 = [521.989, 525.241, 520.37, 525.099, 525.577, 528.42, 535.184, 540.57, 539.437, 550.228, 552.693]
+    datos2 = [523.399, 519.633, 522.228, 529.887, 522.984, 524.198, 535.352, 539.09, 543.288, 544.125, 548.871]
 
     if number == 1:
         plt.title("Tiempos de Cubrimiento sobre G1")
@@ -524,75 +542,65 @@ def histograma03(number):
         plt.title("Tiempos de Cubrimiento sobre G2")
     else:
         print "ERROR"
-    plt.ylabel("Tiempo de Cubrimiento")
-    plt.xlabel("Alfas")
+    plt.ylabel("Tiempo de Cubrimiento [Pasos]")
+    plt.xlabel("Alfa")
     plt.grid(True)
     if number == 1:
-        plt.plot(alfas, datos1)
+        plt.ylim(0, 130)
+        plt.plot(alfas, [107.641 for _ in xrange(len(datos1))], color="b", label="Tiempo de Cubrimiento con MTO")
+        plt.plot(alfas, datos1, color="r", label="Tiempo de Cubrimiento con MTM")
     elif number == 2:
-        plt.plot(alfas, datos2)
+        plt.ylim(515, 560)
+        plt.plot(alfas, [548.714 for _ in xrange(len(datos1))], color="b", label="Tiempo de Cubrimiento con MTO")
+        plt.plot(alfas, datos2, color="r", label="Tiempo de Cubrimiento con MTM")
     else:
         print "ERROR"
+    plt.legend()
     plt.show()
 
 
 def histograma04():
     nodos = [5, 10, 30, 50, 75, 100]
-    datos = [36.053, 31.408, 134.328, 243.338, 401.133, 551.737]
+    datos = [11.813, 31.742, 159.51, 250.54, 402.357, 558.348]
 
-    plt.title("Tiempos de Cubrimiento")
-    plt.ylabel("Tiempo de Cubrimiento")
-    plt.xlabel("Nodos")
+    plt.title("Tiempos de Cubrimiento para distintos Grafos")
+    plt.ylabel("Tiempo de Cubrimiento [Pasos]")
+    plt.xlabel("Cantidad de Nodos")
     plt.grid(True)
     plt.plot(nodos, datos)
     plt.show()
 
 
-def histograma05(number):
-    K = [10, 25, 50, 75, 100]
-    datos1 = [0.023, 0.049, 0.072, 0.09, 0.112]
-    datos2 = [0.036, 0.14, 0.12, 0.167, 0.205]
+def histograma05():
+    K = [1, 3, 5, 7, 10]
+    rankingA = [0.023, 0.049, 0.072, 0.09, 0.112]
+    rankingB = [0.036, 0.073, 0.12, 0.167, 0.205]
 
-    if number == 1:
-        plt.title("Ranking con Estrategia A")
-    elif number == 2:
-        plt.title("Ranking con Estrategia B")
-    else:
-        plt.title("Comparacion de Estrategias A y B sobre G1")
-    plt.ylabel("Frecuencia Relativa")
-    plt.xlabel("Rankings")
+    plt.title("Estrategias A y B sobre G1")
+    plt.xlabel("Paginas Agregadas")
+    plt.ylabel("Probabilidad de Visita")
     plt.grid(True)
-    if number == 1:
-        plt.plot(K, datos1)
-    elif number == 2:
-        plt.plot(K, datos2)
-    else:
-        plt.hist([datos1, datos2], bins=50, normed=True, color=["g", "r"], label=["Agregar Paginas", "Hackear Paginas"])
+    plt.plot(K, rankingA, color="r", label="Estrategia A")
+    plt.plot(K, rankingB, color="b", label="Estrategia B")
     plt.legend()
     plt.show()
 
 
-def histograma06(number):
+def histograma06():
     K = [10, 25, 50, 75, 100]
-    datos1 = [0.014, 0.031, 0.057, 0.08, 0.101]
-    datos2 = [0.005, 0.008, 0.017, 0.021, 0.028]
+    rankingA = [0.014, 0.031, 0.057, 0.08, 0.101]
+    rankingB = [0.005, 0.008, 0.017, 0.021, 0.028]
 
-    if number == 1:
-        plt.title("Ranking con Estrategia A")
-    elif number == 2:
-        plt.title("Ranking con Estrategia B")
-    else:
-        plt.title("Comparacion de Estrategias A y B sobre G2")
-    plt.ylabel("Frecuencia Relativa")
-    plt.xlabel("Rankings")
+    plt.title("Estrategias A y B sobre G2")
+    plt.xlabel("Paginas Agregadas")
+    plt.ylabel("Probabilidad de Visita")
     plt.grid(True)
-    if number == 1:
-        plt.plot(K, datos1)
-    elif number == 2:
-        plt.plot(K, datos2)
-    else:
-        plt.hist([datos1, datos2], bins=50, normed=True, color=["g", "r"], label=["Agregar Paginas", "Hackear Paginas"])
+    plt.plot(K, rankingA, color="r", label="Estrategia A")
+    plt.plot(K, rankingB, color="b", label="Estrategia B")
     plt.legend()
     plt.show()
 
+# histograma03(2)
+# histograma05()
+# histograma06()
 # histograma05(27)
