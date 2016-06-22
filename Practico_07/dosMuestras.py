@@ -32,6 +32,7 @@ def rangoRBien(muestra1, nmMuestras):
     nmMuestras.sort()
 
     muestraCopy = list(muestra1)
+    muestraCopy.sort()
 
     R = []
     j = 0
@@ -39,7 +40,7 @@ def rangoRBien(muestra1, nmMuestras):
         valor = muestraCopy[0]
         cantValor = muestraCopy.count(valor)
         s = 0
-        for i in xrange(cantValor):
+        for j in xrange(cantValor):
             for i in xrange(nmMuestras.count(valor)):
                 s += nmMuestras.index(valor) + (i + 1)
             muestraCopy.pop(0)
