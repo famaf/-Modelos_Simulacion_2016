@@ -78,31 +78,30 @@ def puntoC(n):
     a = 0
     for _ in xrange(n):
         a += poisson(1)
-    
+
     return math.e *(a/float(n))
 
 
 def printEstimacion01():
     M, S_cuadrado, IC = estimacion02()
-    print "ESTIMACION CON LA POISSON(1)"
-    print "### e =", math.e, "###"
-    print "Media Muestral =", M
-    print "Varianza Muestral =", S_cuadrado
-    print "Intervalo de Confianza (IC) =", IC
-    print ""
+    print("ESTIMACION CON LA POISSON(1)")
+    print("### e =", math.e, "###")
+    print("Media Muestral =", M)
+    print("Varianza Muestral =", S_cuadrado)
+    print("Intervalo de Confianza (IC) =", IC)
+    print("")
 
 
 def printEstimacion02():
     M, S_cuadrado, IC = estimacion01()
-    print "\nESTIMACION CON LA GENERACION DE M"
-    print "### e =", math.e, "###"
-    print "Media Muestral =", M
-    print "Varianza Muestral =", S_cuadrado
-    print "Intervalo de Confianza (IC) =", IC
-    print ""
-
+    print("\nESTIMACION CON LA GENERACION DE M")
+    print("### e =", math.e, "###")
+    print("Media Muestral =", M)
+    print("Varianza Muestral =", S_cuadrado)
+    print("Intervalo de Confianza (IC) =", IC)
+    print("")
 
 
 printEstimacion01()
 printEstimacion02()
-print "Con Poisson(1) --> E[M] =", puntoC(1000)
+print("Con Poisson(1) --> E[M] =", puntoC(1000))

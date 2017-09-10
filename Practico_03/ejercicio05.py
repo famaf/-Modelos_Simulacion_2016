@@ -49,9 +49,9 @@ def probabilidad(i):
 
 
 for n in [100, 1000, 10000, 100000, 1000000]:
-    print "n =", n, "--> E(N) =", aproximacion(n)
+    print("n =", n, "--> E(N) =", aproximacion(n))
 
-print "--------------------------------"
+print("--------------------------------")
 
 for i in xrange(7):
-    print "P(N = %d)" % i, "=", probabilidad(i)
+    print("P(N = %d)" % i, "=", probabilidad(i))

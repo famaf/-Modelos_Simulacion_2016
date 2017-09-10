@@ -130,8 +130,8 @@ def ejemplo01():
     muestra = [18, 24, 16, 19, 25]
     Ri = [1010, 960, 1180, 985, 1118]
 
-    print "p-valor Poisson =", calcularPValor(muestra, 10000)
-    print "p-valor KW =", kruskalWallis(muestra, Ri)
+    print("p-valor Poisson =", calcularPValor(muestra, 10000))
+    print("p-valor KW =", kruskalWallis(muestra, Ri))
     # Si KW es chico => se rechaza
 
 

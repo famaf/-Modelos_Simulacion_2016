@@ -33,19 +33,19 @@ def varianza(n):
         # Chequeo todo el mazo para ver si hay algun 'exito', de ser asi lo
         # lo sumamos.
         exito = sum([mazo[i-1]==i for i in xrange(1, 101)])
-        
+
         suma1 += exito # x
         suma2 += exito**2 # x^2
 
     varianza = suma2/float(n) - (suma1/float(n))**2 # V(x) = E(x^2) - E(x)^2
-    
+
     return varianza
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza(n)
+    print("n =", n, "--> E(X) =", esperanza(n))
 
-print "--------------------------------"
+print("--------------------------------")
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> V(X) =", varianza(n)
+    print("n =", n, "--> V(X) =", varianza(n))

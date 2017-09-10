@@ -72,18 +72,18 @@ def esperanza3(N, n):
 
 
 
-print "Metodo de Maximo de Uniformes"
+print("Metodo de Maximo de Uniformes")
 for N in [100, 1000, 10000, 100000]:
-    print "N =", N, "n = 10", "--> E(X) =", esperanza1(N, 10)
+    print("N =", N, "n = 10", "--> E(X) =", esperanza1(N, 10))
 
-print "------------------------------"
+print("------------------------------")
 
-print "Metodo de Transformada Inversa"
+print("Metodo de Transformada Inversa")
 for N in [100, 1000, 10000, 100000]:
-    print "N =", N, "n = 10", "--> E(X) =", esperanza2(N, 10)
+    print("N =", N, "n = 10", "--> E(X) =", esperanza2(N, 10))
 
-print "------------------------------"
+print("------------------------------")
 
-print "Metodo de Aceptacion y Rechazo"
+print("Metodo de Aceptacion y Rechazo")
 for N in [100, 1000, 10000, 100000]:
-    print "N =", N, "n = 10", "--> E(X) =", esperanza3(N, 10)
+    print("N =", N, "n = 10", "--> E(X) =", esperanza3(N, 10))

@@ -47,7 +47,7 @@ def monteCarlo():
 
 def evaluar():
     M, S, N = monteCarlo()
-    print "Integral = ", M
+    print("Integral = ", M)
 
 
 evaluar()

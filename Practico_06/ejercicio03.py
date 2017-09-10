@@ -51,11 +51,11 @@ def estimacion():
 
 def printEstimacion():
     M, S, IC = estimacion()
-    print "\n### e =", math.e, "###"
-    print "Media Muestral =", M
-    print "Desviacion Estandar Muestral =", S
-    print "Intervalo de Confianza =", IC
-    print ""
+    print("\n### e =", math.e, "###")
+    print("Media Muestral =", M)
+    print("Desviacion Estandar Muestral =", S)
+    print("Intervalo de Confianza =", IC)
+    print("")
 
 
 printEstimacion()

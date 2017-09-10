@@ -63,6 +63,7 @@ def geometrica(p):
 # math.exp(-lamda) * ((lamda**i)/(math.factorial(i)))
 # Rango = {0, 1, 2, ...}
 
+
 def poisson(lamda):
     """
     Genera una v.a. X con distribucion Poisson de parametro lamda.
@@ -265,6 +266,7 @@ def muLogNormal(lista):
     mu_estimado = sumatoria(1, n, log(xi))/n
     """
     return sum([math.log(x) for x in lista])/float(len(lista))
+
 
 def sigmaLogNormal(lista):
     """

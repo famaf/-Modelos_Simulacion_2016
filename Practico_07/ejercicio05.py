@@ -8,6 +8,7 @@ from distribuciones import *
 # fo = Ni
 # fe = n*pi
 
+
 def estadisticoT(k, n, N, p):
     """
     Calcula el estadistico T.
@@ -143,6 +144,5 @@ def simulacion(r):
     return p_valor
 
 
-
-print "Chi-Cuadrado --> p-valor =", chiCuadrado()
-print "Simulacion --> p-valor =", simulacion(10000)
+print("Chi-Cuadrado --> p-valor =", chiCuadrado())
+print("Simulacion --> p-valor =", simulacion(10000))

@@ -79,9 +79,9 @@ def ej2d(alfa):
     p_valor = 2 * min(P(n, m, R), 1 - P(n, m, R-1))
 
     if p_valor < alfa:
-        print "Chi-Cuadrado: Se rechaza H0 a un nivel", alfa ,"--> p-valor =", p_valor
+        print("Chi-Cuadrado: Se rechaza H0 a un nivel", alfa, "--> p-valor =", p_valor)
     elif p_valor > alfa:
-        print "Chi-Cuadrado: No se rechaza H0 a un nivel", alfa ,"--> p-valor =", p_valor
+        print("Chi-Cuadrado: No se rechaza H0 a un nivel", alfa, "--> p-valor =", p_valor)
 
 
 def ej2e(alfa, k):
@@ -120,9 +120,9 @@ def ej2e(alfa, k):
     p_valor = 2 * min(R_max/float(k), R_min/float(k))
 
     if p_valor < alfa:
-        print "Simulacion: Se rechaza H0 a un nivel", alfa ,"--> p-valor =", p_valor
+        print("Simulacion: Se rechaza H0 a un nivel", alfa, "--> p-valor =", p_valor)
     elif p_valor > alfa:
-        print "Simulacion: No se rechaza H0 a un nivel", alfa ,"--> p-valor =", p_valor
+        print("Simulacion: No se rechaza H0 a un nivel", alfa, "--> p-valor =", p_valor)
 
 
 def printEj2d():
@@ -183,7 +183,7 @@ def ej3(B):
 
 def printEj3():
     for B in [100, 1000, 10000]:
-        print "B =", B, "--> probabilidad =", ej3(B)
+        print("B =", B, "--> probabilidad =", ej3(B))
 
 # printEj3()
 
@@ -340,7 +340,7 @@ def ej4c(largo_muestra, error):
         A = M
         M += (X - M)/float(j)
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
-    
+
     S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
 
     IC = (M - 1.96*(S/math.sqrt(j)) , M + 1.96*(S/math.sqrt(j)))
@@ -352,16 +352,16 @@ def ej4c(largo_muestra, error):
 
 def printEj4b():
     for largo in [10, 20, 100, 1000]:
-        print "Tamaño de la muestra =", largo, "--> p_valor =", ej4b(largo, 0.05)
+        print("Tamaño de la muestra =", largo, "--> p_valor =", ej4b(largo, 0.05))
 
 
 def printEj4c():
     for largo in [10, 20, 100, 1000]:
         IC, ancho_IC, N = ej4c(largo, 0.01)
-        print "\nIntervalo de Confianza =", IC
-        print "Ancho de IC =", ancho_IC
-        print "Ejecuciones necesarias =", N
-        print ""
+        print("\nIntervalo de Confianza =", IC)
+        print("Ancho de IC =", ancho_IC)
+        print("Ejecuciones necesarias =", N)
+        print("")
 
 
 # printEj4b()
@@ -457,9 +457,9 @@ def ej5b(alfa):
     p_valor = pValorChi(grados_libertad, t)
 
     if p_valor < alfa:
-        print "Chi-Cuadrado: Se rechaza H0 a un nivel", alfa ,"--> p-valor =", p_valor
+        print("Chi-Cuadrado: Se rechaza H0 a un nivel", alfa, "--> p-valor =", p_valor)
     elif p_valor > alfa:
-        print "Chi-Cuadrado: No se rechaza H0 a un nivel", alfa ,"--> p-valor =", p_valor
+        print("Chi-Cuadrado: No se rechaza H0 a un nivel", alfa, "--> p-valor =", p_valor)
 
     return p_valor
 

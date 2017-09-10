@@ -16,7 +16,6 @@ def sumaRangos(muestra1, muestra):
     return R
 
 
-
 muestra1 = [2, 7, 9]
 muestra2 = [3, 5, 6]
 muestra3 = [4, 8, 10]
@@ -59,5 +58,5 @@ grados_libertad = m - 1
 p_valor = pValor(grados_libertad, y)
 
 
-print "R =", R
-print "p-valor =", p_valor
+print("R =", R)
+print("p-valor =", p_valor)

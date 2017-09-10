@@ -20,4 +20,4 @@ def parcialito(p):
     return (N*s)/float(p)
 
 for p in [100, 1000, 10000, 100000]:
-    print "p =", p, "--> Parcialito =", parcialito(p)
+    print("p =", p, "--> Parcialito =", parcialito(p))

@@ -27,4 +27,4 @@ def buffon(n):
 
 
 for n in [1000, 10000, 100000]:
-    print "n =", n, "--> Pi =", buffon(n)
+    print("n =", n, "--> Pi =", buffon(n))

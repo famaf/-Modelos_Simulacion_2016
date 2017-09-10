@@ -14,7 +14,7 @@ def generarPI():
     # Punto cae adentro del circulo de radio 1
     if X**2 + Y**2 <= 1:
         PI += 1
-    
+
     PI = 4 * PI # Puede ser 0 o 4
 
     return PI
@@ -45,17 +45,17 @@ def estimacion01():
         A = M
         M += (X - M)/float(j)
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
-        
+
         S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
 
         IC = (M - 1.96*(S/math.sqrt(j)) , M + 1.96*(S/math.sqrt(j)))
-        
+
         # Si el ancho del IC < 0.1 cortamos el bucle
         if IC[1] - IC[0] < 0.1:
             break
 
     ancho_IC = IC[1] - IC[0] # Ancho del intervalo
-    
+
     return IC, ancho_IC, N
 
 
@@ -85,13 +85,13 @@ def estimacion02():
         A = M
         M += (X - M)/float(j)
         S_cuadrado = (1 - 1.0/(j-1))*S_cuadrado + j*((M-A)**2)
-    
+
     S = math.sqrt(S_cuadrado) # Desviacion Estandar Muestral
 
     IC = (M - 1.96*(S/math.sqrt(j)) , M + 1.96*(S/math.sqrt(j)))
-    
+
     ancho_IC = IC[1] - IC[0] # Ancho del intervalo
-    
+
     return IC, ancho_IC, N
 
 # IC = (Xbarra - Z_alfa/2 * (S/sqrt(n)), Xbarra + Z_alfa/2 * (S/sqrt(n)))
@@ -102,20 +102,21 @@ def estimacion02():
 # Longitud de a lo sumo d
 # 2 * Z_alfa/2 * S/sqrt(n) <= d
 
+
 def printEstimacion01():
     IC, ancho_IC, N = estimacion01()
-    print "\nIntervalo de Confianza =", IC
-    print "Ancho de IC =", ancho_IC
-    print "Ejecuciones necesarias =", N
-    print ""
+    print("\nIntervalo de Confianza =", IC)
+    print("Ancho de IC =", ancho_IC)
+    print("Ejecuciones necesarias =", N)
+    print("")
 
 
 def printEstimacion02():
     IC, ancho_IC, N = estimacion02()
-    print "\nIntervalo de Confianza =", IC
-    print "Ancho de IC =", ancho_IC
-    print "Ejecuciones necesarias =", N
-    print ""
+    print("\nIntervalo de Confianza =", IC)
+    print("Ancho de IC =", ancho_IC)
+    print("Ejecuciones necesarias =", N)
+    print("")
 
 
 printEstimacion01()

@@ -74,7 +74,7 @@ def lavadero01(N, S, Tf, Tr):
             if r == 1:
                 Y = exponencial(lamda_reparacion) # Tiempo de reparacion de la Lavadora rota
                 t_estrella = t + Y # Tiempo en que concluira la reparacion de la Lavadora rota
-         
+
         # Lavadora que estaba en reparacion, esta disponible
         elif lavadoras[0] >= t_estrella:
             t = t_estrella
@@ -176,7 +176,7 @@ def esperanzaYVarianza(lavadero, N, S, Tf, Tr, n):
 
     for _ in xrange(n):
         exito = lavadero(N, S, Tf, Tr)
-        
+
         suma1 += exito # x
         suma2 += exito**2 # x^2
 
@@ -188,28 +188,27 @@ def esperanzaYVarianza(lavadero, N, S, Tf, Tr, n):
     return esperanza, varianza, des_est
 
 
-
 def printEV():
-    print "\n### Lavadero con 2 Repuestos y 1 Tecnico ###"
+    print("\n### Lavadero con 2 Repuestos y 1 Tecnico ###")
     for n in [100, 1000, 10000, 100000]:
         esperanza, varianza, des_est = esperanzaYVarianza(lavadero01, 5, 2, 1, 1/8.0, n)
-        print "E[T] =", esperanza, ", V[T] =", varianza,", V[T]**(1/2.0) =", des_est
+        print("E[T] =", esperanza, ", V[T] =", varianza, ", V[T]**(1/2.0) =", des_est)
 
-    print "----------------------------------------------------------------------"
+    print("----------------------------------------------------------------------")
 
-    print "### Lavadero con 2 Repuestos y 2 Tecnicos ###"
+    print("### Lavadero con 2 Repuestos y 2 Tecnicos ###")
     # (2.61, 2.76)
     for n in [100, 1000, 10000, 100000]:
         esperanza, varianza, des_est = esperanzaYVarianza(lavadero02, 5, 2, 1, 1/8.0, n)
-        print "E[T] =", esperanza, ", V[T] =", varianza,", V[T]**(1/2.0) =", des_est
+        print("E[T] =", esperanza, ", V[T] =", varianza, ", V[T]**(1/2.0) =", des_est)
 
-    print "----------------------------------------------------------------------"
+    print("----------------------------------------------------------------------")
 
-    print "### Lavadero con 3 Repuestos y 1 Tecnico ###"
+    print("### Lavadero con 3 Repuestos y 1 Tecnico ###")
     for n in [100, 1000, 10000, 100000]:
         esperanza, varianza, des_est = esperanzaYVarianza(lavadero01, 5, 3, 1, 1/8.0, n)
-        print "E[T] =", esperanza, ", V[T] =", varianza,", V[T]**(1/2.0) =", des_est
-    print ""
+        print("E[T] =", esperanza, ", V[T] =", varianza, ", V[T]**(1/2.0) =", des_est)
+    print("")
 
 
 def plot():
@@ -220,7 +219,7 @@ def plot():
     v1 = [lavadero01(5, 2, 1, 1/8.0) for _ in xrange(n)] # S = 2 y Tecnicos = 1
     v2 = [lavadero02(5, 2, 1, 1/8.0) for _ in xrange(n)] # S = 2 y Tecnicos = 2
     v3 = [lavadero01(5, 3, 1, 1/8.0) for _ in xrange(n)] # S = 3 y Tecnicos = 1
-    
+
     plt.figure(1)
     plt.title("Sistema de Lavadero Actual")
     plt.ylabel("Frecuencia de Fallo (%)")
@@ -268,11 +267,11 @@ def plot():
     plt.xticks(xrange(0, 20, 1))
     plt.xlim(0, 20)
     plt.hist([v2, v3], bins=50, normed=True, color=["b", "r"], label=["2 Repuestos y 2 Tecnicos", "3 Repuestos y 1 Tecnico"])
-    #plt.hist(v3, bins=50, normed=True, color="r", label="3 Repuestos y 1 Tecnico")
+    # plt.hist(v3, bins=50, normed=True, color="r", label="3 Repuestos y 1 Tecnico")
     plt.legend()
 
     plt.show()
 
 
-#printEV()
+# printEV()
 plot()

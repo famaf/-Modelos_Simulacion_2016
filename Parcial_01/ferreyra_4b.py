@@ -11,8 +11,8 @@ def experimento(N):
         v = random.random()
         acumulador += math.exp(-((u**(-1) + v - 1)**2)) * (u**(-2))
 
-    return acumulador/float(N)
+    return acumulador / float(N)
 
 
 for N in [100, 1000, 10000, 100000]:
-    print "N =", N, "--> Intergral 4b =", experimento(N)
+    print("N =", N, "--> Intergral 4b =", experimento(N))

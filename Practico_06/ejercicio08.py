@@ -27,9 +27,9 @@ def servidor():
     tiempos.sort() # Ordenamos los tiempos de atencion de los clientes
 
     tiempo_espera = sum(tiempos)
-    
+
     while True:
-        print "T =", T
+        print("T =", T)
         T += tiempos[0] # Menor tiempo de atencion
         tiempos.pop(0) # Cliente termino de ser atendido
 
@@ -45,4 +45,4 @@ def servidor():
     return tiempo_espera/float(clientes)
 
 
-print servidor()
+print(servidor())

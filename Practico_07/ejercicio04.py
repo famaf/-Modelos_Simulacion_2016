@@ -2,7 +2,7 @@
 
 import math
 import random
-#from distribuciones import *
+# from distribuciones import *
 
 
 def acumuladaExponencial(x, lamda):
@@ -74,14 +74,14 @@ def testKS():
 
     # if p_valor < alfa: # o <= (menor igual)
     #     # Se rechaza la H0 a un nivel alfa
-    #     print "Se rechaza H0"
+    #     print("Se rechaza H0")
     # elif p_valor > alfa:
     #     # No hay evidencia suficiente para rechazar H0 a un nivel alfa
-    #     print "No se rechaza H0"
+    #     print("No se rechaza H0")
 
     return p_valor
 
 
 # Nivel de confianza = 1 - alfa
 # Alfas comunes: 0.05, 0.01, 0.1
-print "p-valor =", testKS()
+print("p-valor =", testKS())

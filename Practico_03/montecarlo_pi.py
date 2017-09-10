@@ -28,4 +28,4 @@ def generarPI(n):
 n = int(raw_input("Ingrese la cantidad de puntos: "))
 
 
-print "Pi =", generarPI(n)
+print("Pi =", generarPI(n))

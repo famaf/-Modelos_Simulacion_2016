@@ -61,20 +61,20 @@ def varianza_polar(n):
 
 
 
-print "Esperanza de Normal con Metodo de Exponenciales"
+print("Esperanza de Normal con Metodo de Exponenciales")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza_exponeciales(n)
+    print("n =", n, "--> E(X) =", esperanza_exponeciales(n))
 
-print "Esperanza de Normal con Metodo Polar"
+print("Esperanza de Normal con Metodo Polar")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza_polar(n)
+    print("n =", n, "--> E(X) =", esperanza_polar(n))
 
-print "---------------------------------------"
+print("---------------------------------------")
 
-print "\nVarianza de Normal con Metodo de Exponenciales"
+print("\nVarianza de Normal con Metodo de Exponenciales")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> V(X) =", varianza_exponeciales(n)
+    print("n =", n, "--> V(X) =", varianza_exponeciales(n))
 
-print "\nVarianza de Normal con Metodo Polar"
+print("\nVarianza de Normal con Metodo Polar")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> V(X) =", varianza_polar(n)
+    print("n =", n, "--> V(X) =", varianza_polar(n))

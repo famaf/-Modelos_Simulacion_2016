@@ -1,5 +1,6 @@
 # Programar para tomar promedio si hay datos repetidos
 
+
 def sumaRangos(muestra1, muestra):
     """
     Calcula la suma de los rangos (R) de la 'muestra1' sobre la 'muestra'.
@@ -11,15 +12,15 @@ def sumaRangos(muestra1, muestra):
     for valor in muestra1:
         indice = muestra.index(valor) + 1
         cantidad_valor = muestra.count(valor)
-        print "Cantidad '", valor,"' =", cantidad_valor
-        print "Indice = ", indice
+        print("Cantidad '", valor, "' =", cantidad_valor)
+        print("Indice = ", indice)
         for i in xrange(cantidad_valor):
             indice += i
-            print "\t INDICES =", indice
+            print("\t INDICES =", indice)
 
         result = indice/float(cantidad_valor)
-        print "\tIndice final =", indice
-        print "\tResult =", result
+        print("\tIndice final =", indice)
+        print("\tResult =", result)
 
         rangos.append(indice/float(cantidad_valor))
 
@@ -27,7 +28,9 @@ def sumaRangos(muestra1, muestra):
 
     return R
 
+
 # Rango de Joni --> Funciona
+
 def rangoRBien(muestra1, nmMuestras):
     nmMuestras.sort()
 
@@ -61,8 +64,8 @@ m2 = [2, 2, 5, 7]
 m1 = [2, 3, 4, 4, 4]
 m2 = [2, 3, 4, 5]
 
-m = m1+m2
+m = m1 + m2
 
-#R = sumaRangos(m1, m)
+# R = sumaRangos(m1, m)
 R = rangoRBien(m2, m)
-print "R =", R
+print("R =", R)

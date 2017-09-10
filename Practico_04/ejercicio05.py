@@ -10,7 +10,7 @@ def transformadaInversa(k, lamda):
     Ejercicio 5 con Metodo de Transformada Inversa.
     """
     pj = 0 # Acumula los sumandos del denominador
-    j = 0 
+    j = 0
     while j <= k:
         pj += (lamda**j/float(math.factorial(j)))
         j += 1
@@ -70,12 +70,12 @@ def esperanza2(k, lamda, n):
     return a/float(n)
 
 
-print "Metodo de Transformada Inversa"
+print("Metodo de Transformada Inversa")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza1(10, 2, n)
+    print("n =", n, "--> E(X) =", esperanza1(10, 2, n))
 
-print "------------------------------"
+print("------------------------------")
 
-print "Metodo de Aceptacion y Rechazo"
+print("Metodo de Aceptacion y Rechazo")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza2(10, 2, n)
+    print("n =", n, "--> E(X) =", esperanza2(10, 2, n))

@@ -291,12 +291,12 @@ def ejercicio04():
     grafo5 = randg(75)
     grafo6 = randg(100)
 
-    print "Nodo: 5 --> Tiempo de cubrimiento =", ejercicio03prima(grafo1, 1000)
-    print "Nodo: 10 --> Tiempo de cubrimiento =", ejercicio03prima(grafo2, 1000)
-    print "Nodo: 30 --> Tiempo de cubrimiento =", ejercicio03prima(grafo3, 1000)
-    print "Nodo: 50 --> Tiempo de cubrimiento =", ejercicio03prima(grafo4, 1000)
-    print "Nodo: 75 --> Tiempo de cubrimiento =", ejercicio03prima(grafo5, 1000)
-    print "Nodo: 100 --> Tiempo de cubrimiento =", ejercicio03prima(grafo6, 1000)
+    print("Nodo: 5 --> Tiempo de cubrimiento =", ejercicio03prima(grafo1, 1000))
+    print("Nodo: 10 --> Tiempo de cubrimiento =", ejercicio03prima(grafo2, 1000))
+    print("Nodo: 30 --> Tiempo de cubrimiento =", ejercicio03prima(grafo3, 1000))
+    print("Nodo: 50 --> Tiempo de cubrimiento =", ejercicio03prima(grafo4, 1000))
+    print("Nodo: 75 --> Tiempo de cubrimiento =", ejercicio03prima(grafo5, 1000))
+    print("Nodo: 100 --> Tiempo de cubrimiento =", ejercicio03prima(grafo6, 1000))
 
 ##################################
 ########## Ejercicio 05 ##########
@@ -396,50 +396,51 @@ def hackearPaginas(grafo, K):
 ################################# Resultados ##################################
 ###############################################################################
 
+
 def printEjercicio01():
     simulaciones = 1000
     dist_est1, dist_est2, potencias1, potencias2 = ejercicio01(G1, simulaciones)
-    print "### Ejercicio 01 --> Sobre G1 ###"
-    print "Simulaciones =", str(simulaciones)
-    print "Caminante P-Original =", dist_est1
-    print "Potencias P-Original =", potencias1
-    print "Caminante P-Modificada =", dist_est2
-    print "Potencias P-Modificada =", potencias2
+    print("### Ejercicio 01 --> Sobre G1 ###")
+    print("Simulaciones =", str(simulaciones))
+    print("Caminante P-Original =", dist_est1)
+    print("Potencias P-Original =", potencias1)
+    print("Caminante P-Modificada =", dist_est2)
+    print("Potencias P-Modificada =", potencias2)
     dist_est1, dist_est2, potencias1, potencias2 = ejercicio01(G2, simulaciones)
-    print "### Ejercicio 01 --> Sobre G2 ###"
-    print "Simulaciones =", str(simulaciones)
-    print "Caminante P-Original =", dist_est1
-    print "Potencias P-Original =", potencias1
-    print "Caminante P-Modificada =", dist_est2
-    print "Potencias P-Modificada =", potencias2
+    print("### Ejercicio 01 --> Sobre G2 ###")
+    print("Simulaciones =", str(simulaciones))
+    print("Caminante P-Original =", dist_est1)
+    print("Potencias P-Original =", potencias1)
+    print("Caminante P-Modificada =", dist_est2)
+    print("Potencias P-Modificada =", potencias2)
 
 
 def printEjercicio02():
     simulaciones = 100
     tiempos1, tiempos2, media1, media2 = ejercicio02(G1, simulaciones)
     tiempos3, tiempos4, media3, media4 = ejercicio02(G2, simulaciones)
-    print "### Ejercicio 02 ###"
-    print "Simulaciones =", str(simulaciones)
-    print "P-Original --> Distribucion de Tiempos G1 =", tiempos1
-    print "P-Original --> Media de Tiempos G1 =", media1
-    print "P-Modificada --> Distribucion de Tiempos G1 =", tiempos2
-    print "P-Modificada --> Media de Tiempos G1 =", media2
-    # print "Distribucion de Tiempos G2 =", tiempos2
-    print "P-Original --> Media de Tiempos G2 =", media3
-    print "P-Modificada --> Media de Tiempos G2 =", media4
+    print("### Ejercicio 02 ###")
+    print("Simulaciones =", str(simulaciones))
+    print("P-Original --> Distribucion de Tiempos G1 =", tiempos1)
+    print("P-Original --> Media de Tiempos G1 =", media1)
+    print("P-Modificada --> Distribucion de Tiempos G1 =", tiempos2)
+    print("P-Modificada --> Media de Tiempos G1 =", media2)
+    # print("Distribucion de Tiempos G2 =", tiempos2)
+    print("P-Original --> Media de Tiempos G2 =", media3)
+    print("P-Modificada --> Media de Tiempos G2 =", media4)
 
 
 def printEjercicio03():
     simulaciones = 1000
     alfas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.99]
-    print "### Ejercicio 03 ###"
-    print "Simulaciones =", str(simulaciones)
-    print "Alfas =", alfas
-    print "Tiempo de cubrimiento G1 =", ejercicio03(G1, simulaciones)
-    print "Tiempo de cubrimiento G2 =", ejercicio03(G2, simulaciones)
-    print "Con P original"
-    print "Tiempo de cubrimiento G1 =", testGrafo(G1, simulaciones)
-    print "Tiempo de cubrimiento G2 =", testGrafo(G2, simulaciones)
+    print("### Ejercicio 03 ###")
+    print("Simulaciones =", str(simulaciones))
+    print("Alfas =", alfas)
+    print("Tiempo de cubrimiento G1 =", ejercicio03(G1, simulaciones))
+    print("Tiempo de cubrimiento G2 =", ejercicio03(G2, simulaciones))
+    print("Con P original")
+    print("Tiempo de cubrimiento G1 =", testGrafo(G1, simulaciones))
+    print("Tiempo de cubrimiento G2 =", testGrafo(G2, simulaciones))
 
 
 # def printEjercicio05():
@@ -447,40 +448,40 @@ def printEjercicio03():
 #     for k in K:
 #         ranking1, ranking2 = paginasFictias(G2, k)
 #         ranking3, ranking4 = hackearPaginas(G2, k)
-#         print "### Ejercicio 05 --> Sobre G2 ###"
-#         print "Simulaciones = 1000 ----- Pasos = 100"
-#         print "########## Agregar", str(k), "Paginas ##########"
-#         print "Dist Est --> Ranking Pagina S =", ranking1
-#         print "Met Pote --> Ranking Pagina S =", ranking2
-#         print "########## Hackear", str(k), "Paginas ##########"
-#         print "Dist Est --> Ranking Pagina S =", ranking3
-#         print "Met Pote --> Ranking Pagina S =", ranking4
+#         print("### Ejercicio 05 --> Sobre G2 ###")
+#         print("Simulaciones = 1000 ----- Pasos = 100")
+#         print("########## Agregar", str(k), "Paginas ##########")
+#         print("Dist Est --> Ranking Pagina S =", ranking1)
+#         print("Met Pote --> Ranking Pagina S =", ranking2)
+#         print("########## Hackear", str(k), "Paginas ##########")
+#         print("Dist Est --> Ranking Pagina S =", ranking3)
+#         print("Met Pote --> Ranking Pagina S =", ranking4)
 
 
 def printEjercicio05():
     K = [1, 3, 5, 7, 10]
-    print "### Ejercicio 05 --> Sobre G1 ###"
-    print "Simulaciones = 1000 ----- Pasos = 100"
+    print("### Ejercicio 05 --> Sobre G1 ###")
+    print("Simulaciones = 1000 ----- Pasos = 100")
     for k in K:
         ranking1, a = paginasFictias(G1, k)
         ranking2, b = hackearPaginas(G1, k)
-        print "########## Agregar", str(k), "Paginas ##########"
-        print "Ranking Pagina S =", ranking1
-        print "########## Hackear", str(k), "Paginas ##########"
-        print "Ranking Pagina S =", ranking2
+        print("########## Agregar", str(k), "Paginas ##########")
+        print("Ranking Pagina S =", ranking1)
+        print("########## Hackear", str(k), "Paginas ##########")
+        print("Ranking Pagina S =", ranking2)
 
 
-# print ""
+# print("")
 # printEjercicio01()
-# print ""
+# print("")
 # printEjercicio02()
-# print ""
+# print("")
 # printEjercicio03()
-# print ""
+# print("")
 # ejercicio04()
-# print ""
+# print("")
 # printEjercicio05()
-# print ""
+# print("")
 
 
 ###############################################################################
@@ -508,7 +509,7 @@ def histograma02_G1():
     plt.xlabel("Numero de nodo")
     plt.ylabel("Tiempo de cruce [Pasos]")
     plt.grid(True)
-    bins = np.linspace(0,max(tiemposO), 20)
+    bins = np.linspace(0, max(tiemposO), 20)
     plt.text(2, 96, "Media de Tiempos con MTO = " + str(mediaO))
     plt.text(2, 88, "Media de Tiempos con MTM = " + str(mediaM))
     plt.ylim(0, 140)
@@ -525,7 +526,7 @@ def histograma02_G2():
     plt.xlabel("Tiempo de Cruce [Pasos]")
     plt.ylabel("Estimacion de Probabilidad")
     plt.grid(True)
-    bins = np.linspace(0,max(tiemposO), 20)
+    bins = np.linspace(0, max(tiemposO), 20)
     plt.hist([tiemposO, tiemposM], bins=bins, normed=True, color=["g", "r"], label=["Matriz de Transicion Original", "Matriz de Transicion Modificada"])
     plt.legend()
     plt.show()
@@ -541,7 +542,7 @@ def histograma03(number):
     elif number == 2:
         plt.title("Tiempos de Cubrimiento sobre G2")
     else:
-        print "ERROR"
+        print("ERROR")
     plt.ylabel("Tiempo de Cubrimiento [Pasos]")
     plt.xlabel("Alfa")
     plt.grid(True)
@@ -554,7 +555,7 @@ def histograma03(number):
         plt.plot(alfas, [548.714 for _ in xrange(len(datos1))], color="b", label="Tiempo de Cubrimiento con MTO")
         plt.plot(alfas, datos2, color="r", label="Tiempo de Cubrimiento con MTM")
     else:
-        print "ERROR"
+        print("ERROR")
     plt.legend()
     plt.show()
 

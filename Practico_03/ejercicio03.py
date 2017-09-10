@@ -5,6 +5,7 @@ import math
 
 # Infinito en python: infinito = float("inf")
 
+
 def montecarlo(funcion, a, b, n):
     """
     Calcula la integral por medio del metodo de Monte Carlo.
@@ -20,7 +21,7 @@ def montecarlo(funcion, a, b, n):
         u = random.random()
         acumulador += funcion(u*(b-a) + a)
 
-    return ((b-a)/float(n))*acumulador
+    return ((b-a) / float(n))*acumulador
 
 
 def funcionA(n):
@@ -32,7 +33,7 @@ def funcionA(n):
         y = random.random()
         a += (1 - y**2)**(float(3)/2)
 
-    return (a/float(n))
+    return (a / float(n))
 
 
 def funcionB(n):
@@ -44,7 +45,7 @@ def funcionB(n):
         y = random.random()
         a += (y**(-1) - 1) * (y**(-1) + 2*y - 2)**(-2)
 
-    return (a/float(n))
+    return (a / float(n))
 
 
 def funcionC(n):
@@ -57,7 +58,7 @@ def funcionC(n):
         a += math.exp(2*(y**(-1)) - y**(-2) - 1) * (y**(-2))
     a *= 2
 
-    return (a/float(n))
+    return (a / float(n))
 
 
 def funcionD(n):
@@ -70,7 +71,7 @@ def funcionD(n):
         z = random.random()
         a += math.exp((w + z)**2)
 
-    return (a/float(n))
+    return (a / float(n))
 
 
 def funcionE(n):
@@ -85,31 +86,30 @@ def funcionE(n):
         if z > w:
             a += w**(-2) * z**(-2) * math.exp(2 - z**(-1) - w**(-1))
 
-    return (a/float(n))
-
+    return (a / float(n))
 
 
 L = [100, 1000, 10000, 100000, 1000000]
 
 for n in L:
-    print "n =", n, "--> Funcion A =", funcionA(n)
+    print("n =", n, "--> Funcion A =", funcionA(n))
 
-print "-------------------------------------------------------------"
-
-for n in L:
-    print "n =", n, "--> Funcion B =", funcionB(n)
-
-print "-------------------------------------------------------------"
+print("-------------------------------------------------------------")
 
 for n in L:
-    print "n =", n, "--> Funcion C =", funcionC(n)
+    print("n =", n, "--> Funcion B =", funcionB(n))
 
-print "-------------------------------------------------------------"
-
-for n in L:
-    print "n =", n, "--> Funcion D =", funcionD(n)
-
-print "-------------------------------------------------------------"
+print("-------------------------------------------------------------")
 
 for n in L:
-    print "n =", n, "--> Funcion E =", funcionE(n)
+    print("n =", n, "--> Funcion C =", funcionC(n))
+
+print("-------------------------------------------------------------")
+
+for n in L:
+    print("n =", n, "--> Funcion D =", funcionD(n))
+
+print("-------------------------------------------------------------")
+
+for n in L:
+    print("n =", n, "--> Funcion E =", funcionE(n))

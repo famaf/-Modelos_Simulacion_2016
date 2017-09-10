@@ -9,7 +9,7 @@ def esperanza(n):
     Calcula la esperanza con la Ley de los Grandes Numeros.
     """
     N = 0 # Total de lanzamientos en los n experimentos
-    
+
     for _ in xrange(n):
         RESULTADOS = range(2, 13) # Lista de resultados [2...12]
         lanzamientos = 0 # Lanzamientos necesarios
@@ -55,7 +55,7 @@ def varianza(n):
             # remover dicho resultado de los posibles (xq ya se obtuvo)
             if suma_dados in RESULTADOS:
                 RESULTADOS.remove(suma_dados)
-        
+
         N1 += lanzamientos # x
         N2 += lanzamientos**2 # x^2
 
@@ -65,9 +65,9 @@ def varianza(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza(n)
+    print("n =", n, "--> E(X) =", esperanza(n))
 
-print "--------------------------------"
+print("--------------------------------")
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> V(X) =", varianza(n)
+    print("n =", n, "--> V(X) =", varianza(n))

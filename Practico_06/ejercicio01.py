@@ -57,18 +57,18 @@ def promedioMSN():
 
 def printEstimacion():
     M, S_cuadrado, N = estimacion()
-    print "\nMedia Muestral =", M
-    print "Varianza Muestral =", S_cuadrado
-    print "Ejecuciones Necesarias =", N
-    print ""
+    print("\nMedia Muestral =", M)
+    print("Varianza Muestral =", S_cuadrado)
+    print("Ejecuciones Necesarias =", N)
+    print("")
 
 
 def printPromedioMSN():
     proM, proS_cuadrado, proN = promedioMSN()
-    print "Promedio Media Muestral =", proM
-    print "Promedio Varianza Estandar =", proS_cuadrado
-    print "Promedio Observaciones =", proN
-    print ""
+    print("Promedio Media Muestral =", proM)
+    print("Promedio Varianza Estandar =", proS_cuadrado)
+    print("Promedio Observaciones =", proN)
+    print("")
 
 
 printEstimacion()

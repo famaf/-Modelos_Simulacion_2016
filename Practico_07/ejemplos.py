@@ -472,18 +472,16 @@ def ejemploRobertBinomialSimulado(r):
 
     return p_valor
 
-print "########## Test de Bondad ##########"
-print "Ejemplo 1 --> p-valor =", ejemplo01()
-print "Ejemplo 2 --> p-valor =", ejemplo02()
-print "Ejemplo 2 Simulado --> p-valor =", ejemplo02Simulado(10000)
-print "Ejemplo 3 --> p-valor =", ejemplo03()
-print "Ejemplo 4 -->", ejemplo04(0.05)
-print "Ejemplo 5 --> p-valor =", ejemplo05()
-print "Ejemplo 5 Simulado --> p-valor =", ejemplo05Simulado(10000)
-print "Ejemplo Robert Chi-Cuadrado --> p-valor =", ejemploRobertBinomialChi()
-print "Ejemplo Robert Simulacion --> p-valor =", ejemploRobertBinomialSimulado(10000)
-
-
+print("########## Test de Bondad ##########")
+print("Ejemplo 1 --> p-valor =", ejemplo01())
+print("Ejemplo 2 --> p-valor =", ejemplo02())
+print("Ejemplo 2 Simulado --> p-valor =", ejemplo02Simulado(10000))
+print("Ejemplo 3 --> p-valor =", ejemplo03())
+print("Ejemplo 4 -->", ejemplo04(0.05))
+print("Ejemplo 5 --> p-valor =", ejemplo05())
+print("Ejemplo 5 Simulado --> p-valor =", ejemplo05Simulado(10000))
+print("Ejemplo Robert Chi-Cuadrado --> p-valor =", ejemploRobertBinomialChi())
+print("Ejemplo Robert Simulacion --> p-valor =", ejemploRobertBinomialSimulado(10000))
 
 
 ###############################
@@ -659,9 +657,9 @@ def ejemplo08Simulado(k):
     return p_valor
 
 
-print "\n########## Suma de rangos ###########"
-print "Ejemplo 6 --> R =", ejemplo06()
-print "Ejemplo 7 --> R =", ejemplo07()
-print "Ejemplo 8 Exacto --> p-valor =", ejemplo08Exacto()
-print "Ejemplo 8 Normal --> p-valor =", ejemplo08Normal()
-print "Ejemplo 8 Simulado --> p-valor =", ejemplo08Simulado(10000)
+print("\n########## Suma de rangos ###########")
+print("Ejemplo 6 --> R =", ejemplo06())
+print("Ejemplo 7 --> R =", ejemplo07())
+print("Ejemplo 8 Exacto --> p-valor =", ejemplo08Exacto())
+print("Ejemplo 8 Normal --> p-valor =", ejemplo08Normal())
+print("Ejemplo 8 Simulado --> p-valor =", ejemplo08Simulado(10000))

@@ -100,12 +100,12 @@ def esperanza2(n):
 
     return a/float(n)
 
-print "Metodo de Composicion y Inversa"
+print("Metodo de Composicion y Inversa")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza1(n)
+    print("n =", n, "--> E(X) =", esperanza1(n))
 
-print "------------------------------"
+print("------------------------------")
 
-print "Metodo de Composicion y Geometrica"
+print("Metodo de Composicion y Geometrica")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza2(n)
+    print("n =", n, "--> E(X) =", esperanza2(n))

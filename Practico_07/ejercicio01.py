@@ -136,7 +136,6 @@ def simulacion02(r):
     return p_valor
 
 
-
-print "Chi-Cuadrado --> p-valor =", chiCuadrado()
-print "Simulacion 1 --> p-valor =", simulacion01(10000)
-print "Simulacion 2 --> p-valor =", simulacion02(10000)
+print("Chi-Cuadrado --> p-valor =", chiCuadrado())
+print("Simulacion 1 --> p-valor =", simulacion01(10000))
+print("Simulacion 2 --> p-valor =", simulacion02(10000))

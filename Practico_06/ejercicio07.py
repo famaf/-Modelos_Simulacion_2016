@@ -51,7 +51,7 @@ def bootstrap(muestra):
     media_muestral = mediaMuestral(muestra)
     varianza_muestral = varianzaMuestral(muestra)
 
-    # mu_Fe y sigma^2_Fe 
+    # mu_Fe y sigma^2_Fe
     media_Fe = mediaFe(muestra)
     varianza_Fe = varianzaFe(muestra)
 
@@ -78,8 +78,7 @@ def bootstrap(muestra):
     return var_Xbarra, var_Scuadrado
 
 
-
 var_Xbarra, var_Scuadrado = bootstrap(muestra)
-print "Var(Xbarra) =",var_Xbarra
-print "Var(S^2) =", var_Scuadrado
-print calcularPeso(muestra)
+print("Var(Xbarra) =",var_Xbarra)
+print("Var(S^2) =", var_Scuadrado)
+print(calcularPeso(muestra))

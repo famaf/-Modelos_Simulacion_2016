@@ -13,7 +13,7 @@ def procesoPoissonHomogeneo(lamda, tiempo):
     t = 0 # tiempo transcurrido
     i = 0 # N° colectivos
     s = [] # S[i]: tiempo del evento mas reciente
-    
+
     aficionados = 0 # Cantidad total de aficionados
     j = 0
 
@@ -48,4 +48,4 @@ def esperanza(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(aficionados) =", esperanza(n)
+    print("n =", n, "--> E(aficionados) =", esperanza(n))

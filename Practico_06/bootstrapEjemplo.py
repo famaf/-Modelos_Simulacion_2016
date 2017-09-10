@@ -79,4 +79,4 @@ def bootstrap(B, muestra):
 # X = X[I]
 
 for B in [100, 1000, 10000, 100000, 1000000]:
-    print "B =", B, "--> Var(S^2) =", bootstrap(B, muestra)
+    print("B =", B, "--> Var(S^2) =", bootstrap(B, muestra))

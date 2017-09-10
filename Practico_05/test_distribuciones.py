@@ -53,21 +53,21 @@ def ejercicio08_V(n):
     return varianza
 
 
-print "Ejercicio 2"
+print("Ejercicio 2")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", ejercicio02(n)
+    print("n =", n, "--> E(X) =", ejercicio02(n))
 
-print "---------------------------------------------"
+print("---------------------------------------------")
 
-print "Ejercicio 7"
+print("Ejercicio 7")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", ejercicio07(n)
+    print("n =", n, "--> E(X) =", ejercicio07(n))
 
-print "---------------------------------------------"
+print("---------------------------------------------")
 
-print "Ejercicio 8"
+print("Ejercicio 8")
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", ejercicio08(n)
+    print("n =", n, "--> E(X) =", ejercicio08(n))
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> V(X) =", ejercicio08_V(n)
+    print("n =", n, "--> V(X) =", ejercicio08_V(n))

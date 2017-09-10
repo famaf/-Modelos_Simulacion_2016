@@ -137,6 +137,6 @@ def simulacion(k):
 
 
 
-print "Valor Exacto =", valorExacto()
-print "Aprocimacion Normal =", aproximacionNormal()
-print "Simulacion =", simulacion(100000)
+print("Valor Exacto =", valorExacto())
+print("Aprocimacion Normal =", aproximacionNormal())
+print("Simulacion =", simulacion(100000))

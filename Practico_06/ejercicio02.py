@@ -47,10 +47,10 @@ def monteCarlo():
 
 def printMonteCarlo():
     M, S, N = monteCarlo()
-    print "\nMedia Muestral =", M
-    print "Desviacion Estandar Muestral =", S
-    print "Ejecuciones Necesarias =", N
-    print ""
+    print("\nMedia Muestral =", M)
+    print("Desviacion Estandar Muestral =", S)
+    print("Ejecuciones Necesarias =", N)
+    print("")
 
 
 printMonteCarlo()

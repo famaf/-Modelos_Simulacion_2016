@@ -36,4 +36,4 @@ def esperanza(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> E(X) =", esperanza(n)
+    print("n =", n, "--> E(X) =", esperanza(n))

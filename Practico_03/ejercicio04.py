@@ -45,4 +45,4 @@ def aproximacion(n):
 #     return float(a)/n
 
 for n in [100, 1000, 10000, 100000, 1000000]:
-    print "n =", n,  "--> e =", aproximacion(n)
+    print("n =", n,  "--> e =", aproximacion(n))

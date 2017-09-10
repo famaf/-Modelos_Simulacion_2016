@@ -21,10 +21,10 @@ def experimento(N):
             if u2 < u1:
                 exito += 1
 
-    F = float(exito)/N
+    F = float(exito) / N
 
     return F
 
 
 for N in [100, 1000, 10000, 100000]:
-    print "N =", N, "--> Ejercicio 5b =", experimento(N)
+    print("N =", N, "--> Ejercicio 5b =", experimento(N))

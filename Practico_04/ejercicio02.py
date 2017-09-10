@@ -23,4 +23,4 @@ def aproximacion(n):
 
 
 for n in [100, 1000, 10000, 100000]:
-    print "n =", n, "--> Aproximacion =", aproximacion(n)
+    print("n =", n, "--> Aproximacion =", aproximacion(n))

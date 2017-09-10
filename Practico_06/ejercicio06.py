@@ -43,9 +43,8 @@ def bootstrap(B, muestra):
     return p
 
 
-
 muestra = [56, 101, 78, 67, 93, 87, 64, 72, 80, 69] # Valores de la muetra obtenida
 
 for B in [100, 1000, 10000, 100000]:
     # Si B = 1000000 ---> p = 0.761043
-    print "B =", B, "---> p =", bootstrap(B, muestra)
+    print("B =", B, "---> p =", bootstrap(B, muestra))
